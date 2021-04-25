@@ -1,2 +1,2 @@
-# woolly-of-cv
-This repo contains ML applications which will teach you CVconcepts from scratch
+# Woolly-of-CV
+This repo contains ML applications which will teach you CV concepts from scratch
