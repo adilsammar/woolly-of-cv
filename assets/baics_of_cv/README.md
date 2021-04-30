@@ -1,10 +1,10 @@
 # Basic of Computer Vision
 
 ## Contributer
-[Ammar Adil](https://github.com/adilsammar)
-[Krithiga](https://github.com/BottleSpink)
-[Shashwat Dhanraaj](https://github.com/sdhanraaj12)
-[Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
+* [Ammar Adil](https://github.com/adilsammar)
+* [Krithiga](https://github.com/BottleSpink)
+* [Shashwat Dhanraaj](https://github.com/sdhanraaj12)
+* [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
 
 What are Channels and Kernels (according to EVA)?
 Why should we (nearly) always use 3x3 kernels?
