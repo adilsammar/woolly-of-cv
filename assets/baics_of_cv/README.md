@@ -148,9 +148,9 @@ During the training, the base layer neurons store all the pixels of image/input.
 In each layer, there is a kernel that extracts features or combines low-level features to give high-level features.
 Kernel values are initialized randomly, then, during the training, the model learns and corrects these values based on the features it intends to extract.
 
-> 1st layer combines pixels to detect edges
-> 2nd layer combines edges to make textures, gradients
-> 3rd layer combines textures to make patterns
-> 4th layer combines patterns to make parts of objects
-> 5th layer combines parts of objects to make objects
-> Finally, the name/type of object is predicted
+* 1st layer combines pixels to detect edges
+* 2nd layer combines edges to make textures, gradients
+* 3rd layer combines textures to make patterns
+* 4th layer combines patterns to make parts of objects
+* 5th layer combines parts of objects to make objects
+* Finally, the name/type of object is predicted
