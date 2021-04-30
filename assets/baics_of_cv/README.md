@@ -125,10 +125,10 @@ We need to perform 99 convolution operation to reach 1x1 from 199x199
 93.	  15x15 > 13x13
 94.	  13x13 > 11x11
 95.	  11x11 > 9x9
-96.	    9x9 > 7x7
-97.	    7x7 > 5x5
-98.	    5x5 > 3x3
-99.	    3x3 > 1x1
+96.	  9x9 > 7x7
+97.	  7x7 > 5x5
+98.	  5x5 > 3x3
+99.	  3x3 > 1x1
 
 
 ### How are kernels initialized? 
