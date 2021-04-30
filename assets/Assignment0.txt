@@ -31,11 +31,11 @@ Kernels can be of various sizes i.e. in images we have 2D or 3D kernels of any d
 3. The GPUs are designed for faster execution of 3x3, hence the processing time is faster
 
 
-Kernels determines the receptive field of a channel(Image). 
+Kernels determines the receptive field of image. 
 
 1st reason:
 
-Performing convolutions essentially mean performing dot product between the kernel and the channel. Here, having a larger kernel size would mean higher computational cost. So we prefer the small kernel size. And 3x3 or 5x5 ends up being the most used kernel size.
+Performing convolutions essentially mean performing dot product between the kernels and the channels. Here, having a larger kernel size would mean higher computational cost. So we prefer the small kernel size. And 3x3 or 5x5 ends up being the most used kernel size.
 
 
 2nd reason:
@@ -46,7 +46,7 @@ That would mean there will be no convolution operation performed
 Having a smaller kernel size would mean missing out the representation on the larger features while having a larger kernel size would mean missing out on the small features. 
 
 Using 1x1 kernel: (Smallest)
-Having a kernel size of 1x1 would mean we have almost no convolution applied on the image.
+Having a kernel size of 1x1 would mean we will end up not having any information on the adjacent/ overlapping pixels
 We do not use 2x2 or even-sized kernels since it lacks symmetry around the matrix or the centre point.
 3x3 fits in perfectly if we want to have representations even on the smaller features.
 		
