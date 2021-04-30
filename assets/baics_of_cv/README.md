@@ -133,7 +133,7 @@ We need to perform 99 convolution operation to reach 1x1 from 199x199
 
 ### How are kernels initialized? 
 
-Kernels are assigned randomly from a set of numbers (random). There is a obvious question which comes to mind can we not *Can we not assign kernels with either all 1's or 0's?* 
+Kernels are assigned randomly from a set of numbers (random). There is a obvious question which comes to mind   *Can we not assign kernels with either all 1's or 0's?* 
 
 1. Kernels are filters which work over the input image and gives out channels as output. If we have all values as 0s, all the convolution operation that will take place will be 0. Lets take an Example of Filtering Tea: All 0s means the filter does not have opening to filter the tea from tea leaves. Hence when we pour our tea via that filter we will get nothing.
 2. If we initialize all kernel values with 1, we will have identical kernels giving same channels as output. The task of the kernel should be to separate, where as if we have same filters it will produce same results. For example: if the filter used to separate tea from tea leaves is open (no nets), it will give the same unfiltered tea back.
@@ -144,11 +144,13 @@ Kernels are assigned randomly from a set of numbers (random). There is a obvious
 ![Training DNN](dnn_process.png)
 
 During the training, the base layer neurons store all the pixels of image/input.
+
 In each layer, there is a kernel that extracts features or combines low-level features to give high-level features.
 Kernel values are initialized randomly, then, during the training, the model learns and corrects these values based on the features it intends to extract.
-1st layer combines pixels to detect edges
-2nd layer combines edges to make textures, gradients
-3rd layer combines textures to make patterns
-4th layer combines patterns to make parts of objects
-5th layer combines parts of objects to make objects
-Finally, the name/type of object is predicted
+
+> 1st layer combines pixels to detect edges
+> 2nd layer combines edges to make textures, gradients
+> 3rd layer combines textures to make patterns
+> 4th layer combines patterns to make parts of objects
+> 5th layer combines parts of objects to make objects
+> Finally, the name/type of object is predicted
