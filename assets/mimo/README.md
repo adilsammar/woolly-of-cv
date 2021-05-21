@@ -16,11 +16,11 @@
 ### Design Multi Input Multi Output Network
 
 1. This net should take in two inputs, 
-    a. Mnist image (1, 28, 28)
-    b. Random vector as one hot encoded (1, 10)
+    1. Mnist image (1, 28, 28)
+    2. Random vector as one hot encoded (1, 10)
 2. Output two vectors
-    a. Predicted logits for MNIST digit (1, 10)
-    b. Predicted logist for sum of both numbers (1, 19)
+    1. Predicted logits for MNIST digit (1, 10)
+    2. Predicted logist for sum of both numbers (1, 19)
 
 ```
 ----------------------------------------------------------------
