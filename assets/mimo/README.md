@@ -43,7 +43,7 @@
 #### Network Architecture:
 1. Input image is first passed on to a convolution layer
 2. Input number as a one hot encoder is passed on to fc layer with output size equal to output size of first convlayer
-3. **Now the output from above two layers are concatenated in a way that this fc layer output becomes one of the channel
+3. *Now the output from above two layers are concatenated in a way that this fc layer output becomes one of the channel*
 4. Further convolutions and max pooling are performed
 5. In the output just before the last layer, the output from the previous layer is flattened and fed to the linear layer with respective output
 6. And finally softmax layer and the outputs are passed
@@ -55,8 +55,8 @@ Here we have created a custom dataset, where both the inputs are processed and i
 2. Define a custom dataset function
 3. Load dataset as pandas dataframe
 4. Create a data list from dataframe with these pixels and reshape them to (28, 28, 1)
-5. __init__ is defined to read the image
-6. Add function __getitem__ , this function will first load image from list, generate a new random number, create one-hot vector for that and then return the four values - image, image_label, random_number and the sum 
+5. "__init__" is defined to read the image
+6. Add function "__getitem__" , this function will first load image from list, generate a new random number, create one-hot vector for that and then return the four values - image, image_label, random_number and the sum 
 
 ### Load Dataset
 1. Split dataset into train and test (80/20)
@@ -183,6 +183,6 @@ Epoch: 10
 	  R Val Accuracy: 13791/14000  |  Percent: 99%
 ```
 
-###Results:
+### Results:
 For the 10 epochs, that's run the model has achieved 99% accuracy for both the tasks. The test set is run against the model
 - For the Image prediction, 13867(/14000) has been classified/ predicted correctly, while for the sum prediction, 13791(/14000) has been predicted correctly. 
