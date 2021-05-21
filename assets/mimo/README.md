@@ -7,6 +7,12 @@
 3. you can mix fully connected layers and convolution layers
 4. you can use one-hot encoding to represent the random number input as well as the "summed" output.
 
+### Contributer
+* [Ammar Adil](https://github.com/adilsammar)
+* [Krithiga](https://github.com/BottleSpink)
+* [Shashwat Dhanraaj](https://github.com/sdhanraaj12)
+* [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
+
 ### Design Multi Input Multi Output Network
 
 1. This net should take in two inputs, 
