@@ -7,7 +7,7 @@ The target is to achieve it in under 5k params with accuracy more than 99.40
 Accuracy achieved: `99.42` within `10 epochs`
 Prams Used: `4838`
 
-Code Link: [Local NoteBook](MNIST_4838_9942.ipynb) / [CoLab Notebook](https://drive.google.com/file/d/1i_q-gjXXAGgana7XZtBcIRxqxthKaayu/view?usp=sharing)
+Code Link: [Local NoteBook](MNIST_4838_9942.ipynb) / [CoLab Notebook](https://colab.research.google.com/drive/1uIfwHwPRwB-2jYiiTi9kksbGuU6J0B_8?usp=sharing)
 
 ### Contributer
 * [Ammar Adil](https://github.com/adilsammar)
