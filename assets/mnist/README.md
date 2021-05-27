@@ -4,8 +4,7 @@ The target is to achieve it in under 5k params with accuracy more than 99.40
 
 #### Moivation to keep you engaged till the end
 
-Accuracy achieved: `99.42` within `10 epochs`
-Prams Used: `4838`
+Accuracy achieved: `99.42` within `10 epochs` with `4838` params used
 
 Code Link: [Local NoteBook](MNIST_4838_9942.ipynb) / [CoLab Notebook](https://colab.research.google.com/drive/1uIfwHwPRwB-2jYiiTi9kksbGuU6J0B_8?usp=sharing)
 
