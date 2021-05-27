@@ -15,6 +15,51 @@ Code Link: [Local NoteBook](MNIST_4838_9942.ipynb) / [CoLab Notebook](https://co
 * [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
 
 
-#### Before we start Remember, `Good news will come only after your training loop ends`.
+#### Before we start Remember, `Good news will come only after your training loop ends`
 
 ![GoodThings](https://www.faxesfromuncledale.com/wp-content/uploads/Wait.gif "All Good Things to Those Who Wait")
+
+
+### Basics
+Before we can even start talking about machine learning, model or training we need to know what kind of problem we are trying to solve here. For us the problem in hand is classifying a digit image into its respective class ie (what digit that image shows).
+
+### Data Loader
+To start with, the first thing we have to do is to load data. As we are working with `PyTorch`, there is an inbuilt functionality which helps us load data as shown below
+
+
+    batch_size = 64
+
+    train_loader = torch.utils.data.DataLoader(
+        datasets.MNIST('../data', train=True, download=True,
+                    transform=transforms.Compose([
+                        transforms.ToTensor(),
+                        transforms.Normalize((0.1307,), (0.3081,))
+                    ])),
+    batch_size=batch_size, shuffle=True)
+
+    test_loader = torch.utils.data.DataLoader(
+        datasets.MNIST('../data', train=False, transform=transforms.Compose([
+                            transforms.ToTensor(),
+                            transforms.Normalize((0.1307,), (0.3081,))
+                        ])),
+        batch_size=batch_size, shuffle=True)
+
+
+this will load mnist data and convert it into `data loader`. DataLoader is a built in class which provides an iterator to loop over, one of the parameter this takes in is batch size which used for `minibatch` gradient descent while training.
+
+### Data Visualization
+Before we even stat with creating our model we have to look into what kinbd of data we are dealing with for this we use `matplotlib` to visualize our data. We will print some samples to see how they look.
+
+![samples](./assets/samples.png)
+
+As we can see from above image datasamples are all approximately centerred.
+
+One of the other thing we need to look into our dataset is the class spread. For this we have to visualize our training dataset to know what is the count of datasamples each class has.
+
+    {0: 5923, 1: 6742, 2: 5958, 3: 6131, 4: 5842, 5: 5421, 6: 5918, 7: 6265, 8: 5851, 9: 5949}
+
+
+![class_spread](./assets/class_spread.png)
+
+From above visualization we can clearly see the data is evenly spread around all classes, what we can conclude from here is while training our network will not be bised to one class.
+
