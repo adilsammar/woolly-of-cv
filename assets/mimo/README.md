@@ -40,40 +40,48 @@
 
 ```
     
-#### Methodology
+#### Network Architecture:
 1. Input image is first passed on to a convolution layer
-2. Input number as a one hot encoder is passed on to fc layer with output sixe equal to outputsize of first convlayer
-3. Now the output from above two layers is concatinated in a way that this fc layer output becomes one of the channel
-4. Further convolution is performed
-5. In the output just bfore the last layer the output from previous layer is flattered and fed to linear layer with respective output.
+2. Input number as a one hot encoder is passed on to fc layer with output size equal to output size of first convlayer
+3. *Now the output from above two layers are concatenated in a way that this fc layer output becomes one of the channel*
+4. Further convolutions and max pooling are performed
+5. In the output just before the last layer, the output from the previous layer is flattened and fed to the linear layer with respective output
+6. And finally softmax layer and the outputs are passed
 
-### Dataset Creation
-Here we have created a custom dataset, whch spits four values image, im_label, random_number, sum \[(1, 28, 28), (1, 1), (1, 19), (1, 1) \]
+### Dataset Representation and Dataset creation Strategy:
+Here we have created a custom dataset, where both the inputs are processed and it outputs the four values image, im_label, random_number, sum \[(1, 28, 28), (1, 1), (1, 19), (1, 1) \]
 
 1. Download Raw dataset from MNIST website
-2. Define a cutom dataset function
+2. Define a custom dataset function
 3. Load dataset as pandas dataframe
 4. Create a data list from dataframe with these pixels and reshape them to (28, 28, 1)
-5. Add function __getitem__ , this function will first load image from list, generate a new random number, create onehot vctor for that and then return them
+5. "__init__" is defined to read the image
+6. Add function "__getitem__" , this function will first load image from list, generate a new random number, create one-hot vector for that and then return the four values - image, image_label, random_number and the sum 
 
 ### Load Dataset
 1. Split dataset into train and test (80/20)
-2. Create Loaded with respective splits and enable shuffle
+2. Create DataLoader with respective splits and enable shuffle
 
 #### Visualize Dataset
 Print some random samples to see how images from our dataset looks like
 
 ![visualize](./visualize.png "Some Inputs")
 
+
 ### Training
-1. Define train loop
-2. Define test loop
+1. Check for cuda device - CPU or GPU is done
+2. Define train loop - In the train loop, for the given number of epochs, the data is loaded in batches and runs through the network. Loss is calculated and updated   
+3. Define test loop with the test data loaded
 
-#### Loss Calculation 
-In out backpropogation we are using **negative log likelihood loss**. `nll_loss`, _`F.nll_loss`_  for a multi-class classification use case the model output is expected to contain log probabilities (applied F.log_softmax as the last activation function on the output) and have the shape \[batch_size, nb_classes\]. The target should be a LongTensor in the shape \[batch_size\] and should contain the class indices in the range \[0, nb_classes-1\].
+### Loss Calculation 
+1. In out backpropogation we are using **negative log likelihood loss**. `nll_loss`, _`F.nll_loss`_  for a multi-class classification use case the model output is expected to contain log probabilities (applied F.log_softmax as the last activation function on the output) and have the shape \[batch_size, nb_classes\]. The target should be a LongTensor in the shape \[batch_size\] and should contain the class indices in the range \[0, nb_classes-1\].
 For More Details Refer [Here](https://medium.com/@bhardwajprakarsh/negative-log-likelihood-loss-why-do-we-use-it-for-binary-classification-7625f9e3c944)
+2. Losses are calculated separately for the two actions - number prediction, sum prediction. The losses are then added and updated after every backpropagation step
 
-### Training Logs
+### Optimizer:
+We have chosen Adam optimizer as it efficiently computes according to stochastic gradient descent-methods
+
+### Training Parameters and Training Logs:
 
 ```
 Using Device: cuda
@@ -174,3 +182,7 @@ Epoch: 10
 	  I Val Accuracy: 13867/14000  |  Percent: 99%
 	  R Val Accuracy: 13791/14000  |  Percent: 99%
 ```
+
+### Results:
+For the 10 epochs, that's run the model has achieved 99% accuracy for both the tasks. The test set is run against the model
+- For the Image prediction, 13867(/14000) has been classified/ predicted correctly, while for the sum prediction, 13791(/14000) has been predicted correctly. 
