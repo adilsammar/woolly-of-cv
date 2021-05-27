@@ -74,5 +74,13 @@ But before we jump into networ architecture we like to point out some of golden 
     <img src="assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="270" height="180"/>
     <img src="assets/Step-Pyramid-of-Djoser.jpg" alt="drawing" width="270" height="180"/>
 
+In this article we have used `Stepped Design`
+
+2. Try to understand what should be the right size of network you need to start with, Tip, start with like a over kill with million of params so that you know you have a good enough data to solve your problem.
+
+3. Do not try every possible optimiztion in first iiteration. Take one step at a time.
+
+We will now spare you with too much of `GYAN` and quickly jump on to nework design which is used here.
+
 
 
