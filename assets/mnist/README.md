@@ -78,7 +78,52 @@ But before we jump into networ architecture we like to point out some of golden 
 
 3. Do not try every possible optimiztion in first iiteration. Take one step at a time.
 
-We will now spare you with too much of `GYAN` and quickly jump on to nework design which is used here.
+We will now spare you with too much of `GYAN` and quickly jump on to nework design used.
+
+![network](./assets/network.png)
+
+This network contains block pattern as shown. We start with an image of size 1\*28\*28
+
+1. Block 1 -> Convolution with a kernel of size 4\*3\*3 and padding 1, we do two sets of such convolution
+2. Transition layer -> Here we have used MaxPolling2D to reduce channel size by half, followed by dropout of 0.01
+3. Block 2 -> Convolution with a kernel of size 8\*3\*3 and padding 1, we do two sets of such convolution
+4. Transition layer -> Here we have used MaxPolling2D to reduce channel size by half, followed by dropout of 0.01
+5. Block 2 -> Convolution with a kernel of size 16\*3\*3 and padding 1, we do two sets of such convolution
+6. Transition layer -> A 1\*1 convolution is used to reduce channel from 16 to 10
+7. Output layer -> GAP is used to convert every channel to 1\*1 and then passed to softmax
+
+    ----------------------------------------------------------------
+            Layer (type)               Output Shape         Param #
+    ================================================================
+                Conv2d-1            [-1, 4, 28, 28]              40
+           BatchNorm2d-2            [-1, 4, 28, 28]               8
+                Conv2d-3            [-1, 4, 28, 28]             148
+           BatchNorm2d-4            [-1, 4, 28, 28]               8
+             MaxPool2d-5            [-1, 4, 14, 14]               0
+               Dropout-6            [-1, 4, 14, 14]               0
+                Conv2d-7            [-1, 8, 14, 14]             296
+           BatchNorm2d-8            [-1, 8, 14, 14]              16
+                Conv2d-9            [-1, 8, 14, 14]             584
+          BatchNorm2d-10            [-1, 8, 14, 14]              16
+            MaxPool2d-11              [-1, 8, 7, 7]               0
+              Dropout-12              [-1, 8, 7, 7]               0
+               Conv2d-13             [-1, 16, 7, 7]           1,168
+          BatchNorm2d-14             [-1, 16, 7, 7]              32
+               Conv2d-15             [-1, 16, 7, 7]           2,320
+          BatchNorm2d-16             [-1, 16, 7, 7]              32
+              Dropout-17             [-1, 16, 7, 7]               0
+               Conv2d-18             [-1, 10, 7, 7]             170
+    AdaptiveAvgPool2d-19             [-1, 10, 1, 1]               0
+    ================================================================
+    Total params: 4,838
+    Trainable params: 4,838
+    Non-trainable params: 0
+    ----------------------------------------------------------------
+    Input size (MB): 0.00
+    Forward/backward pass size (MB): 0.20
+    Params size (MB): 0.02
+    Estimated Total Size (MB): 0.22
+    ----------------------------------------------------------------
 
 
-
+As we can see from network summary total number of params used are `4838`
