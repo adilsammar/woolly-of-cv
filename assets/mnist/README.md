@@ -72,7 +72,7 @@ But before we jump into networ architecture we like to point out some of golden 
 1. There are two kind of network designs `Smooth Design` and `Stepped Design` as shown below
 
     <img src="assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="270" height="180"/>
-    <img src="assets/Saqqara-Step-Pyramid-of-King-Djoser.jpg" alt="drawing" width="270" height="180"/>
+    <img src="assets/Step-Pyramid-of-Djoser.jpg" alt="drawing" width="270" height="180"/>
 
 
 
