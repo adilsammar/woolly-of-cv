@@ -21,7 +21,7 @@ Code Link: [Local NoteBook](MNIST_4838_9942.ipynb) / [CoLab Notebook](https://co
 
 
 ### Basics
-Before we can even start talking about machine learning, model or training we need to know what kind of problem we are trying to solve here. For us the problem in hand is classifying a digit image into its respective class ie (what digit that image shows).
+Before we can even start talking about machine learning, model or training we need to know what kind of problem we are trying to solve here. For us the problem in hand is classifying a digit image into its respective class (ie what digit a given image belongs to).
 
 ### Data Loader
 To start with, the first thing we have to do is to load data. As we are working with `PyTorch`, there is an inbuilt functionality which helps us load data as shown below
@@ -54,12 +54,23 @@ Before we even stat with creating our model we have to look into what kinbd of d
 
 As we can see from above image datasamples are all approximately centerred.
 
-One of the other thing we need to look into our dataset is the class spread. For this we have to visualize our training dataset to know what is the count of datasamples each class has.
+One of the other thing we need to look into our dataset is the class spread. For this we visualize our training dataset to know count of datasamples in each class.
 
     {0: 5923, 1: 6742, 2: 5958, 3: 6131, 4: 5842, 5: 5421, 6: 5918, 7: 6265, 8: 5851, 9: 5949}
 
 
 ![class_spread](./assets/class_spread.png)
 
-From above visualization we can clearly see the data is evenly spread around all classes, what we can conclude from here is while training our network will not be bised to one class.
+From this chart we can clearly see data is evenly spread around all classes, what we can conclude from here is while training our network will not be baised to one class.
+
+### Network Design
+
+Designing a network is an art and an iterative process. We dont want you to go through that pain.
+
+But before we jump into networ architecture we like to point out some of golden rules to design any network.
+
+1. there are two kind of network designs `Pyramid Design` and `Stepped Design` as shown below
+
+    <img src="assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="200" height="120"/>
+    <img src="assets/stepped-pyramid.jpg" alt="drawing" width="200" height="120"/>
 
