@@ -15,5 +15,6 @@ Code Link: [Local NoteBook](MNIST_4838_9942.ipynb) / [CoLab Notebook](https://co
 * [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
 
 
-Before we start, Good news will come only after your training loop ends.
+#### Before we start Remember, `Good news will come only after your training loop ends`.
+
 ![GoodThings](https://www.faxesfromuncledale.com/wp-content/uploads/Wait.gif "All Good Things to Those Who Wait")
