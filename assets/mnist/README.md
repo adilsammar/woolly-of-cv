@@ -92,6 +92,7 @@ This network contains block pattern as shown. We start with an image of size 1\*
 6. Transition layer -> A 1\*1 convolution is used to reduce channel from 16 to 10
 7. Output layer -> GAP is used to convert every channel to 1\*1 and then passed to softmax
 
+    ```
     ----------------------------------------------------------------
             Layer (type)               Output Shape         Param #
     ================================================================
@@ -124,6 +125,7 @@ This network contains block pattern as shown. We start with an image of size 1\*
     Params size (MB): 0.02
     Estimated Total Size (MB): 0.22
     ----------------------------------------------------------------
+    ```
 
 
 As we can see from network summary total number of params used are `4838`
