@@ -69,8 +69,10 @@ Designing a network is an art and an iterative process. We dont want you to go t
 
 But before we jump into networ architecture we like to point out some of golden rules to design any network.
 
-1. there are two kind of network designs `Pyramid Design` and `Stepped Design` as shown below
+1. There are two kind of network designs `Smooth Design` and `Stepped Design` as shown below
 
-    <img src="assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="200" height="120"/>
-    <img src="assets/stepped-pyramid.jpg" alt="drawing" width="200" height="120"/>
+    <img src="assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="270" height="180"/>
+    <img src="assets/Saqqara-Step-Pyramid-of-King-Djoser.jpg" alt="drawing" width="270" height="180"/>
+
+
 
