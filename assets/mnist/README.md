@@ -69,12 +69,10 @@ Designing a network is an art and an iterative process. We dont want you to go t
 
 But before we jump into networ architecture we like to point out some of golden rules to design any network.
 
-1. There are two kind of network designs `Smooth Design` and `Stepped Design` as shown below
+1. There are two kind of network designs `Smooth Design` and `Stepped Design` as shown below. In this article we have used `Stepped Design`
 
     <img src="assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="270" height="180"/>
     <img src="assets/Step-Pyramid-of-Djoser.jpg" alt="drawing" width="270" height="180"/>
-
-In this article we have used `Stepped Design`
 
 2. Try to understand what should be the right size of network you need to start with, Tip, start with like a over kill with million of params so that you know you have a good enough data to solve your problem.
 
