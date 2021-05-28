@@ -31,10 +31,10 @@ https://docs.google.com/spreadsheets/d/1uMt9n0yHHqeoY4aUZaf1T6F4ZBFQX_gP7zskxvwo
 
 ----
 <center>
-
+## Network Architecture
+  
 ![Network Architecture](./assets/Network_Arch%20.png)
 
-## Network Architecture
 </center>
 
 ---
@@ -96,7 +96,7 @@ We have used sigmoid activation function for this neural network:
 
 ### Chain rule:
    In simpler terms, we can see that as parsing through layers. We first solve for one layer and move on to the next and next. For example: z= (x+y)^2, here the square is our first layer, we solve for that and move on to the (x+y) layer which is our second layer. If we had a co-efficient for x, then that would be solved next. 
- * ## Hand Written  
+ * ## Rough  
 
 
 <center>
@@ -121,7 +121,7 @@ We have used sigmoid activation function for this neural network:
 
 </center>
 
-* ## Typed 
+* ## Documented  
 <center>
 
 ![](./assets/Solve%201.png)
