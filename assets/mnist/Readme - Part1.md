@@ -30,21 +30,17 @@ This document will take you the neural network components, layers, functions and
 ### Activation Function:
 
 We have used sigmoid activation function for this neural network:
-$$
-\sigma(x) = \frac{1}{(1+\exp(-x))}
-$$
 
-$$
-\sigma'(x) = \sigma(x) (1-\sigma(x))
-$$
+![Sigmoid and Sigmoid Derivation](./assets/Activation.png)
 
 ### Error:
 
 * Etotal = E1 + E2 
 
 * Mean Square Error (MSE): 
-$$
-MSE = \frac{1}{2}*(y-y')^2 $$
+
+![MSE](./assets/MSE.png)
+
 ### Derivations:
 
 ### Steps in forward propagation:
@@ -59,9 +55,9 @@ MSE = \frac{1}{2}*(y-y')^2 $$
 * Partial differentiation is done at every stage. From error to the input layer using chain rule
 
 * For the backward propagation, the weights values needs to be updated by 
+
    ![Weights](./assets/WeightsUpdation.png)
    
-
 * And the error values are calculated with the new updated weights
 
 ### Results & Inference:
