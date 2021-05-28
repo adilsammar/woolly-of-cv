@@ -1,6 +1,7 @@
 # Forward and Backward Propagation
 
-This document will take you the neural network components, layers, functions and operations performed in a basic neural network.
+This document will take you the neural network components, layers, functions and operations performed in a basic neural network. 
+For excel sheet: https://docs.google.com/spreadsheets/d/1uMt9n0yHHqeoY4aUZaf1T6F4ZBFQX_gP7zskxvwo9qo/edit?usp=sharing 
 
 ### Contributors:
 * [Ammar Adil](https://github.com/adilsammar)
