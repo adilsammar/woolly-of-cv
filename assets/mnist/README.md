@@ -7,14 +7,14 @@ The target is to achieve it in under 5k params with accuracy more than 99.40
 ![GoodThings](https://media1.giphy.com/media/l0HlKrB02QY0f1mbm/giphy.gif "Good Things Come to Those Who Wait")
 
 
-##f Table of Contents  
-> [Motivation](#moivation-to-keep-you-engaged-till-the-end)
-> [Basics](#baics)  
-> [Data Loader](#data-loader)
-> [Data Visualization](#data-visualization)
-> [Network Design](#network-design)
-> [Training](#training)
-> [Analysis](#analysis)
+## Table of Contents  
+* [Motivation](#moivation-to-keep-you-engaged-till-the-end)
+* [Basics](#baics)  
+* [Data Loader](#data-loader)
+* [Data Visualization](#data-visualization)
+* [Network Design](#network-design)
+* [Training](#training)
+* [Analysis](#analysis)
 
 
 #### Moivation to keep you engaged till the end
