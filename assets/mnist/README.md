@@ -75,18 +75,18 @@ From this chart we can clearly see data is evenly spread around all classes, wha
 
 ## Network Design
 
-Designing a network is an art and an iterative process. We dont want you to go through that pain.
+Designing a network is an art and an iterative process. And we dont want you to go through that pain. So we are haring some tips and tricks to design a network.
 
-But before we jump into networ architecture we like to point out some of golden rules to design any network.
+But before we jump into network architecture we like to point out some of golden rules to design any network.
 
 1. There are two kind of network designs `Smooth Design` and `Stepped Design` as shown below. In this article we have used `Stepped Design`
 
     <img src="assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="270" height="180"/>
     <img src="assets/Step-Pyramid-of-Djoser.jpg" alt="drawing" width="270" height="180"/>
 
-2. Try to understand what should be the right size of network you need to start with, Tip, start with like a over kill with million of params so that you know you have a good enough data to solve your problem.
+2. Try to understand what should be the right size of network you need to start with, Tip: start with like large enough network with million of params, so that once you train, you know you have a right amount of data to solve your problem. Otherwise you go and collect more data.
 
-3. Do not try every possible optimiztion in first iiteration. Take one step at a time.
+3. Do not try every possible optimiztion in first iteration. Take one step at a time.
 
 We will now spare you with too much of `GYAN` and quickly jump on to nework design used.
 
