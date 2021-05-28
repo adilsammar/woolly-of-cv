@@ -149,3 +149,7 @@ We need to analyse how is our network performing. The best way to do this is to 
 4. Plot confusion matrix
 
     ![confusion_matrix](./assets/cm.png)
+
+5. We will finally look at incorrectly classified images to see what went wrong and why
+
+    ![incorrect](./assets/incorrect.png)
