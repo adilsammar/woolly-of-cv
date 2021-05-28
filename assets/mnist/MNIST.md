@@ -140,6 +140,26 @@ This network contains block pattern as shown. We start with an image of size 1\*
 
 As we can see from network summary total number of params used are `4838`
 
+Receptive Field Calcultion
+
+* Block 1
+	* Conv -> 3\*3 -> 3\*3
+	* Conv -> 3\*3 -> 5\*5
+
+* Transition
+	* MP -> 10\*10
+
+* Block 2 
+	* Conv -> 3\*3 -> 12\*12
+	* Conv -> 3\*3 -> 14\*14
+
+* Transition
+	* MP -> 28\*28
+
+* Block 3
+	* Conv -> 3\*3 -> 30\*30
+	* Conv -> 3\*3 -> 32\*32
+
 
 ## Training
 
