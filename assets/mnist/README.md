@@ -2,6 +2,12 @@
 
 The target is to achieve it in under 5k params with accuracy more than 99.40
 
+
+### Table of Contents  
+[Basics](#baics)  
+[Data Loader](#data-loader)  
+
+
 #### Moivation to keep you engaged till the end
 
 Accuracy achieved: `99.42` within `10 epochs` with `4838` params used
@@ -133,10 +139,124 @@ As we can see from network summary total number of params used are `4838`
 
 ### Training
 
+Training is the most critical part of ml lifecycle.
+
+There are some thumb rule to ace this step
+
+1. Start training with a lower learning rate
+2. Train for some 15 epochs and see model performance if your model is not converging that for sure your model will not converge even if yout train for further epochs
+3. Always make sure there is a small gap between train and test accuracies. If your train accuracy is very high and test is low for sure your network is overfitting. This is when you have to add some regularization to your network. There are certain techniques to add regularization. Following are the one we have used in our network
+    1. Data Augumentation
+        1. Random Rotation: Each data input will be randomly rotated by certain angle.
+        2. Random Resized Crop: Each data input will be cropped randomly and resized to original image size
+    2. Dropout: This is a techinque which is used to force network to learn non prominent features from input data, by randomly dropping channels or pixels from your network.
+
+We will Quickly jump into training logs for this network we have trained.
+
+```
+Using Device: cuda
+Epochs: 12
+Lr: 0.001
+Max Lr: 0.01
+Batch Size: 64
 
 
+Epoch: 01
+	 Learning Rate: 0.001000
+	          Time: 0m 8s
+	    Train Loss: 0.625474
+	Train Accuracy: 49858/60000 | Percent: 83.10%
+	     Val. Loss: 0.162506
+	  Val Accuracy:  9556/10000 | Percent: 95.56%
+Epoch: 02
+	 Learning Rate: 0.005500
+	          Time: 0m 8s
+	    Train Loss: 0.141658
+	Train Accuracy: 57536/60000 | Percent: 95.89%
+	     Val. Loss: 0.072401
+	  Val Accuracy:  9770/10000 | Percent: 97.70%
+Epoch: 03
+	 Learning Rate: 0.010000
+	          Time: 0m 7s
+	    Train Loss: 0.099431
+	Train Accuracy: 58192/60000 | Percent: 96.99%
+	     Val. Loss: 0.062662
+	  Val Accuracy:  9820/10000 | Percent: 98.20%
+Epoch: 04
+	 Learning Rate: 0.006733
+	          Time: 0m 8s
+	    Train Loss: 0.068084
+	Train Accuracy: 58752/60000 | Percent: 97.92%
+	     Val. Loss: 0.067833
+	  Val Accuracy:  9795/10000 | Percent: 97.95%
+Epoch: 05
+	 Learning Rate: 0.003467
+	          Time: 0m 8s
+	    Train Loss: 0.051231
+	Train Accuracy: 59044/60000 | Percent: 98.41%
+	     Val. Loss: 0.030389
+	  Val Accuracy:  9905/10000 | Percent: 99.05%
+Epoch: 06
+	 Learning Rate: 0.000200
+	          Time: 0m 8s
+	    Train Loss: 0.041621
+	Train Accuracy: 59252/60000 | Percent: 98.75%
+	     Val. Loss: 0.023273
+	  Val Accuracy:  9934/10000 | Percent: 99.34%
+Epoch: 07
+	 Learning Rate: 0.000171
+	          Time: 0m 8s
+	    Train Loss: 0.037224
+	Train Accuracy: 59311/60000 | Percent: 98.85%
+	     Val. Loss: 0.023017
+	  Val Accuracy:  9932/10000 | Percent: 99.32%
+Epoch: 08
+	 Learning Rate: 0.000143
+	          Time: 0m 8s
+	    Train Loss: 0.037453
+	Train Accuracy: 59294/60000 | Percent: 98.82%
+	     Val. Loss: 0.021877
+	  Val Accuracy:  9942/10000 | Percent: 99.42%
+Epoch: 09
+	 Learning Rate: 0.000114
+	          Time: 0m 8s
+	    Train Loss: 0.037043
+	Train Accuracy: 59304/60000 | Percent: 98.84%
+	     Val. Loss: 0.022108
+	  Val Accuracy:  9934/10000 | Percent: 99.34%
+Epoch: 10
+	 Learning Rate: 0.000086
+	          Time: 0m 8s
+	    Train Loss: 0.035927
+	Train Accuracy: 59306/60000 | Percent: 98.84%
+	     Val. Loss: 0.021706
+	  Val Accuracy:  9935/10000 | Percent: 99.35%
+Epoch: 11
+	 Learning Rate: 0.000057
+	          Time: 0m 8s
+	    Train Loss: 0.036654
+	Train Accuracy: 59334/60000 | Percent: 98.89%
+	     Val. Loss: 0.021196
+	  Val Accuracy:  9940/10000 | Percent: 99.40%
+Epoch: 12
+	 Learning Rate: 0.000029
+	          Time: 0m 8s
+	    Train Loss: 0.034387
+	Train Accuracy: 59344/60000 | Percent: 98.91%
+	     Val. Loss: 0.021286
+	  Val Accuracy:  9941/10000 | Percent: 99.41%
+```
 
-### Analysis 
+
+### Analysis
+
+Best Validation Metrics
+
+```
+Val Accuracy: 9942/10000
+     Percent: 99.42%
+   Val. Loss: 0.021877
+```
 
 We need to analyse how is our network performing. The best way to do this is to plot different parameters and see.
 
