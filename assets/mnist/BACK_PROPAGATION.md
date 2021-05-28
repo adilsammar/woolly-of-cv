@@ -70,6 +70,7 @@ https://docs.google.com/spreadsheets/d/1uMt9n0yHHqeoY4aUZaf1T6F4ZBFQX_gP7zskxvwo
 *  Hidden Layer - 1 hidden layer with 2 neurons
 *  Output Layer - 2 Outputs
 ----
+
 ## Activation Function:
 We have used sigmoid activation function for this neural network:
 <center>
@@ -97,32 +98,7 @@ We have used sigmoid activation function for this neural network:
 
 ### Chain rule:
    In simpler terms, we can see that as parsing through layers. We first solve for one layer and move on to the next and next. For example: z= (x+y)^2, here the square is our first layer, we solve for that and move on to the (x+y) layer which is our second layer. If we had a co-efficient for x, then that would be solved next. 
- * ## Rough  
 
-
-<center>
-
-
-![](./assets/Pg1.jpg)
-
-</center>
-<center>
-
-![](./assets/Pg2.jpg)
-
-</center>
-<center>
-
-![](./assets/Pg3.jpg)
-
-</center>
-<center>
-
-![](./assets/Pg4.jpg)
-
-</center>
-
-* ## Documented  
 <center>
 
 ![](./assets/Solve%201.png)
@@ -161,7 +137,6 @@ We have used sigmoid activation function for this neural network:
 ## Steps in Backward Propagation:
 
 * Partial differentiation is done at every stage. From error to the input layer using chain rule
-
 * For the backward propagation, the weights values needs to be updated by 
 <center>
 
@@ -170,12 +145,7 @@ We have used sigmoid activation function for this neural network:
    </center>
 
 * In backward propagation, though our weights are initially randomized, we let the network to learn the weights values by updating them after each step
-<center>
-
-   ![Weights](./assets/WeightsUpdation.png)
-     </center>
 * The backpropagation step provides an implementation of the chain rule
-
 * And the error values are calculated with the new updated weights
 * We have repeated the same steps for different learning rates and observations are recorded
 
@@ -194,7 +164,6 @@ We have used sigmoid activation function for this neural network:
 
 ## Screenshot
 
-(Excel sheet is also attached.)
 <center>
 
 ![Screenshot](./assets/Excel_Screenshot.png)
