@@ -2,8 +2,12 @@
 
 The target is to achieve it in under 5k params with accuracy more than 99.40
 
+#### Before we start Remember, `Good news will come only after your training loop ends` So Just Wait
 
-### Table of Contents  
+![GoodThings](https://media1.giphy.com/media/l0HlKrB02QY0f1mbm/giphy.gif "Good Things Come to Those Who Wait")
+
+
+##f Table of Contents  
 > [Motivation](#moivation-to-keep-you-engaged-till-the-end)
 > [Basics](#baics)  
 > [Data Loader](#data-loader)
@@ -24,11 +28,6 @@ Code Link: [Local NoteBook](MNIST_4838_9942.ipynb) / [CoLab Notebook](https://co
 * [Krithiga](https://github.com/BottleSpink)
 * [Shashwat Dhanraaj](https://github.com/sdhanraaj12)
 * [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
-
-
-#### Before we start Remember, `Good news will come only after your training loop ends`
-
-![GoodThings](https://www.faxesfromuncledale.com/wp-content/uploads/Wait.gif "All Good Things to Those Who Wait")
 
 
 ### Basics
