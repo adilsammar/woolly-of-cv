@@ -1,2 +1,2 @@
-### For Assignment Part 1: [Forward and Backward Propagation](Part1.md)
-### For Assignment Part 2: [MNIST](Part2.md)
+### For Assignment Part 1: [Forward and Backward Propagation](BACK_PROPAGATION.md)
+### For Assignment Part 2: [MNIST](MNIST.md)
