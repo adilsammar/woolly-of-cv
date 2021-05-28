@@ -30,9 +30,10 @@ This document will take you the neural network components, layers, functions and
 https://docs.google.com/spreadsheets/d/1uMt9n0yHHqeoY4aUZaf1T6F4ZBFQX_gP7zskxvwo9qo/edit?usp=sharing 
 
 ----
-<center>
 ## Network Architecture
   
+<center>
+
 ![Network Architecture](./assets/Network_Arch%20.png)
 
 </center>
@@ -65,9 +66,9 @@ https://docs.google.com/spreadsheets/d/1uMt9n0yHHqeoY4aUZaf1T6F4ZBFQX_gP7zskxvwo
 ---
 ## Layers:
 
-* ### Input Layer  - 2 Inputs
-* ### Hidden Layer - 1 hidden layer with 2 neurons
-* ### Output Layer - 2 Outputs
+*  Input Layer  - 2 Inputs
+*  Hidden Layer - 1 hidden layer with 2 neurons
+*  Output Layer - 2 Outputs
 ----
 ## Activation Function:
 We have used sigmoid activation function for this neural network:
