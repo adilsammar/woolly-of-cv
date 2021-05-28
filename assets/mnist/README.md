@@ -129,3 +129,23 @@ This network contains block pattern as shown. We start with an image of size 1\*
 
 
 As we can see from network summary total number of params used are `4838`
+
+
+### Training
+
+
+
+
+### Analysis 
+
+We need to analyse how is our network performing. The best way to do this is to plot different parameters and see.
+
+1. Plot learning Rate
+2. Plot train loss vs test loss per epoch
+3. Plot train accuracy vs test accuracy per epoch
+
+    ![plots](./assets/plots.png)
+
+4. Plot confusion matrix
+
+    ![confusion_matrix](./assets/cm.png)
