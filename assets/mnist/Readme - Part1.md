@@ -44,8 +44,7 @@ $$
 
 * Mean Square Error (MSE): 
 $$
-MSE = \frac{1}{2}*(y-y')^2
-$$
+MSE = \frac{1}{2}*(y-y')^2 $$
 ### Derivations:
 
 ### Steps in forward propagation:
@@ -60,9 +59,8 @@ $$
 * Partial differentiation is done at every stage. From error to the input layer using chain rule
 
 * For the backward propagation, the weights values needs to be updated by 
-   $$
-   w1 = learning rate (\alpha) * \frac{\partial(Etotal)}{\partial(w1)}
-   $$
+   ![Weights](./assets/WeightsUpdation.png)
+   
 
 * And the error values are calculated with the new updated weights
 
