@@ -43,6 +43,12 @@ We have used sigmoid activation function for this neural network:
 
 ### Derivations:
 
+![](./assets/Pg1.jpg)
+![](./assets/Pg2.jpg)
+![](./assets/Pg3.jpg)
+![](./assets/Pg4.jpg)
+
+
 ### Steps in forward propagation:
 
 * Weights are initialized with random values. 
