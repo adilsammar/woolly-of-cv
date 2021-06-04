@@ -33,7 +33,7 @@
       * j_out : 
       * r_out :
     ```
-    ### [Colab Link](./Case1.ipynb)
+    ### [Notebook Link](./Case1.ipynb)
 ---
 * ## Case 2
   * ### Target 
@@ -58,7 +58,7 @@
 
     ```
     ```
-       ### [Colab Link](./Case2.ipynb)
+       ### [Notebook Link](./Case2.ipynb)
 ---
 * ## Case 3
   * ### Target
@@ -68,9 +68,9 @@
 
   * ### Results
     ```
-    7,038 Parameters (Changed the network)
-    Best Train Accuracy: 99.14
-    Best Test Accuracy: 99.5
+    5,760 Parameters (Changed the network)
+    Best Train Accuracy: 99.02
+    Best Test Accuracy: 99.45
     ```
   * ### Analysis
     * Introduced transformations like ShiftScaleRotate, RandomCrop, and RandomBrightness from albumentations library to reduce the overfitting further
@@ -80,4 +80,4 @@
     ```
     
     ```
-  ### [Colab Link](./Case3.ipynb)
+  ### [Notebook Link](./Case3.ipynb)
