@@ -25,20 +25,7 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
     ```
   * ### Analysis
     Model has decent parameters but overfitting can be seen happening after epoch 8
-  * ### Receptive Field Caculation
-    ```
-    Layer 1: 
-      * Input Features(n_in) : 
-      * Output Features(n_out) :
-      * Kernel Size(k): 
-      * Padding Size(p): 
-      * Stride Size (s)
-  
-      N_out: 
 
-      * j_out : 
-      * r_out :
-    ```
 ---
 * ## Case 2
 
@@ -61,10 +48,6 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
     * Overfitting has reduced though not completely
     * Accuracy is still around 98
 
-  * ### Receptive Field Caculation
-
-    ```
-    ```
 ---
 * ## Case 3
 
@@ -84,7 +67,11 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
     * Introduced transformations like ShiftScaleRotate, RandomCrop, and RandomBrightness from albumentations library to reduce the overfitting further
     * Used LR scheduler to define a search space -> (0.01 - 0.1)
 
-  * ### Receptive Field Caculation
-    ```
-    
-    ```
+
+* ## Receptive Field Calculation
+  
+<center>
+
+![Receptive Field Calculation](./weights/ReceptiveField.png)
+
+</center>
