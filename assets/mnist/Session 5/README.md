@@ -72,6 +72,6 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
   
 <center>
 
-![Receptive Field Calculation](./weights/ReceptiveField.png)
+![Receptive Field Calculation](./weights/Receptive_Field.png)
 
 </center>
