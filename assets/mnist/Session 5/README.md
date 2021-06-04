@@ -8,6 +8,10 @@
 ----
 ## Summary 
 
+Target is to reach an optimal network for MNIST dataset which can show test accuracy of more than 9.4 and with least possible params.
+
+At the end of this excercise we will reach **99.45** with **5.7k** params
+
 * ## Case 1
   * ### Target 
     Basic Network
