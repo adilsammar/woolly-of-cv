@@ -19,9 +19,21 @@
     ```
   * ### Analysis
     Model has decent parameters but overfitting can be seen happening after epoch 8
+  * ### Receptive Field Caculation
+    ```
+    Layer 1: 
+      * Input Features(n_in) : 
+      * Output Features(n_out) :
+      * Kernel Size(k): 
+      * Padding Size(p): 
+      * Stride Size (s)
+  
+      N_out: 
 
-
-  ### [Colab Link](./Case1.ipynb)
+      * j_out : 
+      * r_out :
+    ```
+    ### [Colab Link](./Case1.ipynb)
 ---
 * ## Case 2
   * ### Target 
@@ -41,7 +53,12 @@
     * Model's parameters are brought down
     * Overfitting has reduced though not completely
     * Accuracy is still around 98
-   ### [Colab Link](./Case2.ipynb)
+
+  * ### Receptive Field Caculation
+
+    ```
+    ```
+       ### [Colab Link](./Case2.ipynb)
 ---
 * ## Case 3
   * ### Target
@@ -59,4 +76,8 @@
     * Introduced transformations like ShiftScaleRotate, RandomCrop, and RandomBrightness from albumentations library to reduce the overfitting further
     * Used LR scheduler to define a search space -> (0.01 - 0.1)
 
-   ### [Colab Link](./Case3.ipynb)
+  * ### Receptive Field Caculation
+    ```
+    
+    ```
+  ### [Colab Link](./Case3.ipynb)
