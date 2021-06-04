@@ -68,7 +68,7 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
 ---
 * ## Case 3
 
-  * #### [Notebook Link](./Case2.ipynb)
+  * #### [Notebook Link](./Case2.ipynb) / [Weights](./weights/model_weights_99.45.pth)
   * ### Target
     * Reduce overfitting - Augmentation
     * Learning rate optimization
