@@ -8,8 +8,6 @@
 ----
 ## Summary 
 
-
----
 * ## Case 1
   * ### Target 
     Basic Network
@@ -23,7 +21,7 @@
     Model has decent parameters but overfitting can be seen happening after epoch 8
 
 
-### [Colab Link](./Case1.ipynb)
+  ### [Colab Link](./Case1.ipynb)
 ---
 * ## Case 2
   * ### Target 
@@ -43,7 +41,7 @@
     * Model's parameters are brought down
     * Overfitting has reduced though not completely
     * Accuracy is still around 98
-### [Colab Link](./Case2.ipynb)
+   ### [Colab Link](./Case2.ipynb)
 ---
 * ## Case 3
   * ### Target
@@ -61,4 +59,4 @@
     * Introduced transformations like ShiftScaleRotate, RandomCrop, and RandomBrightness from albumentations library to reduce the overfitting further
     * Used LR scheduler to define a search space -> (0.01 - 0.1)
 
-### [Colab Link](./Case3.ipynb)
+   ### [Colab Link](./Case3.ipynb)
