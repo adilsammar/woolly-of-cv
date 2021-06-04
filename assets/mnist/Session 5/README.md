@@ -13,6 +13,8 @@ Target is to reach an optimal network for MNIST dataset which can show test accu
 At the end of this excercise we will reach **99.45** with **5.7k** params
 
 * ## Case 1
+
+  * #### [Notebook Link](./Case1.ipynb)
   * ### Target 
     Basic Network
   * ### Results
@@ -37,9 +39,10 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
       * j_out : 
       * r_out :
     ```
-    ### [Notebook Link](./Case1.ipynb)
 ---
 * ## Case 2
+
+  * #### [Notebook Link](./Case2.ipynb)
   * ### Target 
 
      * Lighter model
@@ -62,9 +65,10 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
 
     ```
     ```
-       ### [Notebook Link](./Case2.ipynb)
 ---
 * ## Case 3
+
+  * #### [Notebook Link](./Case2.ipynb)
   * ### Target
     * Reduce overfitting - Augmentation
     * Learning rate optimization
@@ -84,4 +88,3 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
     ```
     
     ```
-  ### [Notebook Link](./Case3.ipynb)
