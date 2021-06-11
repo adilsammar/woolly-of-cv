@@ -36,11 +36,15 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
 
 ## Normalization Techniques Explained:
   
-  What is Normalization: Input data comes in different ranges and scales. Normalization helps to change their ranges and scales to bring uniformity to data. Eg: Input images can be standardized to range of [0,255] or [0,1]. For a grayscale image, '0' being black colour while '255' being white colour. To convert a [-500, 1000] to 0-255. Firstly, -500 can be brought to 0 by adding 500. That brings us to [0,1500] Now, the next step is to bring it to [0,255] -> 255/1500.
+  What is Normalization: 
   
-    Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean -> 0, std.dev -> 1 and so on.
+  Input data comes in different ranges and scales. Normalization helps to change their ranges and scales to bring uniformity to data. Eg: Input images can be standardized to range of [0,255] or [0,1]. For a grayscale image, '0' being black colour while '255' being white colour. 
   
-    Normalization can be applied at different levels. Below, we will take a look at the 3 normalization techniques.
+  To convert a [-500, 1000] to 0-255. Firstly, -500 can be brought to 0 by adding 500. That brings us to [0,1500] Now, the next step is to bring it to [0,255] -> 255/1500.
+  
+  Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean -> 0, std.dev -> 1 and so on.
+  
+  Normalization can be applied at different levels. Below, we will take a look at the 3 normalization techniques.
 
 ### Batch Normalization:
   
