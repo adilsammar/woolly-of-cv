@@ -5,7 +5,7 @@
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
 * [Normalization Techniques Explained](#Normalization-Techniques-Explained)
-* [L1 Regularization](#L1-Regularization)
+* [Regularization](#Now-let's-about-the-Regressions,)
 * [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
 
@@ -142,11 +142,11 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
     * For LN, we will be calculating mean and variance along the images
     * For GN, we will be forming groups among the channels and we will be calculating mean and variance for these groups.
 
-## Now let's about the <b> Regressions </b>,
+## Now let's about the Regressions,
 
-Before diving into what is L1 and L2 Regression firstly let's talk about Linear Regression.
+Before diving into what is L1 and L2 Regression let's talk about Linear Regression.
 
-Here let's take an example,
+Here,let's take an example
 
   ![Bestfit](../../assets/Bestfit.png)
 
