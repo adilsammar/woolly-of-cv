@@ -81,8 +81,8 @@ But before we jump into network architecture we like to point out some of golden
 
 1. There are two kind of network designs `Smooth Design` and `Stepped Design` as shown below. In this article we have used `Stepped Design`
 
-    <img src="assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="270" height="180"/>
-    <img src="assets/Step-Pyramid-of-Djoser.jpg" alt="drawing" width="270" height="180"/>
+    <img src="../assets/Pyramid-of-Khafre-Giza-Egypt.jpg" alt="drawing" width="270" height="180"/>
+    <img src="../assets/Step-Pyramid-of-Djoser.jpg" alt="drawing" width="270" height="180"/>
 
 2. Try to understand what should be the right size of network you need to start with, Tip: start with like large enough network with million of params, so that once you train, you know you have a right amount of data to solve your problem. Otherwise you go and collect more data.
 
