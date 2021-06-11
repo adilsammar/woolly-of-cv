@@ -5,7 +5,8 @@
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
 * [Normalization Techniques Explained](#Normalization-Techniques-Explained)
-* [Regularization](#Now-let's-about-the-Regressions,)
+* [Regularization](#Now-let's-about-the-Regressions)
+* [Inferences + graphs](Inferences-+-Graphs)
 * [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
 
