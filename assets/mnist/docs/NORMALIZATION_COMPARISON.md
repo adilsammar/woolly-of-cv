@@ -6,7 +6,7 @@
 * [Code Explanation](#Code-Explanation)
 * [Normalization Techniques Explained](#Normalization-Techniques-Explained)
 * [Regularization](#Now-let's-about-the-Regressions)
-* [Inferences + graphs](Inferences-+-Graphs)
+* [Inferences and Graphs](Inferences-and-Graphs)
 * [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
 
@@ -234,7 +234,7 @@ In the above image we can see that we have reduced the difference between the ol
 
 ------
 
-## Inferences + Graphs:
+## Inferences and Graphs:
   
   The below graphs are from the experiments performed on the 3 normalization techniques that we discussed:
   
