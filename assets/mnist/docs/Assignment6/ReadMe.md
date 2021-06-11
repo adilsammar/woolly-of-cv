@@ -150,15 +150,14 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   Inference:
   
-  * We see the batch normalization combined with the L1 performs better than group and Layer Normalization. Reasons could be:
-    * Group and layer normalization doesn't see any effect of Batch Normalization
+ 
+  * We see the batch normalization combined with the L1 performs better than Layer Normalization and almost on par with Group Normalization. Reasons could be:
     * Our network being small and batch size set to 32, BN+L1 works fine than the other two
     * Layers in the network is also small for layer normalization to perform better 
     * Group Normalization works well for the networks that are large
-    * In practice, BN seems to perform better than GN
+  * Group and layer normalization doesn't see any effect of Batch size
     
-  ![Validation Losses](../../assets/Validation_Losses_For_AllNorm.png)
-  ![Validation Accuracy](../../assets/Validation_Accuracy_For_AllNorm.png)
+  ![Validation Losses and Accuracy](../../assets/Validation_Losses_Accuracy_AllNorm.png)
   
 ## Visualization for misclassified predictions:
  
