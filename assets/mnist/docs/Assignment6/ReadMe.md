@@ -5,6 +5,7 @@
 * Contributors
 * Code Explanation
 * Normalization Techniques Explained
+* L1
 * Inferences + Graphs
 * Visualization for misclassified predictions
 * References
@@ -36,19 +37,24 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
 
 ## Normalization Techniques Explained:
   
-  What is Normalization: 
+  * What is Normalization: 
   
   Input data comes in different ranges and scales. Normalization helps to change their ranges and scales to bring uniformity to data. Eg: Input images can be standardized to range of [0,255] or [0,1]. For a grayscale image, '0' being black colour while '255' being white colour. 
   
   To convert a [-500, 1000] to 0-255. 
   
-  Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
-  Step 2: Bring [0,1500] to [0,255] -> 255/1500.
+  * Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
+  * Step 2: Bring [0,1500] to [0,255] -> 255/1500.
   
-  Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. Normalization can be applied at different levels. Below, we will take a look at the 3 normalization techniques.
+  Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. Normalization can be applied at different levels. 
+  
+  Source: https://arxiv.org/pdf/2009.12836.pdf
+  
   
    ![Normalization Transformation](../../assets/NormalizationExamples.png)
 
+  Below, we will take a look at the 3 normalization techniques.
+  
 ### Batch Normalization:
   
   * What is Batch Normalization? 
@@ -64,16 +70,27 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   The change in the distributions of layers’ inputs presents a problem because the layers need to continuously adapt to the new distribution. When the input distribution to a learning system changes, it is said to experience covariate shift.
   
    A layer with an activation function with u as the layer input, the weight matrix W and bias vector b. The model learns w,b at every backpropagation step making the gradient flowing down to u leading them to vanish and also it leads to slow convergence as the network depth increases. The nonlinear inputs not remaining stable at different parts of the training is referred to as Covariate shift. By carefully initializing and by ensurinng small learning rate could solve this problem. However, this can also be solved by making the inputs to the activation more stable. 
+  
+  * Advantages of BN:
+  
+  1. Batch Normalization enables higher learning rates
+  2. Batch Normalization regularizes the model
 
 ### Layer Normalization:
+  
   * What is Layer Normalization?
+  
+  
   * Why is it needed?
 
 ### Group Normalization:
   * What is Group Normalization?
   * Do we need this inspite of layer/ batch normalization?
-
   
+### Putting it all together:
+  
+  ![Normalization Methods](../../assets/NormMethods.png)
+
 ## L1:
   
 ## Inferences + Graphs:
