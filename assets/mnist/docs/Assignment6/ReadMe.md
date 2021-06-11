@@ -51,8 +51,8 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
 
 ## Inferences + Graphs:
   
-  ![Validation Losses](./assets/Validation_Losses_For_AllNorm.png)
-  ![Validation Accuracy](./assets/Validation_Accuracy_For_AllNorm.png)
+  ![Validation Losses](././assets/Validation_Losses_For_AllNorm.png)
+  ![Validation Accuracy](././assets/Validation_Accuracy_For_AllNorm.png)
   
 ## Visualization for misclassified predictions:
  
