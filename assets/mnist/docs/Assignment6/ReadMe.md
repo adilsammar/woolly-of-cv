@@ -150,20 +150,20 @@ Here let's take an example,
 
   ![Bestfit](../../assets/Bestfit.png)
 
- In the Image above we can see that the training data has 3 data set, and it fits perfectly.
+ In the Image above we can see that the training data has 3 dataset, and it fits perfectly.
  Now by sum of residuals (Cost Function) is given by 
-
-    ```
+ 
+   ```
      Sum [ y - ÿ ]^2 = 0 
-    ```
+   ```
 
-The answer is zero you may ask why ? cause the training data set fits the line perfectly. 
+The answer is zero you may ask why ? cause the training dataset fits the line perfectly. 
 
-Great !!! Now let's take a scenario where our training data set overfits our model 
+Great !!! Now let's take a scenario where our training dataset overfits our model 
 
   ![Overfit](../../assets/Overfiting.png)
 
-This above image in our training data points is overfitting meaning where my model is giving me wonderful results but it is for my training data which is giving me low error where as my test data set is givin me high error. As we can see that the differance is huge to make my data set fit perfectly with high variance.
+This above image in our training data points is overfitting meaning where my model is giving me wonderful results but it is for my training data which is giving me low error where as my test dataset is givin me high error. As we can see that the differance is huge to make my dataset fit perfectly with high variance.
  
 ### <b> How can we minimize the difference and make our variance minimum you ask ? </b> 
 
