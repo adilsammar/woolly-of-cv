@@ -46,20 +46,33 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   * Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
   * Step 2: Bring [0,1500] to [0,255] -> 255/1500.
   
-  Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. Normalization can be applied at different levels. 
+  Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. 
+  
+  The below given diagram shows different transformation operations that can be performed on our data:
+  
+  * Centering: Ensures that the normalized output has a zero-mean property
+  * Scaling: Ensures that the normalized output has a unit-variance property
+  * Standardizing: Combines centering and scaling and ensures that the normalized output has zero-mean and unit-variance properties
+  * Whitening: Ensures that the normalized output has a spherical Gaussian distribution
+  * Decorrelating: Ensures that the correlation between different dimensions of the normalized output is zero 
   
   Source: https://arxiv.org/pdf/2009.12836.pdf
   
-  
    ![Normalization Transformation](../../assets/NormalizationExamples.png)
 
-  Below, we will take a look at the 3 normalization techniques.
+ Normalization can be applied at different levels. Below, we will take a look at the 3 normalization techniques.
   
 ### Batch Normalization:
   
   * What is Batch Normalization? 
   
-  Making normalization a part of the model architecture and performing the normalization for each training mini-batch.
+  Making normalization a part of the model architecture and performing the normalization for each training mini-batch. 
+  
+  Calculations for Batch Norm:
+  
+  ![BatchNormCalc](../../assets/BatchNormCalc.png)
+  
+  ![BatchNorm](../../assets/BatchNorm.png)
   
   * Why does it work? 
   
@@ -93,17 +106,21 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
       Group Normalization divides the channels into groups and computes within each group the mean and variance for normalization. GN’s computation is independent of batch sizes, and its accuracy is stable in a wide range of batch sizes.
   
+  Source: https://arxiv.org/pdf/1803.08494.pdf
+  
+  ![Normalization Methods](../../assets/NormMethodExplained.png)
+  
+  * Group Normalization Calculation:
+  
+  ![GroupNorm](../../assets/GroupNorm.png)
+  
+  Instead of normalizing accross the batch dimension, GN normalizes accross the groups.
+  
   * Do we need this inspite of batch normalization?
   
       BN’s error increases rapidly when the batch size becomes smaller, caused by inaccurate batch statistics estimation. This is seen as a drawback in other CV tasks such as detection, segmentation, and video, which require small batches constrained by memory consumption.
  
-Other normalizatio techniques includes Instance Normalization, Weights Normalization
-      
-### Putting it all together:
-  
-  Source: https://arxiv.org/pdf/1803.08494.pdf
-  
-  ![Normalization Methods](../../assets/NormMethodExplained.png)
+* Other normalization techniques includes Instance Normalization, Weights Normalization
 
 ## L1:
   
