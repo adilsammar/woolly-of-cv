@@ -28,8 +28,6 @@ The codebase has been modularized and we have kept the below in separate .py fil
 * [Visualization](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/visualize.py)
 * [Utils](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/utils.py)
 
-[Link where the above files are available](https://github.com/adilsammar/woolly-of-cv/tree/main/assets/mnist/mnist)
-
 The above files are used in the [Notebook](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/notebook/MNIST_ALBUMENTATION_CONSOLIDATED.ipynb)
 
 ## Normalization Techniques Explained:
@@ -165,15 +163,14 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
 ## Visualization for misclassified predictions:
  
   ![Misclassified Predictions for Batch Normalization+L1](./assets/MisPre_BNL1.png)
-  ![Misclassified Predictions for Layer Normalization+L1](./assets/MisPre_LayerN.png)
-  ![Misclassified Predictions for Group Normalization+L1](./assets/MisPre_GroupN.png)
+  ![Misclassified Predictions for Layer Normalization](./assets/MisPre_LayerN.png)
+  ![Misclassified Predictions for Group Normalization](./assets/MisPre_GroupN.png)
   
 ## References:
   
-  * https://arxiv.org/pdf/2009.12836.pdf
-  * http://proceedings.mlr.press/v37/ioffe15.pdf
-  * https://arxiv.org/pdf/1803.08494.pdf
-  * https://arxiv.org/pdf/1502.03167.pdf
-  * https://arxiv.org/pdf/1607.06450.pdf
+  * [Normalization Techniques](https://arxiv.org/pdf/2009.12836.pdf)
+  * [Group Normalization](https://arxiv.org/pdf/1803.08494.pdf)
+  * [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/pdf/1502.03167.pdf)
+  * [Layer Normalization](https://arxiv.org/pdf/1607.06450.pdf)
   
 
