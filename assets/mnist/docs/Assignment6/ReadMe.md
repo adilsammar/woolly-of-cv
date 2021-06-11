@@ -1,14 +1,14 @@
-# Assignment 6 
+# Assignment 6
 
 ## Table of Contents:
 
-* Contributors
-* Code Explanation
-* Normalization Techniques Explained
-* L1
-* Inferences + Graphs
-* Visualization for misclassified predictions
-* References
+  #### Contributors
+  #### Code Explanation
+  #### Normalization Techniques Explained
+  #### L1
+  #### Inferences + Graphs
+  #### Visualization for misclassified predictions
+  #### References
 
 ## Contributors:
 
@@ -41,20 +41,20 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   Input data comes in different ranges and scales. Normalization helps to change their ranges and scales to bring uniformity to data. Eg: Input images can be standardized to range of [0,255] or [0,1]. For a grayscale image, '0' being black colour while '255' being white colour. 
   
-  To convert a [-500, 1000] to 0-255. 
-  
-  * Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
-  * Step 2: Bring [0,1500] to [0,255] -> 255/1500.
+          To convert a [-500, 1000] to 0-255. 
+
+           Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
+           Step 2: Bring [0,1500] to [0,255] -> 255/1500.
   
   Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. 
   
   The below given diagram shows different transformation operations that can be performed on our data:
   
-  * Centering: Ensures that the normalized output has a zero-mean property
-  * Scaling: Ensures that the normalized output has a unit-variance property
-  * Standardizing: Combines centering and scaling and ensures that the normalized output has zero-mean and unit-variance properties
-  * Whitening: Ensures that the normalized output has a spherical Gaussian distribution
-  * Decorrelating: Ensures that the correlation between different dimensions of the normalized output is zero 
+>  * Centering: Ensures that the normalized output has a zero-mean property
+>  * Scaling: Ensures that the normalized output has a unit-variance property
+>  * Standardizing: Combines centering and scaling and ensures that the normalized output has zero-mean and unit-variance properties
+>  * Whitening: Ensures that the normalized output has a spherical Gaussian distribution
+>  * Decorrelating: Ensures that the correlation between different dimensions of the normalized output is zero 
   
   Source: https://arxiv.org/pdf/2009.12836.pdf
   
@@ -106,6 +106,8 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
       Group Normalization divides the channels into groups and computes within each group the mean and variance for normalization. GN’s computation is independent of batch sizes, and its accuracy is stable in a wide range of batch sizes.
   
+      Instead of normalizing accross the batch dimension, GN normalizes accross the groups.
+  
   Source: https://arxiv.org/pdf/1803.08494.pdf
   
   ![Normalization Methods](../../assets/NormMethodExplained.png)
@@ -113,8 +115,6 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   * Group Normalization Calculation:
   
   ![GroupNorm](../../assets/GroupNorm.png)
-  
-  Instead of normalizing accross the batch dimension, GN normalizes accross the groups.
   
   * Do we need this inspite of batch normalization?
   
