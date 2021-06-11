@@ -160,9 +160,19 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   ![Validation Losses and Accuracy](../../assets/Validation_Losses_Accuracy_AllNorm.png)
   
 ## Visualization for misclassified predictions:
+
+### Misclassified Predictions for Batch Normalization+L1:
  
   ![Misclassified Predictions for Batch Normalization+L1](../../assets/MisPre_BNL1.png)
+  
+  
+### Misclassified Predictions for Layer Normalization:
+
   ![Misclassified Predictions for Layer Normalization](../../assets/MisPre_LayerN.png)
+  
+  
+### Misclassified Predictions for Group Normalization:
+
   ![Misclassified Predictions for Group Normalization](../../assets/MisPre_GroupN.png)
   
 ## References:
