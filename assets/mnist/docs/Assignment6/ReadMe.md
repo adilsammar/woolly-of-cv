@@ -228,7 +228,7 @@ In the above image we can see that we have reduced the difference between the ol
 
 * ### Note :
    ```
-    Before considering which line to choose we have to run multiple iterantions to come to a conclusion. 
+    Before considering which bestfit to choose we might have to run multiple iterations to come to a conclusion and choose bestfit for our model. 
    ```
 
 ------
