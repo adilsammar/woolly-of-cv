@@ -53,7 +53,7 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   Source: https://arxiv.org/pdf/2009.12836.pdf
   
-   ![Normalization Transformation](../../assets/NormalizationExamples.png)
+   ![Normalization Transformation](../assets/NormalizationExamples.png)
 
  Normalization can be applied at different levels. Below, we will take a look at the 3 normalization techniques.
   
@@ -65,11 +65,11 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   * Calculations for Batch Norm:
   
-  ![BatchNormCalc](../../assets/BatchNormCalc.png)
+  ![BatchNormCalc](../assets/BatchNormCalc.png)
   
   * Batch Normalization in Network:
   
-  ![BatchNorm](../../assets/BatchNorm.png)
+  ![BatchNorm](../assets/BatchNorm.png)
   
   * Why does it work? 
   
@@ -111,7 +111,7 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   Source: https://arxiv.org/pdf/1803.08494.pdf
   
-  ![Normalization Methods](../../assets/NormMethodExplained.png)
+  ![Normalization Methods](../assets/NormMethodExplained.png)
   
   Let’s consider that we have a batch of dimension (N, C, H, W) that needs to be normalized.
   
@@ -128,13 +128,13 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   * Group Normalization Calculation:
   
-  ![GroupNorm](../../assets/GroupNorm.png)
+  ![GroupNorm](../assets/GroupNorm.png)
 
   If, G == 1, that is number of groups is set to 1, GN becomes LN.
   
  ### Calculation examples for three Normalization:
   
-  ![3 Norm Calculations](../../assets/3NormExp.png)
+  ![3 Norm Calculations](../assets/3NormExp.png)
   
   Here, in our example from excel sheet, we have 3 (2x2) images with 4 channels and Batch Size of 3.
     
@@ -142,13 +142,13 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
     * For LN, we will be calculating mean and variance along the images
     * For GN, we will be forming groups among the channels and we will be calculating mean and variance for these groups.
 
-## Now let's about the Regressions,
+### Now let's about the Regressions,
 
 Before diving into what is L1 and L2 Regression let's talk about Linear Regression.
 
 Here,let's take an example
 
-  ![Bestfit](../../assets/Bestfit.png)
+  ![Bestfit](../assets/Bestfit.png)
 
  In the Image above we can see that the training data has 3 dataset, and it fits perfectly.
  Now by sum of residuals (Cost Function) is given by 
@@ -161,7 +161,7 @@ The answer is zero you may ask why ? cause the training dataset fits the line pe
 
 Great !!! Now let's take a scenario where our training dataset overfits our model 
 
-  ![Overfit](../../assets/Overfiting.png)
+  ![Overfit](../assets/Overfiting.png)
 
 This above image in our training data points is overfitting meaning where my model is giving me wonderful results but it is for my training data which is giving me low error where as my test dataset is givin me high error. As we can see that the differance is huge to make my dataset fit perfectly with high variance.
  
@@ -169,11 +169,11 @@ This above image in our training data points is overfitting meaning where my mod
 
 Here's where the Lasso and Ridge Regression kicks in,
 
-##  Let's start with <b > Ridge Regression AKA L2 Regression, </b>
+###  Let's start with <b > Ridge Regression AKA L2 Regression, </b>
 
- Let's start by taking an example,
+ Here's an example,
  
-![SteepSlope](../../assets/Steep_Slope.png)
+![SteepSlope](../assets/Steep_Slope.png)
 
  As we can see that the time spending on this assignment is having a steep slope on the Y-Axis because there is a huge movement in the X-Axis. Now its overfittig with the its slope and the cost function is 0.
 
@@ -192,7 +192,7 @@ Now lets look at how we can solve this by Rigde Regression and reduce the cost f
 
 Let's look at how are we gonna reduce the steep slope ? We can now introduce another slope,
 
-![New Slope](../../assets/New_Slope.png)
+![New Slope](../assets/New_Slope.png)
 
 In the above image we can see that we have reduced the difference between the old line and the new line by adding a new slope
 * Let's solve this by taking some random values,
@@ -201,7 +201,7 @@ In the above image we can see that we have reduced the difference between the ol
    ### We can consider this new slope as our best fit line as the varience is decreased.
 
 
-## Now Coming to <b> Lasso Regression AKA L1 Regression </b>
+### Now Coming to <b> Lasso Regression AKA L1 Regression </b>
 
 There is just few changes compared to L2 Regression,
 
@@ -218,7 +218,7 @@ There is just few changes compared to L2 Regression,
 
 Let's look at how are we gonna reduce the steep slope ? We can now introduce another slope,
 
-![New Slope](../../assets/New_Slope.png)
+![New Slope](../assets/New_Slope.png)
 
 In the above image we can see that we have reduced the difference between the old line and the new line by adding a new slope
 * Let's solve this by taking some random values,
@@ -228,7 +228,7 @@ In the above image we can see that we have reduced the difference between the ol
 
 * ### Note :
    ```
-    Before considering which line to choose we have to run multiple iterantions to come to a conclusion. 
+    Before considering which bestfit to choose we might have to run multiple iterations to come to a conclusion and choose bestfit for our model. 
    ```
 
 ------
@@ -246,23 +246,23 @@ In the above image we can see that we have reduced the difference between the ol
     * Group Normalization works well for the networks that are large
   * Group and layer normalization doesn't see any effect of Batch size
     
-  ![Validation Losses and Accuracy](../../assets/Validation_Losses_Accuracy_AllNorm.png)
+  ![Validation Losses and Accuracy](../assets/Validation_Losses_Accuracy_AllNorm.png)
   
 ## Visualization for misclassified predictions:
 
 ### Misclassified Predictions for Batch Normalization+L1:
  
-  ![Misclassified Predictions for Batch Normalization+L1](../../assets/MisPre_BNL1.png)
+  ![Misclassified Predictions for Batch Normalization+L1](../assets/MisPre_BNL1.png)
   
   
 ### Misclassified Predictions for Layer Normalization:
 
-  ![Misclassified Predictions for Layer Normalization](../../assets/MisPre_LayerN.png)
+  ![Misclassified Predictions for Layer Normalization](../assets/MisPre_LayerN.png)
   
   
 ### Misclassified Predictions for Group Normalization:
 
-  ![Misclassified Predictions for Group Normalization](../../assets/MisPre_GroupN.png)
+  ![Misclassified Predictions for Group Normalization](../assets/MisPre_GroupN.png)
   
 ## References:
   
