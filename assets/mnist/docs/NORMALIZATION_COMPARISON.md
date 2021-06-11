@@ -1,60 +1,121 @@
-# Assignment 6
+# In this article we will compare different normalization techniques
 
-## Table of Contents:
+This file is submitted as part of Assignment 6 for EVA6 Course
+
+## Table of Contents
 
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
+* [Consolidated Notebook](#Consolidated-Notebook)
 * [Normalization Techniques Explained](#Normalization-Techniques-Explained)
 * [Regularization](#Now-let's-about-the-Regressions)
 * [Graphs](#Graphs)
 * [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
 
-## Contributors:
+## Contributors
 
 * [Ammar Adil](https://github.com/adilsammar)
 * [Krithiga](https://github.com/BottleSpink)
 * [Shashwat Dhanraaj](https://github.com/sdhanraaj12)
 * [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
 
-## Code Explanation:
+## Code Explanation
 
 The codebase has been modularized and we have kept the below in separate .py files
 
 * [Dataset loader](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/dataset.py)
+  Imported all necessary libraries for loading our data. Made custom data set MnistDataset. Defined len and Getitem to get length of the dataset and read image and label from the dataset respectively. Applied transforms. Defined a custom get_loader which can test and train data from transformed dataset in batch size of 64, using Cuda, by declaring train_loader and test_loader which can download the complete dataset from the Mnist server.
 * [Model Architecture](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/model.py)
+  Imported all necessary libraries for loading our data. Initialized Block and passed the arguments like Input Channel Size, Output Channel Size, padding(to be used for convolution layer. which defaults to 1. Type of normalization to be used. Allowed values like 'bn', 'gn', 'ln'. Where to Enable/Disable Maxpolling.
+	Then passed the arguments like Input tensor to this block, Number of layers in this block.check for last block. then we return processed tensor. used relu
+	Made a Network Class. with arguments like Number of base channels to start with, number of Layers in each block, dropout value and normalization type. then how to convolve
+	Defined Convolution function with arguments like Input image tensor, where to enable/disable Dropout and then Return tensor of logits. then conv layer and output layer and also used Gap.
 * [Data Transformations](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/transform.py)
+  Imported all necessary libraries for loading our data plus albumentations library. Defined test transforms and traind transforms  with diffeerrent parameters like shift limit, scale limit, rotate limit, random rotation degree, img size, random crop percent and normalization with required mean and standard deviation 
 * [Backpropagation](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/backpropagation.py)
+  Imported all necessary libraries for loading our data. Created a train function to return train function instance by passing arguments related to l1. then defined a function for backpropagation and passed the arguments like model to be train, Data set to use for training, use optimizer, wherre to enable and disable dropouts, use cuda device and use cheduler instance which is used for updating lr while training. Then return Loss and number of correct predictions.
+	Defined test function to perform model validation by passing arguments like model instance to run validation, dataset used in validation, device type cuda and then return loss and number of correct predictions.
+	At last defined SGD optimizer.
 * [LR Scheduler](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/scheduler.py)
+  Imported all necessary libraries for loading our data. Defined a CustomOneCycleLR custom class for one cycle lr. Then Initialized Scheduler and passed the arguments like Optimizer to be used for training, Schedule to be used for training, Number of steps before changing lr value. Defined step( which calls every step to set next lr value. defined lr_schedules to get Next value for lr, then return LR value to use for next step.
+	Defined one_cycle_lr_pt to create instance of one cycle lr scheduler from python and passed the arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done. Then return instance of one cycle lr scheduler.
+	Defined one_cycle_lr_custom which create instance of one cycle lr scheduler from python and passed arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done. 
+	Set raise Exception for epoch value < 12 and returns CustomOneCycleLR: instance of one cycle lr scheduler.
 * [Visualization](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/visualize.py)
+  Imported all necessary libraries for loading our data. Defined print_samples to Print samples input images, and passed arguments like loader:dataloader for training data and count:Number of samples to print. Made a loop for Print Random Samples. 
+	Defined a print_class_scale to Print Dataset Class scale with Argumnets like loader for Loader instance for dataset and class_map for mapping for class names. Then we plot the Bar Graph
+	Defined plot_confusion_matrix and passed arguments like Class lables, where to Enable/Disable Normalization, Title for plot, Colour Map, true label, predicted label etc to plot Confusion Matrix
+	Defined plot_incorrect_predictionsnd and passed arguments like List of all incorrect predictions, Lable mapping, Number of samples to print to plot Incorrect Predictions.
 * [Utils](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/utils.py)
 
 The above files are used in the [Notebook](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/notebook/MNIST_ALBUMENTATION_CONSOLIDATED.ipynb)
 
+## Consolidated Notebook
+Notebook is divided into four high level sections
+
+* Data Loading
+  In this section we will use liberaries as explained above to load MNIST dataset and apply transformations
+* Data Visualization
+  Here we will dig into dataset to understand its content for which we will plot two graphs class scale and random samples
+* Training
+  We will create different instance of trainer with right params for three set of experiment
+  * BatchNormalization + L1
+  * GroupNormalization
+  * Layer Normalization
+  And then run all trainers to train these models
+* Model Analysis
+  After training is completed we will look into model performance by printing comparison between models
+
+  ##### Comparison
+  
+  The below graphs are from the experiments performed on the 3 normalization techniques that we discussed:
+
+  Inference:
+  * We see the batch normalization combined with the L1 performs better than Layer Normalization and almost on par with Group Normalization. Reasons could be:
+    * Our network being small and batch size set to 32, BN+L1 works fine than the other two
+    * Layers in the network is also small for layer normalization to perform better 
+    * Group Normalization works well for the networks that are large
+  * Group and layer normalization doesn't see any effect of Batch size
+    
+  ![Validation Losses and Accuracy](../assets/Validation_Losses_Accuracy_AllNorm.png)
+  
+  ##### Visualization for misclassified predictions
+  * Misclassified Predictions for Batch Normalization+L1:
+  
+    ![Misclassified Predictions for Batch Normalization+L1](../assets/MisPre_BNL1.png)
+    
+  * Misclassified Predictions for Layer Normalization:
+
+    ![Misclassified Predictions for Layer Normalization](../assets/MisPre_LayerN.png)
+  
+  * Misclassified Predictions for Group Normalization:
+
+    ![Misclassified Predictions for Group Normalization](../assets/MisPre_GroupN.png)
 ## Normalization Techniques Explained:
   
-  * What is Normalization: 
+### What is Normalization: 
   
-    Input data comes in different ranges and scales. Normalization helps to change their ranges and scales to bring uniformity to data. Eg: Input images can be standardized to range of [0,255] or [0,1]. For a grayscale image, '0' being black colour while '255' being white colour. 
-    
-        To convert a [-500, 1000] to 0-255. 
+  Input data comes in different ranges and scales. Normalization helps to change their ranges and scales to bring uniformity to data. Eg: Input images can be standardized to range of [0,255] or [0,1]. For a grayscale image, '0' being black colour while '255' being white colour. 
+  
+      To convert a [-500, 1000] to 0-255. 
 
-        Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
-        Step 2: Bring [0,1500] to [0,255] -> 255/1500.
-    
-    Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. 
-    
-    The below given diagram shows different transformation operations that can be performed on our data:
-    
-    >  * Centering: Ensures that the normalized output has a zero-mean property
-    >  * Scaling: Ensures that the normalized output has a unit-variance property
-    >  * Standardizing: Combines centering and scaling and ensures that the normalized output has zero-mean and unit-variance properties
-    >  * Whitening: Ensures that the normalized output has a spherical Gaussian distribution
-    >  * Decorrelating: Ensures that the correlation between different dimensions of the normalized output is zero 
-    
-    Source: https://arxiv.org/pdf/2009.12836.pdf
-    
-    ![Normalization Transformation](../assets/NormalizationExamples.png)
+      Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
+      Step 2: Bring [0,1500] to [0,255] -> 255/1500.
+  
+  Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. 
+  
+  The below given diagram shows different transformation operations that can be performed on our data:
+  
+  >  * Centering: Ensures that the normalized output has a zero-mean property
+  >  * Scaling: Ensures that the normalized output has a unit-variance property
+  >  * Standardizing: Combines centering and scaling and ensures that the normalized output has zero-mean and unit-variance properties
+  >  * Whitening: Ensures that the normalized output has a spherical Gaussian distribution
+  >  * Decorrelating: Ensures that the correlation between different dimensions of the normalized output is zero 
+  
+  Source: https://arxiv.org/pdf/2009.12836.pdf
+  
+  ![Normalization Transformation](../assets/NormalizationExamples.png)
 
   Normalization can be applied at different levels. Below, we will take a look at the 3 normalization techniques.
   
@@ -231,37 +292,6 @@ Where **lamda = 1 and Slope = 1.3 and the Result would be 1.69. which is less th
 We can consider this new slope as our best fit line as the varience is decreased.
 
 **Note** : Before considering which bestfit to choose we might have to run multiple iterations to come to a conclusion and choose bestfit for our model. 
-
-## Graphs:
-  
-  The below graphs are from the experiments performed on the 3 normalization techniques that we discussed:
-  
-  Inference:
-  
- 
-  * We see the batch normalization combined with the L1 performs better than Layer Normalization and almost on par with Group Normalization. Reasons could be:
-    * Our network being small and batch size set to 32, BN+L1 works fine than the other two
-    * Layers in the network is also small for layer normalization to perform better 
-    * Group Normalization works well for the networks that are large
-  * Group and layer normalization doesn't see any effect of Batch size
-    
-  ![Validation Losses and Accuracy](../assets/Validation_Losses_Accuracy_AllNorm.png)
-  
-## Visualization for misclassified predictions:
-
-##### Misclassified Predictions for Batch Normalization+L1:
- 
-  ![Misclassified Predictions for Batch Normalization+L1](../assets/MisPre_BNL1.png)
-  
-  
-##### Misclassified Predictions for Layer Normalization:
-
-  ![Misclassified Predictions for Layer Normalization](../assets/MisPre_LayerN.png)
-  
-  
-##### Misclassified Predictions for Group Normalization:
-
-  ![Misclassified Predictions for Group Normalization](../assets/MisPre_GroupN.png)
   
 ## References:
   
