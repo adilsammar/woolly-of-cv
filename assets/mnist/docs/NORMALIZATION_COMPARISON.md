@@ -107,6 +107,19 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
     
   ![Validation Losses and Accuracy](../assets/Validation_Losses_Accuracy_AllNorm.png)
   
+  * Training Validation Graphs for BN+L1
+  
+  ![ Training Validation Graphs for BN+L1](../assets/GraphForBN+L1.png)
+  
+  * Training Validation Graphs for LN
+  
+  ![Training Validation Graphs for LN](../assets/GraphForLN.png)
+  
+  * Training Validation Graphs for GN
+  
+  ![Training Validation Graphs for GN](../assets/GraphForGN.png)
+  
+  
   ##### Visualization for misclassified predictions
   * Misclassified Predictions for Batch Normalization+L1:
   
