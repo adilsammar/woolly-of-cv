@@ -25,28 +25,41 @@ This file is submitted as part of Assignment 6 for EVA6 Course
 The codebase has been modularized and we have kept the below in separate .py files
 
 * [Dataset loader](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/dataset.py)
-  Imported all necessary libraries for loading our data. Made custom data set MnistDataset. Defined len and Getitem to get length of the dataset and read image and label from the dataset respectively. Applied transforms. Defined a custom get_loader which can test and train data from transformed dataset in batch size of 64, using Cuda, by declaring train_loader and test_loader which can download the complete dataset from the Mnist server.
+  
+  * Imported all necessary libraries for loading our data. Made custom data set MnistDataset.
+  * Defined len and Getitem to get length of the dataset and read image and label from the dataset respectively. Applied transforms.
+  * Defined a custom get_loader which can test and train data from transformed dataset in batch size of 64, using Cuda, by declaring train_loader and test_loader which can download the complete dataset from the Mnist server.
 * [Model Architecture](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/model.py)
-  Imported all necessary libraries for loading our data. Initialized Block and passed the arguments like Input Channel Size, Output Channel Size, padding(to be used for convolution layer. which defaults to 1. Type of normalization to be used. Allowed values like 'bn', 'gn', 'ln'. Where to Enable/Disable Maxpolling.
+  
+  * Imported all necessary libraries for loading our data. 
+  * Initialized Block and passed the arguments like Input Channel Size, Output Channel Size, padding(to be used for convolution layer, which defaults to 1. Type of normalization to be used. 
+  * Allowed values like 'bn', 'gn', 'ln'. Where to Enable/Disable Maxpolling.
 	Then passed the arguments like Input tensor to this block, Number of layers in this block.check for last block. then we return processed tensor. used relu
-	Made a Network Class. with arguments like Number of base channels to start with, number of Layers in each block, dropout value and normalization type. then how to convolve
-	Defined Convolution function with arguments like Input image tensor, where to enable/disable Dropout and then Return tensor of logits. then conv layer and output layer and also used Gap.
+	Made a Network Class.
+  * With arguments like Number of base channels to start with, number of Layers in each block, dropout value and normalization type. then how to convolve
+  * Defined Convolution function with arguments like Input image tensor, where to enable/disable Dropout and then Return tensor of logits. then conv layer and output layer and also used Gap.
 * [Data Transformations](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/transform.py)
-  Imported all necessary libraries for loading our data plus albumentations library. Defined test transforms and traind transforms  with diffeerrent parameters like shift limit, scale limit, rotate limit, random rotation degree, img size, random crop percent and normalization with required mean and standard deviation 
+  * Imported all necessary libraries for loading our data plus albumentations library. 
+  * Defined test transforms and traind transforms  with diffeerrent parameters like shift limit, scale limit, rotate limit, random rotation degree, img size, random crop percent and normalization with required mean and standard deviation 
 * [Backpropagation](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/backpropagation.py)
-  Imported all necessary libraries for loading our data. Created a train function to return train function instance by passing arguments related to l1. then defined a function for backpropagation and passed the arguments like model to be train, Data set to use for training, use optimizer, wherre to enable and disable dropouts, use cuda device and use cheduler instance which is used for updating lr while training. Then return Loss and number of correct predictions.
+  * Imported all necessary libraries for loading our data. 
+  * Created a train function to return train function instance by passing arguments related to l1. then defined a function for backpropagation and passed the arguments like model to be train, Data set to use for training, use optimizer, wherre to enable and disable dropouts, use cuda device and use cheduler instance which is used for updating lr while training.
+  * Then return Loss and number of correct predictions.
 	Defined test function to perform model validation by passing arguments like model instance to run validation, dataset used in validation, device type cuda and then return loss and number of correct predictions.
-	At last defined SGD optimizer.
+  * At last defined SGD optimizer.
 * [LR Scheduler](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/scheduler.py)
-  Imported all necessary libraries for loading our data. Defined a CustomOneCycleLR custom class for one cycle lr. Then Initialized Scheduler and passed the arguments like Optimizer to be used for training, Schedule to be used for training, Number of steps before changing lr value. Defined step( which calls every step to set next lr value. defined lr_schedules to get Next value for lr, then return LR value to use for next step.
-	Defined one_cycle_lr_pt to create instance of one cycle lr scheduler from python and passed the arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done. Then return instance of one cycle lr scheduler.
-	Defined one_cycle_lr_custom which create instance of one cycle lr scheduler from python and passed arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done. 
-	Set raise Exception for epoch value < 12 and returns CustomOneCycleLR: instance of one cycle lr scheduler.
+  * Imported all necessary libraries for loading our data. Defined a CustomOneCycleLR custom class for one cycle lr. 
+  * Then Initialized Scheduler and passed the arguments like Optimizer to be used for training, Schedule to be used for training, Number of steps before changing lr value. 
+  * Defined step( which calls every step to set next lr value. defined lr_schedules to get Next value for lr, then return LR value to use for next step.
+  * Defined one_cycle_lr_pt to create instance of one cycle lr scheduler from python and passed the arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done. Then return instance of one cycle lr scheduler.
+  * Defined one_cycle_lr_custom which create instance of one cycle lr scheduler from python and passed arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done.
+  * Set raise Exception for epoch value < 12 and returns CustomOneCycleLR: instance of one cycle lr scheduler.
 * [Visualization](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/visualize.py)
-  Imported all necessary libraries for loading our data. Defined print_samples to Print samples input images, and passed arguments like loader:dataloader for training data and count:Number of samples to print. Made a loop for Print Random Samples. 
+  * Imported all necessary libraries for loading our data. Defined print_samples to Print samples input images, and passed arguments like loader:dataloader for training data and count:Number of samples to print.
+  * Made a loop for Print Random Samples. 
 	Defined a print_class_scale to Print Dataset Class scale with Argumnets like loader for Loader instance for dataset and class_map for mapping for class names. Then we plot the Bar Graph
-	Defined plot_confusion_matrix and passed arguments like Class lables, where to Enable/Disable Normalization, Title for plot, Colour Map, true label, predicted label etc to plot Confusion Matrix
-	Defined plot_incorrect_predictionsnd and passed arguments like List of all incorrect predictions, Lable mapping, Number of samples to print to plot Incorrect Predictions.
+  * Defined plot_confusion_matrix and passed arguments like Class lables, where to Enable/Disable Normalization, Title for plot, Colour Map, true label, predicted label etc to plot Confusion Matrix
+  * Defined plot_incorrect_predictionsnd and passed arguments like List of all incorrect predictions, Lable mapping, Number of samples to print to plot Incorrect Predictions.
 * [Utils](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/utils.py)
 
 The above files are used in the [Notebook](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/notebook/MNIST_ALBUMENTATION_CONSOLIDATED.ipynb)
