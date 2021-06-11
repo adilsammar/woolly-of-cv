@@ -34,113 +34,113 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   * What is Normalization: 
   
-  Input data comes in different ranges and scales. Normalization helps to change their ranges and scales to bring uniformity to data. Eg: Input images can be standardized to range of [0,255] or [0,1]. For a grayscale image, '0' being black colour while '255' being white colour. 
-  
-          To convert a [-500, 1000] to 0-255. 
+    Input data comes in different ranges and scales. Normalization helps to change their ranges and scales to bring uniformity to data. Eg: Input images can be standardized to range of [0,255] or [0,1]. For a grayscale image, '0' being black colour while '255' being white colour. 
+    
+        To convert a [-500, 1000] to 0-255. 
 
-           Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
-           Step 2: Bring [0,1500] to [0,255] -> 255/1500.
-  
-  Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. 
-  
-  The below given diagram shows different transformation operations that can be performed on our data:
-  
->  * Centering: Ensures that the normalized output has a zero-mean property
->  * Scaling: Ensures that the normalized output has a unit-variance property
->  * Standardizing: Combines centering and scaling and ensures that the normalized output has zero-mean and unit-variance properties
->  * Whitening: Ensures that the normalized output has a spherical Gaussian distribution
->  * Decorrelating: Ensures that the correlation between different dimensions of the normalized output is zero 
-  
-  Source: https://arxiv.org/pdf/2009.12836.pdf
-  
-   ![Normalization Transformation](../assets/NormalizationExamples.png)
+        Step 1: -500 can be brought to 0 by adding 500. That brings us to [0,1500]
+        Step 2: Bring [0,1500] to [0,255] -> 255/1500.
+    
+    Normalization can also be defined as a transformation, which ensures that the transformed data has certain statistical properties like Mean close to 0, std.dev close to 1 and so on. 
+    
+    The below given diagram shows different transformation operations that can be performed on our data:
+    
+    >  * Centering: Ensures that the normalized output has a zero-mean property
+    >  * Scaling: Ensures that the normalized output has a unit-variance property
+    >  * Standardizing: Combines centering and scaling and ensures that the normalized output has zero-mean and unit-variance properties
+    >  * Whitening: Ensures that the normalized output has a spherical Gaussian distribution
+    >  * Decorrelating: Ensures that the correlation between different dimensions of the normalized output is zero 
+    
+    Source: https://arxiv.org/pdf/2009.12836.pdf
+    
+    ![Normalization Transformation](../assets/NormalizationExamples.png)
 
- Normalization can be applied at different levels. Below, we will take a look at the 3 normalization techniques.
+  Normalization can be applied at different levels. Below, we will take a look at the 3 normalization techniques.
   
 ### Batch Normalization:
   
   * What is Batch Normalization? 
   
-  Making normalization a part of the model architecture and performing the normalization for each training mini-batch. 
-  
-  * Calculations for Batch Norm:
-  
-  ![BatchNormCalc](../assets/BatchNormCalc.png)
-  
-  * Batch Normalization in Network:
-  
-  ![BatchNorm](../assets/BatchNorm.png)
-  
-  * Why does it work? 
-  
-  Batch Normalization has been proved to be of help to reduce Internal Covariate Shift. 
+    Making normalization a part of the model architecture and performing the normalization for each training mini-batch. 
+    
+    * Calculations for Batch Norm:
+    
+      ![BatchNormCalc](../assets/BatchNormCalc.png)
+    
+    * Batch Normalization in Network:
+    
+      ![BatchNorm](../assets/BatchNorm.png)
+    
+    * Why does it work? 
+    
+      Batch Normalization has been proved to be of help to reduce Internal Covariate Shift. 
   
   * What is Covariate Shift?
   
-  The change in the distributions of layers’ inputs presents a problem because the layers need to continuously adapt to the new distribution. When the input distribution to a learning system changes, it is said to experience covariate shift.
-  
-   A layer with an activation function with u as the layer input, the weight matrix W and bias vector b. The model learns w,b at every backpropagation step making the gradient flowing down to u leading them to vanish and also it leads to slow convergence as the network depth increases. Also, the gradients with respect to the weights in one layer are highly dependent on the outputs of the neurons in the previous layer especially if these outputs change in a highly correlated way.The nonlinear inputs not remaining stable at different parts of the training is referred to as Covariate shift. By carefully initializing and by ensurinng small learning rate could solve this problem. However, this can also be solved by making the inputs to the activation more stable. 
+    The change in the distributions of layers’ inputs presents a problem because the layers need to continuously adapt to the new distribution. When the input distribution to a learning system changes, it is said to experience covariate shift.
+    
+    A layer with an activation function with u as the layer input, the weight matrix W and bias vector b. The model learns w,b at every backpropagation step making the gradient flowing down to u leading them to vanish and also it leads to slow convergence as the network depth increases. Also, the gradients with respect to the weights in one layer are highly dependent on the outputs of the neurons in the previous layer especially if these outputs change in a highly correlated way.The nonlinear inputs not remaining stable at different parts of the training is referred to as Covariate shift. By carefully initializing and by ensurinng small learning rate could solve this problem. However, this can also be solved by making the inputs to the activation more stable. 
   
   * Other advantages of BN:
   
-  1. Batch Normalization enables higher learning rates
-  2. Batch Normalization regularizes the model
+    * Batch Normalization enables higher learning rates
+    * Batch Normalization regularizes the model
 
 ### Layer Normalization:
   
   * What is Layer Normalization?
   
-  Estimates the normalization statistics from the summed inputs to the neurons within a hidden layer so the normalization does not introduce any new dependencies between training cases as in the case of BN. For batch normalization, input values of the same neuron from different images in one mini batch are normalized whereas in layer normalization, input values for different neurons in the same layer are normalized without consideration of mini batch.
+    Estimates the normalization statistics from the summed inputs to the neurons within a hidden layer so the normalization does not introduce any new dependencies between training cases as in the case of BN. For batch normalization, input values of the same neuron from different images in one mini batch are normalized whereas in layer normalization, input values for different neurons in the same layer are normalized without consideration of mini batch.
   
   * Why is it needed?
   
-      * Originally introduced as BN was hard to apply to recurrent neural networks. The problem is RNNs have a recurrent connection to previous timestamps and would require a separate β and γ for each timestep in the BN layer which instead adds additional complexity and makes it harder to use BN with RNNs
-      * Used in Transformers
+    * Originally introduced as BN was hard to apply to recurrent neural networks. The problem is RNNs have a recurrent connection to previous timestamps and would require a separate β and γ for each timestep in the BN layer which instead adds additional complexity and makes it harder to use BN with RNNs
+    * Used in Transformers
 
 ### Group Normalization:
   
   * What is Group Normalization?
   
-      Group Normalization divides the channels into groups and computes within each group the mean and variance for normalization. GN’s computation is independent of batch sizes, and its accuracy is stable in a wide range of batch sizes.
+    Group Normalization divides the channels into groups and computes within each group the mean and variance for normalization. GN’s computation is independent of batch sizes, and its accuracy is stable in a wide range of batch sizes.
   
-      Instead of normalizing across the batch dimension, GN normalizes across the groups formed from channels. One key hyperparameter in Group Normalization is the number of groups to divide the channels into.
+    Instead of normalizing across the batch dimension, GN normalizes across the groups formed from channels. One key hyperparameter in Group Normalization is the number of groups to divide the channels into.
   
   * Do we need this inspite of batch normalization?
   
-      BN’s error increases rapidly when the batch size becomes smaller, caused by inaccurate batch statistics estimation. This is seen as a drawback in other CV tasks such as detection, segmentation, and video, which require small batches constrained by memory consumption.
+    BN’s error increases rapidly when the batch size becomes smaller, caused by inaccurate batch statistics estimation. This is seen as a drawback in other CV tasks such as detection, segmentation, and video, which require small batches constrained by memory consumption.
   
-  Source: https://arxiv.org/pdf/1803.08494.pdf
+    Source: https://arxiv.org/pdf/1803.08494.pdf
   
-  ![Normalization Methods](../assets/NormMethodExplained.png)
-  
-  Let’s consider that we have a batch of dimension (N, C, H, W) that needs to be normalized.
-  
-      N: Batch Size
-      C: Number of Channels
-      H: Height of the feature map
-      W: Width of the feature map
-  
-  Essentially, in BN, the pixels sharing the same channel index are normalized together. That is, for each channel, BN computes the mean and std deviation along the (N, H, W) axes. As we can see, the group statistics depend on N, the batch size.
+    ![Normalization Methods](../assets/NormMethodExplained.png)
+    
+    Let’s consider that we have a batch of dimension (N, C, H, W) that needs to be normalized.
+    
+        N: Batch Size
+        C: Number of Channels
+        H: Height of the feature map
+        W: Width of the feature map
+    
+    Essentially, in BN, the pixels sharing the same channel index are normalized together. That is, for each channel, BN computes the mean and std deviation along the (N, H, W) axes. As we can see, the group statistics depend on N, the batch size.
 
-  In LN, the mean and std deviation are computed for each sample along the (C, H, W) axes. Therefore, the calculations are independent of the batch size.
-  
-  Finally, for group norm, the batch is first divided into groups. The batch with dimension (N, C, W, H) is first reshaped to (N, G, C//G, H, W) dimensions where G represents the number of groups. Finally, the mean and std deviation are calculated along the groups, that is (H, W) and along C//G channels. 
+    In LN, the mean and std deviation are computed for each sample along the (C, H, W) axes. Therefore, the calculations are independent of the batch size.
+    
+    Finally, for group norm, the batch is first divided into groups. The batch with dimension (N, C, W, H) is first reshaped to (N, G, C//G, H, W) dimensions where G represents the number of groups. Finally, the mean and std deviation are calculated along the groups, that is (H, W) and along C//G channels. 
   
   * Group Normalization Calculation:
   
-  ![GroupNorm](../assets/GroupNorm.png)
+    ![GroupNorm](../assets/GroupNorm.png)
 
-  If, G == 1, that is number of groups is set to 1, GN becomes LN.
+    If, G == 1, that is number of groups is set to 1, GN becomes LN.
   
  ### Calculation examples for three Normalization:
   
-  ![3 Norm Calculations](../assets/3NormExp.png)
+![3 Norm Calculations](../assets/3NormExp.png)
+
+Here, in our example from excel sheet, we have 3 (2x2) images with 4 channels and Batch Size of 3.
   
-  Here, in our example from excel sheet, we have 3 (2x2) images with 4 channels and Batch Size of 3.
-    
-    * For BN, we will be calculating mean and variance along the channels and across the images
-    * For LN, we will be calculating mean and variance along the images
-    * For GN, we will be forming groups among the channels and we will be calculating mean and variance for these groups.
+* For BN, we will be calculating mean and variance along the channels and across the images
+* For LN, we will be calculating mean and variance along the images
+* For GN, we will be forming groups among the channels and we will be calculating mean and variance for these groups.
 
 ### Now let's about the Regressions,
 
@@ -148,90 +148,88 @@ Before diving into what is L1 and L2 Regression let's talk about Linear Regressi
 
 Here,let's take an example
 
-  ![Bestfit](../assets/Bestfit.png)
+![Bestfit](../assets/Bestfit.png)
 
- In the Image above we can see that the training data has 3 dataset, and it fits perfectly.
- Now by sum of residuals (Cost Function) is given by 
- 
-   ```
-     Sum [ y - ÿ ]^2 = 0 
-   ```
+In the Image above we can see that the training data has 3 dataset, and it fits perfectly.
+Now by sum of residuals (Cost Function) is given by 
+
+```
+Sum [ y - ÿ ]^2 = 0 
+```
 
 The answer is zero you may ask why ? cause the training dataset fits the line perfectly. 
 
 Great !!! Now let's take a scenario where our training dataset overfits our model 
 
-  ![Overfit](../assets/Overfiting.png)
+![Overfit](../assets/Overfiting.png)
 
 This above image in our training data points is overfitting meaning where my model is giving me wonderful results but it is for my training data which is giving me low error where as my test dataset is givin me high error. As we can see that the differance is huge to make my dataset fit perfectly with high variance.
  
-### <b> How can we minimize the difference and make our variance minimum you ask ? </b> 
+### How can we minimize the difference and make our variance minimum
 
 Here's where the Lasso and Ridge Regression kicks in,
 
-###  Let's start with <b > Ridge Regression AKA L2 Regression, </b>
+### Let's start with Ridge Regression AKA L2 Regression
 
- Here's an example,
- 
+Here's an example,
+
 ![SteepSlope](../assets/Steep_Slope.png)
 
- As we can see that the time spending on this assignment is having a steep slope on the Y-Axis because there is a huge movement in the X-Axis. Now its overfittig with the its slope and the cost function is 0.
+As we can see that the time spending on this assignment is having a steep slope on the Y-Axis because there is a huge movement in the X-Axis. Now its overfittig with the its slope and the cost function is 0.
 
-Now lets look at how we can solve this by Rigde Regression and reduce the cost function, 
+##### Now lets look at how we can solve this by Rigde Regression and reduce the cost function, 
 
-* ### Formula is given by :
+Formula is given by:
   
-    ```
-    { Sum [ y - ÿ ]^2 = 0 } + Lamda x (Slope)^2
-    ```
-    where we can have the lamda value from 0 to any positve integer. as the lamda increses the slope becomes closer to 0.
+```
+{ Sum [ y - ÿ ]^2 = 0 } + Lamda x (Slope)^2
+```
+where we can have the lamda value from 0 to any positve integer. as the lamda increses the slope becomes closer to 0.
 
-    * Let's solve this by taking some random values,
-  
-      Where <b>lamda = 1 and Slope = 1.5 and the Result would be 2.25.</b>
+Let's solve this by taking some random values,
+
+<b>lamda = 1 and Slope = 1.5 and the Result would be 2.25</b>
 
 Let's look at how are we gonna reduce the steep slope ? We can now introduce another slope,
 
 ![New Slope](../assets/New_Slope.png)
 
 In the above image we can see that we have reduced the difference between the old line and the new line by adding a new slope
-* Let's solve this by taking some random values,
-   Where <b>lamda = 1 and Slope = 1.3 and the Result would be 1.69. which is less then the value we got from the first slope.</b> 
 
-   ### We can consider this new slope as our best fit line as the varience is decreased.
+Let's solve this by taking some random values,
+Where <b>lamda = 1 and Slope = 1.3 and the Result would be 1.69. which is less then the value we got from the first slope.</b> 
+
+We can consider this new slope as our best fit line as the varience is decreased.
 
 
-### Now Coming to <b> Lasso Regression AKA L1 Regression </b>
+##### Now Coming to <b> Lasso Regression AKA L1 Regression </b>
 
 There is just few changes compared to L2 Regression,
 
-* ### Formula is given by :
+Formula is given by :
   
-    ```
-    { Sum [ y - ÿ ]^2 = 0 } + Lamda x |Slope|
-    ```
-    where we can have the lamda value from 0 to 1 .As the lamda increses the slope becomes closer to 0 if it does then those features are removed.
+```
+{ Sum [ y - ÿ ]^2 = 0 } + Lamda x |Slope|
+```
+where we can have the lamda value from 0 to 1 .As the lamda increses the slope becomes closer to 0 if it does then those features are removed.
 
-    * Let's solve this by taking some random values,
-  
-      Where <b>lamda = 1 and Slope = 1.5 and the Result would be 2.25.</b>
+Let's solve this by taking some random values,
+
+Where **lamda = 1 and Slope = 1.5 and the Result would be 2.25.**
 
 Let's look at how are we gonna reduce the steep slope ? We can now introduce another slope,
 
 ![New Slope](../assets/New_Slope.png)
 
 In the above image we can see that we have reduced the difference between the old line and the new line by adding a new slope
-* Let's solve this by taking some random values,
-   Where <b>lamda = 1 and Slope = 1.3 and the Result would be 1.69. which is less then the value we got from the first slope.</b> 
 
-   ### We can consider this new slope as our best fit line as the varience is decreased.
+Let's solve this by taking some random values,
 
-* ### Note :
-   ```
-    Before considering which bestfit to choose we might have to run multiple iterations to come to a conclusion and choose bestfit for our model. 
-   ```
+Where **lamda = 1 and Slope = 1.3 and the Result would be 1.69. which is less then the value we got from the first slope**
 
-------
+We can consider this new slope as our best fit line as the varience is decreased.
+
+**Note** : Before considering which bestfit to choose we might have to run multiple iterations to come to a conclusion and choose bestfit for our model. 
 
 ## Inferences + Graphs:
   
@@ -250,25 +248,25 @@ In the above image we can see that we have reduced the difference between the ol
   
 ## Visualization for misclassified predictions:
 
-### Misclassified Predictions for Batch Normalization+L1:
+##### Misclassified Predictions for Batch Normalization+L1:
  
   ![Misclassified Predictions for Batch Normalization+L1](../assets/MisPre_BNL1.png)
   
   
-### Misclassified Predictions for Layer Normalization:
+##### Misclassified Predictions for Layer Normalization:
 
   ![Misclassified Predictions for Layer Normalization](../assets/MisPre_LayerN.png)
   
   
-### Misclassified Predictions for Group Normalization:
+##### Misclassified Predictions for Group Normalization:
 
   ![Misclassified Predictions for Group Normalization](../assets/MisPre_GroupN.png)
   
 ## References:
   
-  * [Normalization Techniques](https://arxiv.org/pdf/2009.12836.pdf)
-  * [Group Normalization](https://arxiv.org/pdf/1803.08494.pdf)
-  * [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/pdf/1502.03167.pdf)
-  * [Layer Normalization](https://arxiv.org/pdf/1607.06450.pdf)
+  * Normalization Techniques ([https://arxiv.org/pdf/2009.12836.pdf](https://arxiv.org/pdf/2009.12836.pdf))
+  * Group Normalization ([https://arxiv.org/pdf/1803.08494.pdf](https://arxiv.org/pdf/1803.08494.pdf))
+  * Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift ([https://arxiv.org/pdf/1502.03167.pdf](https://arxiv.org/pdf/1502.03167.pdf))
+  * (Layer Normalization) [https://arxiv.org/pdf/1607.06450.pdf](https://arxiv.org/pdf/1607.06450.pdf)
   
 
