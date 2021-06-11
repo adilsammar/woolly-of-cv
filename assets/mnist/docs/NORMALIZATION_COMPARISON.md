@@ -5,7 +5,8 @@
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
 * [Normalization Techniques Explained](#Normalization-Techniques-Explained)
-* [Regularization](#Now-let's-about-the-Regressions,)
+* [Regularization](#Now-let's-about-the-Regressions)
+* [Graphs](#Graphs)
 * [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
 
@@ -231,7 +232,7 @@ We can consider this new slope as our best fit line as the varience is decreased
 
 **Note** : Before considering which bestfit to choose we might have to run multiple iterations to come to a conclusion and choose bestfit for our model. 
 
-## Inferences + Graphs:
+## Graphs:
   
   The below graphs are from the experiments performed on the 3 normalization techniques that we discussed:
   
