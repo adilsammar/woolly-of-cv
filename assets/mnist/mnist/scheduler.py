@@ -33,5 +33,5 @@ def one_cycle_lr_pt(optimizer, lr, max_lr, steps_per_epoch, epochs, anneal_strat
     )
 
 def one_cycle_lr_custom(optimizer, lr, max_lr, steps_per_epoch, epochs, anneal_strategy='linear'):
-    schedule = np.interp(np.arange(epochs+1), [0, 2, 8, 12, epochs], [lr, max_lr, lr/5.0, lr/10.0, 0])
+    schedule = np.interp(np.arange(epochs+1), [0, 2, 8, epochs], [lr, max_lr, lr/5.0, 0])
     return CustomOneCycleLR(optimizer, schedule, steps_per_epoch)

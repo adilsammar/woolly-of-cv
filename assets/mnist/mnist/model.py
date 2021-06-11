@@ -11,21 +11,21 @@ class Block(nn.Module):
         super(Block, self).__init__()
         self.usepool = usepool
         self.conv1 = nn.Conv2d(input_size, output_size, 3, padding=padding)
-        if norm=='bn':
+        if norm == 'bn':
             self.n1 = nn.BatchNorm2d(output_size)
         elif norm == 'gn':
             self.n1 = nn.GroupNorm(GROUP_SIZE, output_size)
         elif norm == 'ln':
             self.n1 = nn.GroupNorm(1, output_size)
         self.conv2 = nn.Conv2d(output_size, output_size, 3, padding=padding)
-        if norm=='bn':
+        if norm == 'bn':
             self.n2 = nn.BatchNorm2d(output_size)
         elif norm == 'gn':
             self.n2 = nn.GroupNorm(GROUP_SIZE, output_size)
         elif norm == 'ln':
             self.n2 = nn.GroupNorm(1, output_size)
         self.conv3 = nn.Conv2d(output_size, output_size, 3, padding=padding)
-        if norm=='bn':
+        if norm == 'bn':
             self.n3 = nn.BatchNorm2d(output_size)
         elif norm == 'gn':
             self.n3 = nn.GroupNorm(GROUP_SIZE, output_size)

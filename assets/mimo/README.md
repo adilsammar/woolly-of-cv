@@ -1,6 +1,6 @@
 ## Create a network which can take in a MNIST Data image and a Random number and output the digit from image and sum of this digit and random number entered
 
-![problem modal](./assign.png "Problem Statement Exmple Modal")
+![problem modal](./assets/assign.png "Problem Statement Exmple Modal")
 
 1. the "number" that was represented by the MNIST image, and
 2. the "sum" of this number with the random number that was generated and sent as the input to the network
@@ -65,7 +65,7 @@ Here we have created a custom dataset, where both the inputs are processed and i
 #### Visualize Dataset
 Print some random samples to see how images from our dataset looks like
 
-![visualize](./visualize.png "Some Inputs")
+![visualize](./assets/visualize.png "Some Inputs")
 
 
 ### Training

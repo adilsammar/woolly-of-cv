@@ -109,28 +109,23 @@ def plot_network_performance(epochs, schedule, train_loss, valid_loss, train_cor
     
     
     
-def plot_network_performance(epochs, schedule, train_loss, valid_loss, train_correct, valid_correct):
+def plot_model_comparison(trainers, epochs):
     plt.figure(figsize=(15, 5))
-
-    plt.subplot(1, 3, 1)
-    plt.plot(range(epochs), schedule, 'r', label='One Cycle LR')
-    plt.title('Learning Rate')
-    plt.xlabel('Epochs')
-    plt.ylabel('LR')
-    plt.legend()
-
-    plt.subplot(1, 3, 2)
-    plt.plot(range(epochs), train_loss, 'g', label='Training loss')
-    plt.plot(range(epochs), valid_loss, 'b', label='Validation loss')
-    plt.title('Training and Validation loss')
+    
+    plt.subplot(1, 2, 1)
+    plt.plot(range(epochs), trainers[0].list_valid_loss, 'g', label='BN + L1 loss')
+    plt.plot(range(epochs), trainers[1].list_valid_loss, 'b', label='GN loss')
+    plt.plot(range(epochs), trainers[2].list_valid_loss, 'r', label='LN loss')
+    plt.title('Validation losses')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
 
-    plt.subplot(1, 3, 3)
-    plt.plot(range(epochs), train_correct, 'g', label='Training Accuracy')
-    plt.plot(range(epochs), valid_correct, 'b', label='Validation Accuracy')
-    plt.title('Training and Validation Accuracy')
+    plt.subplot(1, 2, 2)
+    plt.plot(range(epochs), trainers[0].list_valid_correct, 'g', label='BN + L1 Accuracy')
+    plt.plot(range(epochs), trainers[1].list_valid_correct, 'b', label='GN Accuracy')
+    plt.plot(range(epochs), trainers[2].list_valid_correct, 'r', label='LN Accuracy')
+    plt.title('Validation Accuracies')
     plt.xlabel('Epochs')
     plt.ylabel('Accuracy')
     plt.legend()

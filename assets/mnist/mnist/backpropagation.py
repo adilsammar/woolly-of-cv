@@ -4,24 +4,32 @@ from torch.optim import SGD
 
 torch.manual_seed(1)
 
-def train(model, train_loader, optimizer, dropout, device, scheduler=None):
-    model.train()
-    epoch_loss = 0
-    correct = 0
-    for data, target in train_loader:
-        data, target = data.to(device), target.to(device)
-        optimizer.zero_grad()
-        output = model(data, dropout)
-        loss = F.nll_loss(output, target)
-        loss.backward()
-        optimizer.step()
-        if scheduler:
-            scheduler.step()
-        pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
-        correct += pred.eq(target.view_as(pred)).sum().item()
-        epoch_loss += loss.item()
-      
-    return epoch_loss / len(train_loader), correct
+def train(use_l1=False, lambda_l1=5e-4):
+    def internal(model, train_loader, optimizer, dropout, device, scheduler=None):
+        model.train()
+        epoch_loss = 0
+        correct = 0
+        for data, target in train_loader:
+            data, target = data.to(device), target.to(device)
+            optimizer.zero_grad()
+            output = model(data, dropout)
+            loss = F.nll_loss(output, target)
+            if use_l1 == True:
+                l1 = 0
+                for p in model.parameters():
+                    l1 = l1 + p.abs().sum()
+                loss = loss + lambda_l1 * l1
+            loss.backward()
+            optimizer.step()
+            if scheduler:
+                scheduler.step()
+            pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
+            correct += pred.eq(target.view_as(pred)).sum().item()
+            epoch_loss += loss.item()
+
+        return epoch_loss / len(train_loader), correct
+    
+    return internal
 
 
 def test(model, test_loader, device):

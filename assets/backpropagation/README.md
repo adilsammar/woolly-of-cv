@@ -34,7 +34,7 @@ https://docs.google.com/spreadsheets/d/1uMt9n0yHHqeoY4aUZaf1T6F4ZBFQX_gP7zskxvwo
   
 <center>
 
-![Network Architecture](./assets/Network_Arch%20.png)
+![Network Architecture](./assets/network_arch.png)
 
 </center>
 
@@ -75,7 +75,7 @@ https://docs.google.com/spreadsheets/d/1uMt9n0yHHqeoY4aUZaf1T6F4ZBFQX_gP7zskxvwo
 We have used sigmoid activation function for this neural network:
 <center>
 
-![Sigmoid and Sigmoid Derivation](./assets/Activation.png)
+![Sigmoid and Sigmoid Derivation](./assets/activation.png)
 
 </center>
 
@@ -87,7 +87,7 @@ We have used sigmoid activation function for this neural network:
 * Mean Square Error (MSE): 
 <center>
 
-![MSE](./assets/MSE.png)
+![MSE](./assets/mse.png)
 
 </center>
 
@@ -101,27 +101,27 @@ We have used sigmoid activation function for this neural network:
 
 <center>
 
-![](./assets/Solve%201.png)
+![](./assets/solve_1.png)
 
 </center>
 
 <center>
 
-![](./assets/Solve%202.png)
-
-</center>
-
-
-<center>
-
-![](./assets/Solve%203.png)
+![](./assets/solve_2.png)
 
 </center>
 
 
 <center>
 
-![](./assets/Solve%204.png)
+![](./assets/solve_3.png)
+
+</center>
+
+
+<center>
+
+![](./assets/solve_4.png)
 
 </center>
 
@@ -140,7 +140,7 @@ We have used sigmoid activation function for this neural network:
 * For the backward propagation, the weights values needs to be updated by 
 <center>
 
-   ![Weights](./assets/WeightsUpdation.png)
+   ![Weights](./assets/weights_updation.png)
 
    </center>
 
@@ -158,7 +158,7 @@ We have used sigmoid activation function for this neural network:
 * When the learning rate is 2, the error seems to be low. The higher the learning rate, the network converged faster and less error is observed in this case. (Output nearer to the true values)
 <center>
 
-![](./assets/Learning_Rate_Variations.png)
+![](./assets/learning_rate_variations.png)
 
 </center>
 
@@ -166,7 +166,7 @@ We have used sigmoid activation function for this neural network:
 
 <center>
 
-![Screenshot](./assets/Excel_Screenshot.png)
+![Screenshot](./assets/excel_screenshot.png)
 
 </center>
 
