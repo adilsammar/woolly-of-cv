@@ -104,7 +104,9 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
     * Layers in the network is also small for layer normalization to perform better 
     * Group Normalization works well for the networks that are large
   * Group and layer normalization doesn't see any effect of Batch size
-    
+   
+  * Consolidated graphs for all 3 Normalization:
+   
   ![Validation Losses and Accuracy](../assets/Validation_Losses_Accuracy_AllNorm.png)
   
   * Training Validation Graphs for BN+L1
