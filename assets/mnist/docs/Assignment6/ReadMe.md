@@ -231,12 +231,6 @@ In the above image we can see that we have reduced the difference between the ol
     Before considering which line to choose we have to run multiple iterantions to come to a conclusion. 
    ```
 
-### The advantages of using Lasso Regression and Ridge Regression 
-
- * Finding optimal weights and its is challenge 
- 
- * Prediction accuracy is great.
-
 ------
 
 ## Inferences + Graphs:
