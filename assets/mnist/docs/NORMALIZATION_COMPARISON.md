@@ -22,15 +22,13 @@ This file is submitted as part of Assignment 6 for EVA6 Course
 
 ## Code Explanation
 
-The codebase has been modularized and we have kept the below in separate .py files
+The codebase has been modularized and we have kept the below in separate python files
 
 * [Dataset loader](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/dataset.py)
-  
   * Imported all necessary libraries for loading our data. Made custom data set MnistDataset.
   * Defined len and Getitem to get length of the dataset and read image and label from the dataset respectively. Applied transforms.
   * Defined a custom get_loader which can test and train data from transformed dataset in batch size of 64, using Cuda, by declaring train_loader and test_loader which can download the complete dataset from the Mnist server.
 * [Model Architecture](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/model.py)
-  
   * Imported all necessary libraries for loading our data. 
   * Initialized Block and passed the arguments like Input Channel Size, Output Channel Size, padding(to be used for convolution layer, which defaults to 1. Type of normalization to be used. 
   * Allowed values like 'bn', 'gn', 'ln'. Where to Enable/Disable Maxpolling.
@@ -61,28 +59,40 @@ The codebase has been modularized and we have kept the below in separate .py fil
   * Defined plot_confusion_matrix and passed arguments like Class lables, where to Enable/Disable Normalization, Title for plot, Colour Map, true label, predicted label etc to plot Confusion Matrix
   * Defined plot_incorrect_predictionsnd and passed arguments like List of all incorrect predictions, Lable mapping, Number of samples to print to plot Incorrect Predictions.
 * [Utils](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/utils.py)
+  * Imported all necessary libraries for loading our data. Defined get_device to Get Device type and return Device type and use Cuda.
+  * Defined print_summary to Print Model summary and passed the arguments like Model Instance and Input size
+  * Defined print_modal_summary to Print Model summary and passed the arguments like Model Instance
+  * Defined initialize_weights Function to initialize random weights with arguments m as Layer instance
+  * Defined load_weights_from_path to load weights from file by passing arguments like Model instance and Path to weights file and then return loaded modal.
+  * Defined get_all_predictions to Get All predictions for modelwith arguments like trained Model, Instance of dataloader, Which device to use cuda/cpu and Returns tuple of all predicted values and their targets
+  * Defined get_incorrrect_predictions to Get all incorrect predictions by passing arguments like Trained model, instance of data loader, Which device to use cuda/cpu and then Return list of all incorrect predictions and their corresponding details
+  * Defined prepare_confusion_matrix to Prepare Confusion matrix with arguments of List of all predictions, List of all actule labels and Class names and then return tensor of confusion matrix for size number of classes * number of classes
 
-The above files are used in the [Notebook](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/notebook/MNIST_ALBUMENTATION_CONSOLIDATED.ipynb)
+
 
 ## Consolidated Notebook
-Notebook is divided into four high level sections
+The above files are used in the [Notebook](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/notebook/MNIST_ALBUMENTATION_CONSOLIDATED.ipynb). This notebook is divided into four high level sections
 
-* Data Loading
+* Data Loading:
   
   In this section we will use liberaries as explained above to load MNIST dataset and apply transformations
-* Data Visualization
+
+* Data Visualization:
   
   Here we will dig into dataset to understand its content for which we will plot two graphs class scale and random samples
-* Training
+
+* Training:
   
   We will create different instance of trainer with right params for three set of experiment
   * BatchNormalization + L1
   * GroupNormalization
   * Layer Normalization
   And then run all trainers to train these models
-* Model Analysis
+
+* Model Analysis:
   
   After training is completed we will look into model performance by printing comparison between models
+
 
   ##### Comparison
   
