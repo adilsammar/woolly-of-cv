@@ -5,7 +5,7 @@
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
 * [Normalization Techniques Explained](#Normalization-Techniques-Explained)
-* [L1 Regularization](#L1-Regularization)
+* [Regularization](#Now-let's-about-the-Regressions,)
 * [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
 
@@ -142,8 +142,97 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
     * For LN, we will be calculating mean and variance along the images
     * For GN, we will be forming groups among the channels and we will be calculating mean and variance for these groups.
 
-## L1 Regularization:
+## Now let's about the Regressions,
+
+Before diving into what is L1 and L2 Regression let's talk about Linear Regression.
+
+Here,let's take an example
+
+  ![Bestfit](../../assets/Bestfit.png)
+
+ In the Image above we can see that the training data has 3 dataset, and it fits perfectly.
+ Now by sum of residuals (Cost Function) is given by 
+ 
+   ```
+     Sum [ y - ÿ ]^2 = 0 
+   ```
+
+The answer is zero you may ask why ? cause the training dataset fits the line perfectly. 
+
+Great !!! Now let's take a scenario where our training dataset overfits our model 
+
+  ![Overfit](../../assets/Overfiting.png)
+
+This above image in our training data points is overfitting meaning where my model is giving me wonderful results but it is for my training data which is giving me low error where as my test dataset is givin me high error. As we can see that the differance is huge to make my dataset fit perfectly with high variance.
+ 
+### <b> How can we minimize the difference and make our variance minimum you ask ? </b> 
+
+Here's where the Lasso and Ridge Regression kicks in,
+
+##  Let's start with <b > Ridge Regression AKA L2 Regression, </b>
+
+ Let's start by taking an example,
+ 
+![SteepSlope](../../assets/Steep_Slope.png)
+
+ As we can see that the time spending on this assignment is having a steep slope on the Y-Axis because there is a huge movement in the X-Axis. Now its overfittig with the its slope and the cost function is 0.
+
+Now lets look at how we can solve this by Rigde Regression and reduce the cost function, 
+
+* ### Formula is given by :
   
+    ```
+    { Sum [ y - ÿ ]^2 = 0 } + Lamda x (Slope)^2
+    ```
+    where we can have the lamda value from 0 to any positve integer. as the lamda increses the slope becomes closer to 0.
+
+    * Let's solve this by taking some random values,
+  
+      Where <b>lamda = 1 and Slope = 1.5 and the Result would be 2.25.</b>
+
+Let's look at how are we gonna reduce the steep slope ? We can now introduce another slope,
+
+![New Slope](../../assets/New_Slope.png)
+
+In the above image we can see that we have reduced the difference between the old line and the new line by adding a new slope
+* Let's solve this by taking some random values,
+   Where <b>lamda = 1 and Slope = 1.3 and the Result would be 1.69. which is less then the value we got from the first slope.</b> 
+
+   ### We can consider this new slope as our best fit line as the varience is decreased.
+
+
+## Now Coming to <b> Lasso Regression AKA L1 Regression </b>
+
+There is just few changes compared to L2 Regression,
+
+* ### Formula is given by :
+  
+    ```
+    { Sum [ y - ÿ ]^2 = 0 } + Lamda x |Slope|
+    ```
+    where we can have the lamda value from 0 to 1 .As the lamda increses the slope becomes closer to 0 if it does then those features are removed.
+
+    * Let's solve this by taking some random values,
+  
+      Where <b>lamda = 1 and Slope = 1.5 and the Result would be 2.25.</b>
+
+Let's look at how are we gonna reduce the steep slope ? We can now introduce another slope,
+
+![New Slope](../../assets/New_Slope.png)
+
+In the above image we can see that we have reduced the difference between the old line and the new line by adding a new slope
+* Let's solve this by taking some random values,
+   Where <b>lamda = 1 and Slope = 1.3 and the Result would be 1.69. which is less then the value we got from the first slope.</b> 
+
+   ### We can consider this new slope as our best fit line as the varience is decreased.
+
+* ### Note :
+   ```
+    Before considering which line to choose we have to run multiple iterantions to come to a conclusion. 
+   ```
+
+------
+
 ## Inferences + Graphs:
   
   The below graphs are from the experiments performed on the 3 normalization techniques that we discussed:
