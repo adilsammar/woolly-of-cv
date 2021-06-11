@@ -2,13 +2,12 @@
 
 ## Table of Contents:
 
-  #### Contributors
-  #### Code Explanation
-  #### Normalization Techniques Explained
-  #### L1
-  #### Inferences + Graphs
-  #### Visualization for misclassified predictions
-  #### References
+* [Contributors](#Contributors)
+* [Code Explanation](#Code-Explanation)
+* [Normalization Techniques Explained](#Normalization-Techniques-Explained)
+* [L1 Regularization](#L1-Regularization)
+* [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
+* [References](#References)
 
 ## Contributors:
 
@@ -28,8 +27,6 @@ The codebase has been modularized and we have kept the below in separate .py fil
 * LR Scheduler
 * Visualization
 * Utils 
-
-<To include code explanations>
 
 [Link where the above files are available](https://github.com/adilsammar/woolly-of-cv/tree/main/assets/mnist/mnist)
 
@@ -68,9 +65,11 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   Making normalization a part of the model architecture and performing the normalization for each training mini-batch. 
   
-  Calculations for Batch Norm:
+  * Calculations for Batch Norm:
   
   ![BatchNormCalc](../../assets/BatchNormCalc.png)
+  
+  * Batch Normalization in Network:
   
   ![BatchNorm](../../assets/BatchNorm.png)
   
@@ -97,7 +96,7 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   * Why is it needed?
   
-      * Originally introduced as BN was hard to apply to recurrent neural networks. 
+      * Originally introduced as BN was hard to apply to recurrent neural networks. The problem is RNNs have a recurrent connection to previous timestamps and would require a separate β and γ for each timestep in the BN layer which instead adds additional complexity and makes it harder to use BN with RNNs
       * Used in Transformers
 
 ### Group Normalization:
@@ -106,26 +105,60 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
       Group Normalization divides the channels into groups and computes within each group the mean and variance for normalization. GN’s computation is independent of batch sizes, and its accuracy is stable in a wide range of batch sizes.
   
-      Instead of normalizing accross the batch dimension, GN normalizes accross the groups.
+      Instead of normalizing across the batch dimension, GN normalizes across the groups formed from channels. One key hyperparameter in Group Normalization is the number of groups to divide the channels into.
+  
+  * Do we need this inspite of batch normalization?
+  
+      BN’s error increases rapidly when the batch size becomes smaller, caused by inaccurate batch statistics estimation. This is seen as a drawback in other CV tasks such as detection, segmentation, and video, which require small batches constrained by memory consumption.
   
   Source: https://arxiv.org/pdf/1803.08494.pdf
   
   ![Normalization Methods](../../assets/NormMethodExplained.png)
   
+  Let’s consider that we have a batch of dimension (N, C, H, W) that needs to be normalized.
+  
+      N: Batch Size
+      C: Number of Channels
+      H: Height of the feature map
+      W: Width of the feature map
+  
+  Essentially, in BN, the pixels sharing the same channel index are normalized together. That is, for each channel, BN computes the mean and std deviation along the (N, H, W) axes. As we can see, the group statistics depend on N, the batch size.
+
+  In LN, the mean and std deviation are computed for each sample along the (C, H, W) axes. Therefore, the calculations are independent of the batch size.
+  
+  Finally, for group norm, the batch is first divided into groups. The batch with dimension (N, C, W, H) is first reshaped to (N, G, C//G, H, W) dimensions where G represents the number of groups. Finally, the mean and std deviation are calculated along the groups, that is (H, W) and along C//G channels. 
+  
   * Group Normalization Calculation:
   
   ![GroupNorm](../../assets/GroupNorm.png)
-  
-  * Do we need this inspite of batch normalization?
-  
-      BN’s error increases rapidly when the batch size becomes smaller, caused by inaccurate batch statistics estimation. This is seen as a drawback in other CV tasks such as detection, segmentation, and video, which require small batches constrained by memory consumption.
- 
-* Other normalization techniques includes Instance Normalization, Weights Normalization
 
-## L1:
+  If, G == 1, that is number of groups is set to 1, GN becomes LN.
+  
+ ### Calculation examples for three Normalization:
+  
+  ![3 Norm Calculations](../../assets/3NormExp.png)
+  
+  Here, in our example from excel sheet, we have 3 (2x2) images with 4 channels and Batch Size of 3.
+    
+    * For BN, we will be calculating mean and variance along the channels and across the images
+    * For LN, we will be calculating mean and variance along the images
+    * For GN, we will be forming groups among the channels and we will be calculating mean and variance for these groups.
+
+## L1 Regularization:
   
 ## Inferences + Graphs:
   
+  The below graphs are from the experiments performed on the 3 normalization techniques that we discussed:
+  
+  Inference:
+  
+  * We see the batch normalization combined with the L1 performs better than group and Layer Normalization. Reasons could be:
+    * Group and layer normalization doesn't see any effect of Batch Normalization
+    * Our network being small and batch size set to 32, BN+L1 works fine than the other two
+    * Layers in the network is also small for layer normalization to perform better 
+    * Group Normalization works well for the networks that are large
+    * In practice, BN seems to perform better than GN
+    
   ![Validation Losses](../../assets/Validation_Losses_For_AllNorm.png)
   ![Validation Accuracy](../../assets/Validation_Accuracy_For_AllNorm.png)
   
@@ -141,5 +174,6 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   * http://proceedings.mlr.press/v37/ioffe15.pdf
   * https://arxiv.org/pdf/1803.08494.pdf
   * https://arxiv.org/pdf/1502.03167.pdf
+  * https://arxiv.org/pdf/1607.06450.pdf
   
 
