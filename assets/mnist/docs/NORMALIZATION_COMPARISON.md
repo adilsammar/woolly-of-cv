@@ -55,16 +55,20 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
 Notebook is divided into four high level sections
 
 * Data Loading
+  
   In this section we will use liberaries as explained above to load MNIST dataset and apply transformations
 * Data Visualization
+  
   Here we will dig into dataset to understand its content for which we will plot two graphs class scale and random samples
 * Training
+  
   We will create different instance of trainer with right params for three set of experiment
   * BatchNormalization + L1
   * GroupNormalization
   * Layer Normalization
   And then run all trainers to train these models
 * Model Analysis
+  
   After training is completed we will look into model performance by printing comparison between models
 
   ##### Comparison
