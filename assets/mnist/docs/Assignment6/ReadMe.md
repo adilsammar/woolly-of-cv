@@ -69,9 +69,9 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   The change in the distributions of layers’ inputs presents a problem because the layers need to continuously adapt to the new distribution. When the input distribution to a learning system changes, it is said to experience covariate shift.
   
-   A layer with an activation function with u as the layer input, the weight matrix W and bias vector b. The model learns w,b at every backpropagation step making the gradient flowing down to u leading them to vanish and also it leads to slow convergence as the network depth increases. The nonlinear inputs not remaining stable at different parts of the training is referred to as Covariate shift. By carefully initializing and by ensurinng small learning rate could solve this problem. However, this can also be solved by making the inputs to the activation more stable. 
+   A layer with an activation function with u as the layer input, the weight matrix W and bias vector b. The model learns w,b at every backpropagation step making the gradient flowing down to u leading them to vanish and also it leads to slow convergence as the network depth increases. Also, the gradients with respect to the weights in one layer are highly dependent on the outputs of the neurons in the previous layer especially if these outputs change in a highly correlated way.The nonlinear inputs not remaining stable at different parts of the training is referred to as Covariate shift. By carefully initializing and by ensurinng small learning rate could solve this problem. However, this can also be solved by making the inputs to the activation more stable. 
   
-  * Advantages of BN:
+  * Other advantages of BN:
   
   1. Batch Normalization enables higher learning rates
   2. Batch Normalization regularizes the model
@@ -80,16 +80,30 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   * What is Layer Normalization?
   
+  Estimates the normalization statistics from the summed inputs to the neurons within a hidden layer so the normalization does not introduce any new dependencies between training cases as in the case of BN. For batch normalization, input values of the same neuron from different images in one mini batch are normalized whereas in layer normalization, input values for different neurons in the same layer are normalized without consideration of mini batch.
   
   * Why is it needed?
+  
+      * Originally introduced as BN was hard to apply to recurrent neural networks. 
+      * Used in Transformers
 
 ### Group Normalization:
-  * What is Group Normalization?
-  * Do we need this inspite of layer/ batch normalization?
   
+  * What is Group Normalization?
+  
+      Group Normalization divides the channels into groups and computes within each group the mean and variance for normalization. GN’s computation is independent of batch sizes, and its accuracy is stable in a wide range of batch sizes.
+  
+  * Do we need this inspite of batch normalization?
+  
+      BN’s error increases rapidly when the batch size becomes smaller, caused by inaccurate batch statistics estimation. This is seen as a drawback in other CV tasks such as detection, segmentation, and video, which require small batches constrained by memory consumption.
+ 
+Other normalizatio techniques includes Instance Normalization, Weights Normalization
+      
 ### Putting it all together:
   
-  ![Normalization Methods](../../assets/NormMethods.png)
+  Source: https://arxiv.org/pdf/1803.08494.pdf
+  
+  ![Normalization Methods](../../assets/NormMethodExplained.png)
 
 ## L1:
   
@@ -108,4 +122,7 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
   
   * https://arxiv.org/pdf/2009.12836.pdf
   * http://proceedings.mlr.press/v37/ioffe15.pdf
+  * https://arxiv.org/pdf/1803.08494.pdf
+  * https://arxiv.org/pdf/1502.03167.pdf
+  
 
