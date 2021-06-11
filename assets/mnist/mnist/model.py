@@ -6,6 +6,7 @@ torch.manual_seed(1)
 
 GROUP_SIZE = 2
 
+
 class Block(nn.Module):
     def __init__(self, input_size, output_size, padding=1, norm='bn', usepool=True):
         """Initialize Block
@@ -42,7 +43,7 @@ class Block(nn.Module):
             self.n3 = nn.GroupNorm(1, output_size)
         if usepool:
             self.pool = nn.MaxPool2d(2, 2)
-        
+
     def __call__(self, x, layers=3, last=False):
         """
         Args:
@@ -68,12 +69,14 @@ class Block(nn.Module):
             x = self.pool(x)
         return x
 
+
 class Net(nn.Module):
     """ Network Class
 
     Args:
         nn (nn.Module): Instance of pytorch Module
     """
+
     def __init__(self, base_channels=4, layers=3, drop=0.01, norm='bn'):
         """Initialize Network
 
@@ -84,17 +87,19 @@ class Net(nn.Module):
             norm (str, optional): Normalization type. Defaults to 'bn'.
         """
         super(Net, self).__init__()
-        
+
         self.base_channels = base_channels
         self.drop = drop
         self.no_layers = layers
 
-        # Conv 
+        # Conv
         self.block1 = Block(1, self.base_channels, norm=norm)
         self.dropout1 = nn.Dropout(self.drop)
-        self.block2 = Block(self.base_channels, self.base_channels*2, norm=norm)
+        self.block2 = Block(self.base_channels,
+                            self.base_channels*2, norm=norm)
         self.dropout2 = nn.Dropout(self.drop)
-        self.block3 = Block(self.base_channels*2, self.base_channels*2, norm=norm, usepool=False)
+        self.block3 = Block(self.base_channels*2,
+                            self.base_channels*2, norm=norm, usepool=False)
         self.dropout3 = nn.Dropout(self.drop)
 
         self.gap = nn.AdaptiveAvgPool2d(1)

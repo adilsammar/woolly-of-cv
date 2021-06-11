@@ -4,6 +4,7 @@ from torch.optim import SGD
 
 torch.manual_seed(1)
 
+
 def train(use_l1=False, lambda_l1=5e-4):
     """ Function to return train function instance
 

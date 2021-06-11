@@ -11,6 +11,7 @@ class MnistDataset(Dataset):
     Custom Dataset Class
 
     """
+
     def __init__(self, dataset, transforms=None):
         """Initialize Dataset
 
@@ -40,16 +41,15 @@ class MnistDataset(Dataset):
         """
         # Read Image and Label
         image, label = self.dataset[idx]
-        
+
         image = np.array(image)
-        
+
         # Apply Transforms
         if self.transforms is not None:
             image = self.transforms(image=image)["image"]
 
         return (image, label)
 
-    
 
 def get_loader(train_transform, test_transform, batch_size=64, use_cuda=True):
     """Get instance of tran and test loaders
@@ -66,11 +66,13 @@ def get_loader(train_transform, test_transform, batch_size=64, use_cuda=True):
     kwargs = {'num_workers': 4, 'pin_memory': True} if use_cuda else {}
 
     train_loader = DataLoader(
-        MnistDataset(datasets.MNIST('../data', train=True, download=True), transforms=train_transform),
+        MnistDataset(datasets.MNIST('../data', train=True,
+                     download=True), transforms=train_transform),
         batch_size=batch_size, shuffle=True, **kwargs)
 
     test_loader = DataLoader(
-        MnistDataset(datasets.MNIST('../data', train=False, download=True), transforms=test_transform),
+        MnistDataset(datasets.MNIST('../data', train=False,
+                     download=True), transforms=test_transform),
         batch_size=batch_size, shuffle=True, **kwargs)
-    
+
     return train_loader, test_loader
