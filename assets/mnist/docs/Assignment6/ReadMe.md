@@ -142,7 +142,7 @@ The above files are used in the [Notebook](https://github.com/adilsammar/woolly-
     * For LN, we will be calculating mean and variance along the images
     * For GN, we will be forming groups among the channels and we will be calculating mean and variance for these groups.
 
-## Now let's about the Regressions,
+### Now let's about the Regressions,
 
 Before diving into what is L1 and L2 Regression let's talk about Linear Regression.
 
@@ -169,9 +169,9 @@ This above image in our training data points is overfitting meaning where my mod
 
 Here's where the Lasso and Ridge Regression kicks in,
 
-##  Let's start with <b > Ridge Regression AKA L2 Regression, </b>
+###  Let's start with <b > Ridge Regression AKA L2 Regression, </b>
 
- Let's start by taking an example,
+ Here's an example,
  
 ![SteepSlope](../../assets/Steep_Slope.png)
 
@@ -201,7 +201,7 @@ In the above image we can see that we have reduced the difference between the ol
    ### We can consider this new slope as our best fit line as the varience is decreased.
 
 
-## Now Coming to <b> Lasso Regression AKA L1 Regression </b>
+### Now Coming to <b> Lasso Regression AKA L1 Regression </b>
 
 There is just few changes compared to L2 Regression,
 
