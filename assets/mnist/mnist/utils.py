@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+import numpy as np
 from torchsummary import summary
 
 torch.manual_seed(1)
@@ -14,6 +14,21 @@ def get_device() -> tuple:
 
 def print_summary(model, input_size=(1, 28, 28)):
     summary(model, input_size=input_size)
+    
+
+def print_modal_summary(model):
+    print (f'--------------------------------------------------------')
+    print (f'| {"Name":25}\t{"Shape":15}\tParams |')
+    print (f'--------------------------------------------------------')
+    total = 0
+    for name, param in model.named_parameters():
+        if param.requires_grad:
+            count = np.prod(list(param.data.shape))
+            total += count
+            print (f'| {name:25}\t{str(list(param.data.shape)):15}\t{count:6} |')
+    print (f'--------------------------------------------------------')
+    print(f'| {"Total":25}\t{"":15}\t{total:6} |')
+    print(f'--------------------------------------------------------')
 
 
 def initialize_weights(m):

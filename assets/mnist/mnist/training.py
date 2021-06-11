@@ -49,18 +49,15 @@ class Training():
         elapsed_secs = int(elapsed_time - (elapsed_mins * 60))
         return elapsed_mins, elapsed_secs
     
-    def print_epoch_progress(self, train_correct, train_loss, valid_correct, valid_loss):
+    def print_epoch_progress(self, epoch, train_correct, train_loss, valid_correct, valid_loss):
         epoch_mins, epoch_secs = self.epoch_time()
-        print(f'\t          Time: {epoch_mins}m {epoch_secs}s');
-        print(f'\t    Train Loss: {train_loss:.6f}')
-        print(f'\tTrain Accuracy: {train_correct:5d}/{len(self.train_loader.dataset):5d} | Percent: {(100. * train_correct / len(self.train_loader.dataset)):.2f}%')
-        print(f'\t     Val. Loss: {valid_loss:.6f}')
-        print(f'\t  Val Accuracy: {valid_correct:5d}/{len(self.test_loader.dataset):5d} | Percent: {(100. * valid_correct / len(self.test_loader.dataset)):.2f}%')
+        lr = self.schedule[epoch]
+        print(f'| {epoch+1:5} | {lr:.6f} | {epoch_mins:02}m {epoch_secs:02}s | {str(round(train_loss, 6)):9} | {train_correct:12} | {str(round(100. * train_correct / len(self.train_loader.dataset), 2)):7}% | {valid_loss:.6f} | {valid_correct:10} | {str(round(100. * valid_correct / len(self.test_loader.dataset), 2)):5}% |')
+#         print(f'Time: {epoch_mins}m {epoch_secs}s Train Loss: {train_loss:.6f} Train Accuracy: {train_correct:5d}/{len(self.train_loader.dataset):5d} | Percent: {(100. * train_correct / len(self.train_loader.dataset)):.2f}% Val. Loss: {valid_loss:.6f} Val Accuracy: {valid_correct:5d}/{len(self.test_loader.dataset):5d} | Percent: {(100. * valid_correct / len(self.test_loader.dataset)):.2f}%')
     
     
-    def log_epoch_params(self, epoch):
-        print(f'Epoch: {epoch+1:02}')
-        print(f'\t Learning Rate: {self.optimizer.param_groups[0]["lr"]:.6f}')
+#     def log_epoch_params(self, epoch):
+#         print(f'Epoch: {epoch+1:02} - Learning Rate: {self.optimizer.param_groups[0]["lr"]:.6f}')
     
     def save_best(self, valid_correct):
         valid_perc = (100. * valid_correct / len(self.test_loader.dataset))
@@ -71,10 +68,11 @@ class Training():
             torch.save(self.model.state_dict(), self.best_path)
     
     def run(self):
+        print("Started Training ...")
+        print(f'| Epoch | {"LR":8} | {"Time":7} | TrainLoss | TrainCorrect | TrainAcc | {"ValLoss":8} | ValCorrect | ValAcc |')
         for epoch in range(self.epochs):
             self.schedule.append(self.optimizer.param_groups[0]['lr'])
-            self.log_epoch_params(epoch)
-            
+#             self.log_epoch_params(epoch)
             self.start_time = time.time()
 
             train_loss, train_correct = self.train(self.model, self.train_loader, self.optimizer, self.dropout, self.device, self.scheduler)
@@ -90,7 +88,7 @@ class Training():
             
             self.save_best(valid_correct)
 
-            self.print_epoch_progress(train_correct, train_loss, valid_correct, valid_loss)
+            self.print_epoch_progress(epoch, train_correct, train_loss, valid_correct, valid_loss)
             
             
     def print_best_model(self):
@@ -99,6 +97,4 @@ class Training():
 
         valid_loss, valid_correct = self.test(self.model, self.test_loader, self.device)
 
-        print(f'Val Accuracy: {valid_correct:4d}/{len(self.test_loader.dataset):5d}')
-        print(f'     Percent: {(100. * valid_correct / len(self.test_loader.dataset)):.2f}%')
-        print(f'   Val. Loss: {valid_loss:.6f}')
+        print(f'Val Accuracy: {valid_correct:4d}/{len(self.test_loader.dataset):5d} | Percent: {(100. * valid_correct / len(self.test_loader.dataset)):.2f}% | Val. Loss: {valid_loss:.6f}')

@@ -8,6 +8,15 @@ GROUP_SIZE = 2
 
 class Block(nn.Module):
     def __init__(self, input_size, output_size, padding=1, norm='bn', usepool=True):
+        """Initialize Block
+
+        Args:
+            input_size (int): Input Channel Size
+            output_size (int): Output Channel Size
+            padding (int, optional): Padding to be used for convolution layer. Defaults to 1.
+            norm (str, optional): Type of normalization to be used. Allowed values ['bn', 'gn', 'ln']. Defaults to 'bn'.
+            usepool (bool, optional): Enable/Disable Maxpolling. Defaults to True.
+        """
         super(Block, self).__init__()
         self.usepool = usepool
         self.conv1 = nn.Conv2d(input_size, output_size, 3, padding=padding)
@@ -35,6 +44,15 @@ class Block(nn.Module):
             self.pool = nn.MaxPool2d(2, 2)
         
     def __call__(self, x, layers=3, last=False):
+        """
+        Args:
+            x (tensor): Input tensor to this block
+            layers (int, optional): Number of layers in this block. Defaults to 3.
+            last (bool, optional): Is this the last block. Defaults to False.
+
+        Returns:
+            tensor: Return processed tensor
+        """
         x = self.conv1(x)
         x = self.n1(x)
         x = F.relu(x)
@@ -51,7 +69,20 @@ class Block(nn.Module):
         return x
 
 class Net(nn.Module):
+    """ Network Class
+
+    Args:
+        nn (nn.Module): Instance of pytorch Module
+    """
     def __init__(self, base_channels=4, layers=3, drop=0.01, norm='bn'):
+        """Initialize Network
+
+        Args:
+            base_channels (int, optional): Number of base channels to start with. Defaults to 4.
+            layers (int, optional): Number of Layers in each block. Defaults to 3.
+            drop (float, optional): Dropout value. Defaults to 0.01.
+            norm (str, optional): Normalization type. Defaults to 'bn'.
+        """
         super(Net, self).__init__()
         
         self.base_channels = base_channels
@@ -70,6 +101,15 @@ class Net(nn.Module):
         self.flat = nn.Conv2d(self.base_channels*2, 10, 1)
 
     def forward(self, x, dropout=True):
+        """Convolution function
+
+        Args:
+            x (tensor): Input image tensor
+            dropout (bool, optional): Enable/Disable Dropout. Defaults to True.
+
+        Returns:
+            tensor: tensor of logits
+        """
         # Conv Layer
         x = self.block1(x, layers=self.no_layers)
         if dropout:

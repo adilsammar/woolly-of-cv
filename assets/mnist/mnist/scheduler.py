@@ -5,6 +5,9 @@ import numpy as np
 torch.manual_seed(1)
 
 class CustomOneCycleLR():
+    """Custom class for one cycle lr
+    
+    """
     def __init__(self, optimizer, schedule, steps_per_epoch):
         self.optimizer = optimizer
         self.schedule = schedule
@@ -33,5 +36,7 @@ def one_cycle_lr_pt(optimizer, lr, max_lr, steps_per_epoch, epochs, anneal_strat
     )
 
 def one_cycle_lr_custom(optimizer, lr, max_lr, steps_per_epoch, epochs, anneal_strategy='linear'):
-    schedule = np.interp(np.arange(epochs+1), [0, 2, 8, epochs], [lr, max_lr, lr/5.0, 0])
+    if epochs < 12:
+        raise Exception("Epoch value can not be less than 12")
+    schedule = np.interp(np.arange(epochs+1), [0, 2, 8, 12, epochs], [lr, max_lr, lr/5.0, lr/20.0, 0])
     return CustomOneCycleLR(optimizer, schedule, steps_per_epoch)

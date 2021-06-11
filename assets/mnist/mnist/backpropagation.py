@@ -53,7 +53,7 @@ def train(use_l1=False, lambda_l1=5e-4):
 
 
 def test(model, test_loader, device):
-    """[summary]
+    """ Function to perform model validation
 
     Args:
         model (Net): Model instance to run validation
