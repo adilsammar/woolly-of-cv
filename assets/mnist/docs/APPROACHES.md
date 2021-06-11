@@ -14,7 +14,7 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
 
 ### Case 1
 
-  * #### [Notebook Link](../notebooks/Case1.ipynb)
+  * #### [Notebook Link](../notebook/Case1.ipynb)
   * #### Target 
     Basic Network
   * #### Results
@@ -29,7 +29,7 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
 ---
 ### Case 2
 
-  * #### [Notebook Link](../notebooks/Case2.ipynb)
+  * #### [Notebook Link](../notebook/Case2.ipynb)
   * #### Target 
 
      * Lighter model
@@ -51,7 +51,7 @@ At the end of this excercise we will reach **99.45** with **5.7k** params
 ---
 ### Case 3
 
-  * #### [Notebook Link](../notebooks/Case2.ipynb) / [Weights](../weights/model_weights_99.45.pth)
+  * #### [Notebook Link](../notebook/Case2.ipynb) / [Weights](../weight/model_weights_99.45.pth)
   * #### Target
     * Reduce overfitting - Augmentation
     * Learning rate optimization

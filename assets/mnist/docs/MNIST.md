@@ -27,7 +27,7 @@ The target is to achieve it in under 5k params with accuracy more than 99.40
 
 Accuracy achieved: `99.42` within `10 epochs` with `4838` params used
 
-Code Link: [Local NoteBook](MNIST_4838_9942.ipynb) / [CoLab Notebook](https://colab.research.google.com/drive/1uIfwHwPRwB-2jYiiTi9kksbGuU6J0B_8?usp=sharing)
+Code Link: [Local NoteBook](../notebook/MNIST_4838_9942.ipynb) / [CoLab Notebook](https://colab.research.google.com/drive/1uIfwHwPRwB-2jYiiTi9kksbGuU6J0B_8?usp=sharing)
 
 
 ## Basics
@@ -60,7 +60,7 @@ this will load mnist data and convert it into `data loader`. DataLoader is a bui
 ## Data Visualization
 Before we even stat with creating our model we have to look into what kinbd of data we are dealing with for this we use `matplotlib` to visualize our data. We will print some samples to see how they look.
 
-![samples](./assets/samples.png)
+![samples](../assets/samples.png)
 
 As we can see from above image datasamples are all approximately centerred.
 
@@ -69,7 +69,7 @@ One of the other thing we need to look into our dataset is the class spread. For
     {0: 5923, 1: 6742, 2: 5958, 3: 6131, 4: 5842, 5: 5421, 6: 5918, 7: 6265, 8: 5851, 9: 5949}
 
 
-![class_spread](./assets/class_spread.png)
+![class_spread](../assets/class_spread.png)
 
 From this chart we can clearly see data is evenly spread around all classes, what we can conclude from here is while training our network will not be baised to one class.
 
@@ -90,7 +90,7 @@ But before we jump into network architecture we like to point out some of golden
 
 We will now spare you with too much of `GYAN` and quickly jump on to nework design used.
 
-![network](./assets/network.png)
+![network](../assets/network.png)
 
 This network contains block pattern as shown. We start with an image of size 1\*28\*28
 
@@ -288,12 +288,12 @@ We need to analyse how is our network performing. The best way to do this is to 
 2. Plot train loss vs test loss per epoch
 3. Plot train accuracy vs test accuracy per epoch
 
-    ![plots](./assets/plots.png)
+    ![plots](../assets/plots.png)
 
 4. Plot confusion matrix
 
-    ![confusion_matrix](./assets/cm.png)
+    ![confusion_matrix](../assets/cm.png)
 
 5. We will finally look at incorrectly classified images to see what went wrong and why
 
-    ![incorrect](./assets/incorrect.png)
+    ![incorrect](../assets/incorrect.png)
