@@ -20,13 +20,13 @@
 
 The codebase has been modularized and we have kept the below in separate .py files
 
-* Dataset loader 
-* Model Architecture
-* Data Transformations
-* Backpropagation
-* LR Scheduler
-* Visualization
-* Utils 
+* [Dataset loader](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/dataset.py)
+* [Model Architecture](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/model.py)
+* [Data Transformations](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/transform.py)
+* [Backpropagation](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/backpropagation.py)
+* [LR Scheduler](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/scheduler.py)
+* [Visualization](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/visualize.py)
+* [Utils](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/mnist/mnist/utils.py)
 
 [Link where the above files are available](https://github.com/adilsammar/woolly-of-cv/tree/main/assets/mnist/mnist)
 
