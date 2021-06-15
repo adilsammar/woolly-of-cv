@@ -34,8 +34,8 @@ from woolly.transform import get_a_train_transform, get_a_test_transform
 train_loader, test_loader = get_cifar_loader(get_a_train_transform(), get_a_test_transform(), batch_size=batch_size, use_cuda=use_cuda)
 
 from woolly.model import WyCifar10Net
-from woolly.backpropagation import train, test, get_sgd_optimizer
-from woolly.utils import initialize_weights, print_modal_summary, print_summary
+from woolly.backpropagation import train, test, get_sgd_optimizer, get_crossentropy_criteria
+from woolly.utils import initialize_weights, print_summary
 from woolly.scheduler import one_cycle_lr_pt, one_cycle_lr_custom
 from woolly.training import Training
 
@@ -63,7 +63,7 @@ print("Weight Decay:", weight_decay)
 
 
 # Here we will do following
-# 1. Create instances for three different models
+# 1. Create instances of models
 #   a. Model with BatchNormalization
 
 norm='bn'
@@ -73,6 +73,7 @@ ctrain = train()
 model = WyCifar10Net(ctype='depthwise_seperable', use1x1=True, base_channels=16, layers=1, drop_ratio=drop_ratio).apply(initialize_weights).to(device)
 # Create optimizer instance based on hyper parameters
 optimizer = get_sgd_optimizer(model, lr=lr, momentum=momentum, weight_decay=weight_decay)
+criteria = get_crossentropy_criteria(device)
 
 # Create Pytorch One Cycle scheduler instance
 pytorch_scheduler = one_cycle_lr_pt(
@@ -98,6 +99,7 @@ custom_scheduler = one_cycle_lr_custom(
 trainer = Training(
     model,
     optimizer,
+    criteria,
     custom_scheduler,
     ctrain,
     test,
@@ -108,9 +110,6 @@ trainer = Training(
     device,
     dropout
 )
-
-# Append all these instances of trainers 
-trainer
 
 if show_summary:
     print_summary(model, input_size=(3, 32, 32))

@@ -11,6 +11,7 @@ class Training():
     def __init__(self,
                  model,
                  optimizer,
+                 criteria,
                  scheduler,
                  train,
                  test,
@@ -38,6 +39,7 @@ class Training():
         """
         self.model = model
         self.optimizer = optimizer
+        self.criteria = criteria
         self.scheduler = scheduler
         self.train = train
         self.test = test
@@ -105,13 +107,10 @@ class Training():
             f'| Epoch | {"LR":8} | {"Time":7} | TrainLoss | TrainCorrect | TrainAcc | {"ValLoss":8} | ValCorrect | ValAcc |')
         for epoch in range(self.epochs):
             self.schedule.append(self.optimizer.param_groups[0]['lr'])
-#             self.log_epoch_params(epoch)
             self.start_time = time.time()
 
-            train_loss, train_correct = self.train(
-                self.model, self.train_loader, self.optimizer, self.dropout, self.device, self.scheduler)
-            valid_loss, valid_correct = self.test(
-                self.model, self.test_loader, self.device)
+            train_loss, train_correct = self.train(self.model, self.train_loader, self.optimizer, self.criteria, self.dropout, self.device, self.scheduler)
+            valid_loss, valid_correct = self.test(self.model, self.test_loader, self.criteria, self.device)
 
             self.list_train_loss.append(train_loss)
             self.list_valid_loss.append(valid_loss)

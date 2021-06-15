@@ -189,7 +189,7 @@ class WyCifar10Net(nn.Module):
         self.gap = nn.AdaptiveAvgPool2d(1)
         self.flat = nn.Conv2d(self.base_channels*2, self.classes, 1)
 
-    def forward(self, x, dropout=False):
+    def forward(self, x, use_softmax=False, dropout=False):
         """Convolution function
 
         Args:
@@ -215,4 +215,4 @@ class WyCifar10Net(nn.Module):
         x = x.view(-1, self.classes)
 
         # Output Layer
-        return F.log_softmax(x, dim=1)
+        return F.log_softmax(x, dim=1) if use_softmax else x

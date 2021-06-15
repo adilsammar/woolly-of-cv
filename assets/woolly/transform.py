@@ -2,6 +2,7 @@ from albumentations.augmentations.transforms import Cutout, HorizontalFlip
 import torch
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
+import cv2 as cv
 
 from torchvision import transforms
 
@@ -15,18 +16,17 @@ def get_a_train_transform():
         Compose: Composed transformations
     """
     return A.Compose([
-        A.ShiftScaleRotate(shift_limit=0.15, scale_limit=0.15,
-                           rotate_limit=10, p=0.5),
+        A.ShiftScaleRotate(shift_limit=0.15, scale_limit=0.15, rotate_limit=10, p=0.3),
         # A.RandomResizedCrop(height=32, width=32, scale=(0.8, 1.0), p=0.5),
-        A.CropAndPad(px=(0, 6), p=0.5),
+        A.CropAndPad(px=(0, 6), p=0.3, pad_mode=cv.BORDER_REPLICATE),
         A.RandomBrightnessContrast(p=0.3),
         # A.GaussNoise(p=0.2),
         # A.Equalize(p=0.2),
-        A.HorizontalFlip(p=0.5),
+        A.HorizontalFlip(p=0.3),
         A.Normalize(mean=(0.4914, 0.4822, 0.4465),
                     std=(0.2470, 0.2435, 0.2616)),
         A.CoarseDropout(max_holes=1, max_height=16, max_width=16, min_holes=1,
-                        min_height=8, min_width=8, fill_value=(0.4914, 0.4822, 0.4465), p=0.5),
+                        min_height=8, min_width=8, fill_value=(0.4914, 0.4822, 0.4465), p=0.3),
         ToTensorV2(),
     ])
 

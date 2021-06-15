@@ -1,4 +1,5 @@
 import torch
+from torch import nn
 import torch.nn.functional as F
 from torch.optim import SGD
 
@@ -12,7 +13,7 @@ def train(use_l1=False, lambda_l1=5e-4):
         use_l1 (bool, optional): Enable L1. Defaults to False.
         lambda_l1 (float, optional): L1 Value. Defaults to 5e-4.
     """
-    def internal(model, train_loader, optimizer, dropout, device, scheduler=None):
+    def internal(model, train_loader, optimizer, criteria, dropout, device, scheduler=None):
         """ This function is for running backpropagation
 
         Args:
@@ -33,7 +34,7 @@ def train(use_l1=False, lambda_l1=5e-4):
             data, target = data.to(device), target.to(device)
             optimizer.zero_grad()
             output = model(data, dropout)
-            loss = F.nll_loss(output, target)
+            loss = criteria(output, target)
             if use_l1 == True:
                 l1 = 0
                 for p in model.parameters():
@@ -53,7 +54,7 @@ def train(use_l1=False, lambda_l1=5e-4):
     return internal
 
 
-def test(model, test_loader, device):
+def test(model, test_loader, criteria, device):
     """ Function to perform model validation
 
     Args:
@@ -72,15 +73,21 @@ def test(model, test_loader, device):
             data, target = data.to(device), target.to(device)
             output = model(data)
             # sum up batch loss
-            test_loss += F.nll_loss(output, target, reduction='sum').item()
+            test_loss += criteria(output, target, reduction='sum').item()
             # get the index of the max log-probability
             pred = output.argmax(dim=1, keepdim=True)
             correct += pred.eq(target.view_as(pred)).sum().item()
 
-    test_loss /= len(test_loader.dataset)
-
-    return test_loss, correct
+    return test_loss/len(test_loader.dataset), correct
 
 
 def get_sgd_optimizer(model, lr, momentum=0, weight_decay=0):
     return SGD(model.parameters(), lr=lr, momentum=momentum, weight_decay=weight_decay)
+
+
+def get_nnl_criteria(device):
+    return F.nll_loss
+
+
+def get_crossentropy_criteria(device):
+    return F.cross_entropy
