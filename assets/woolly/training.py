@@ -103,14 +103,18 @@ class Training():
 
     def run(self):
         """Train training of model"""
+        print('-----------------------------------------------------------------------------------------------------')
         print(
             f'| Epoch | {"LR":8} | {"Time":7} | TrainLoss | TrainCorrect | TrainAcc | {"ValLoss":8} | ValCorrect | ValAcc |')
+        print('-----------------------------------------------------------------------------------------------------')
         for epoch in range(self.epochs):
             self.schedule.append(self.optimizer.param_groups[0]['lr'])
             self.start_time = time.time()
 
-            train_loss, train_correct = self.train(self.model, self.train_loader, self.optimizer, self.criteria, self.dropout, self.device, self.scheduler)
-            valid_loss, valid_correct = self.test(self.model, self.test_loader, self.criteria, self.device)
+            train_loss, train_correct = self.train(
+                self.model, self.train_loader, self.optimizer, self.criteria, self.dropout, self.device, self.scheduler)
+            valid_loss, valid_correct = self.test(
+                self.model, self.test_loader, self.criteria, self.device)
 
             self.list_train_loss.append(train_loss)
             self.list_valid_loss.append(valid_loss)
@@ -126,6 +130,7 @@ class Training():
 
             self.print_epoch_progress(
                 epoch, train_correct, train_loss, valid_correct, valid_loss)
+        print('-----------------------------------------------------------------------------------------------------')
 
     def print_best_model(self):
         """Print best model"""

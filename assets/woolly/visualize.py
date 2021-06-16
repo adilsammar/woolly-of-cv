@@ -104,7 +104,7 @@ def plot_incorrect_predictions(predictions, class_map, count=10):
         print("Count should be multiple of 10")
         return
 
-    classes = list(class_map.values())
+    classes = list(class_map.keys())
 
     fig = plt.figure(figsize=(10, 5))
     for i, (d, t, p, o) in enumerate(predictions):
