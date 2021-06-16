@@ -1,12 +1,11 @@
 import time
-import math
 import torch
 
 torch.manual_seed(1)
 
 
 class Training():
-    """Clas to encapsulate model training"""
+    """Class to encapsulate model training"""
 
     def __init__(self,
                  model,
@@ -86,7 +85,7 @@ class Training():
         """
         epoch_mins, epoch_secs = self.epoch_time()
         lr = self.schedule[epoch]
-        print(f'| {epoch+1:5} | {lr:.6f} | {epoch_mins:02}m {epoch_secs:02}s | {str(round(train_loss, 6)):9} | {train_correct:12} | {str(round(100. * train_correct / len(self.train_loader.dataset), 2)):7}% | {valid_loss:.6f} | {valid_correct:10} | {str(round(100. * valid_correct / len(self.test_loader.dataset), 2)):5}% |')
+        print(f'| {epoch+1:5} | {lr:.6f} | {epoch_mins:02}m {epoch_secs:02}s | {str(round(train_loss, 6)):9} | {str(round(train_correct, 2)):7}% | {valid_loss:.6f} | {str(round(valid_correct, 2)):5}% |')
 
     def save_best(self, valid_correct):
         """Save best model based on validation accuracy
@@ -103,10 +102,10 @@ class Training():
 
     def run(self):
         """Train training of model"""
-        print('-----------------------------------------------------------------------------------------------------')
+        print('-------------------------------------------------------------------------')
         print(
-            f'| Epoch | {"LR":8} | {"Time":7} | TrainLoss | TrainCorrect | TrainAcc | {"ValLoss":8} | ValCorrect | ValAcc |')
-        print('-----------------------------------------------------------------------------------------------------')
+            f'| Epoch | {"LR":8} | {"Time":7} | TrainLoss | TrainAcc | {"ValLoss":8} | ValAcc |')
+        print('-------------------------------------------------------------------------')
         for epoch in range(self.epochs):
             self.schedule.append(self.optimizer.param_groups[0]['lr'])
             self.start_time = time.time()
@@ -119,10 +118,8 @@ class Training():
             self.list_train_loss.append(train_loss)
             self.list_valid_loss.append(valid_loss)
 
-            self.list_train_correct.append(
-                100. * train_correct / len(self.train_loader.dataset))
-            self.list_valid_correct.append(
-                100. * valid_correct / len(self.test_loader.dataset))
+            self.list_train_correct.append(train_correct)
+            self.list_valid_correct.append(valid_correct)
 
             self.end_time = time.time()
 
@@ -130,7 +127,7 @@ class Training():
 
             self.print_epoch_progress(
                 epoch, train_correct, train_loss, valid_correct, valid_loss)
-        print('-----------------------------------------------------------------------------------------------------')
+        print('-------------------------------------------------------------------------')
 
     def print_best_model(self):
         """Print best model"""
