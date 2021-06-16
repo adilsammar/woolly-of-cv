@@ -66,7 +66,7 @@ def one_cycle_lr_pt(optimizer, lr, max_lr, steps_per_epoch, epochs, anneal_strat
     )
 
 
-def one_cycle_lr_custom(optimizer, lr, max_lr, steps_per_epoch, epochs, anneal_strategy='linear'):
+def one_cycle_lr_custom(optimizer, lr, max_lr, steps_per_epoch, epochs, schedule, anneal_strategy='linear'):
     """Create instance of one cycle lr scheduler from python
 
     Args:
@@ -85,6 +85,4 @@ def one_cycle_lr_custom(optimizer, lr, max_lr, steps_per_epoch, epochs, anneal_s
     """
     if epochs < 12:
         raise Exception("Epoch value can not be less than 12")
-    schedule = np.interp(
-        np.arange(epochs+1), [0, 7, epochs], [lr, max_lr, lr/10.0])
     return CustomOneCycleLR(optimizer, schedule, steps_per_epoch)

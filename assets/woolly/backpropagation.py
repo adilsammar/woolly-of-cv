@@ -95,7 +95,7 @@ def train_ricap(use_l1=False, lambda_l1=5e-4):
             if use_l1 == True:
                 l1 = 0
                 for p in model.parameters():
-                    l1 = l1 + p.abs().sum()
+                    l1 = l1 + p.square().sum()
                 loss = loss + lambda_l1 * l1
 
             loss.backward()
@@ -142,7 +142,7 @@ def train(use_l1=False, lambda_l1=5e-4):
             if use_l1 == True:
                 l1 = 0
                 for p in model.parameters():
-                    l1 = l1 + p.abs().sum()
+                    l1 = l1 + p.square().sum()
                 loss = loss + lambda_l1 * l1
             loss.backward()
             optimizer.step()
