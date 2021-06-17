@@ -34,7 +34,7 @@ class WyConv2d(nn.Module):
         nn (nn.Module): Base Module class
     """
 
-    def __init__(self, in_channels, out_channels, kernel_size=3, padding=1, strides=1, ctype='vanila', bias=False):
+    def __init__(self, in_channels, out_channels, kernel_size=3, padding=1, strides=1, dilation=1, ctype='vanila', bias=False):
         """Init Custom calss
 
         Args:
@@ -55,7 +55,7 @@ class WyConv2d(nn.Module):
             out = in_channels
 
         self.conv = nn.Conv2d(in_channels, out, kernel_size=kernel_size,
-                              stride=strides, groups=groups, padding=padding, bias=bias)
+                              stride=strides, groups=groups, padding=padding, dilation=dilation, bias=bias)
 
         if ctype == 'depthwise_seperable':
             self.pointwise = nn.Conv2d(
@@ -69,16 +69,20 @@ class WyConv2d(nn.Module):
 
 
 class WyResidual(nn.Module):
-    def __init__(self, input_size, output_size, padding=1, strides=1, use1x1=False, ctype='vanila', norm='bn', first_block=False):
+    def __init__(self, input_size, output_size, padding=1, strides=1, dilation=1, use1x1=False, ctype='vanila', norm='bn', first_block=False, usedilation=False):
         super(WyResidual, self).__init__()
 
         self.first_block = first_block
 
-        self.conv1 = WyConv2d(input_size, output_size, kernel_size=3,
-                              padding=padding, strides=strides, ctype=ctype)
+        if usedilation:
+            self.conv1 = WyConv2d(input_size, output_size, kernel_size=3,
+                                padding=padding, strides=1, dilation=dilation, ctype=ctype)
+        else:
+            self.conv1 = WyConv2d(input_size, output_size, kernel_size=3,
+                                padding=padding, strides=strides, dilation=dilation, ctype=ctype)
         self.bn1 = get_norm_layer(output_size, norm=norm)
         self.conv2 = WyConv2d(
-            output_size, output_size, kernel_size=3, padding=padding, strides=1, ctype=ctype)
+            output_size, output_size, kernel_size=3, padding=1, strides=1, ctype=ctype)
         self.bn2 = get_norm_layer(output_size, norm=norm)
 
         self.pointwise = None
@@ -100,7 +104,7 @@ class WyResidual(nn.Module):
 
 
 class WyBlock(nn.Module):
-    def __init__(self, input_size, output_size, repetations=2, ctype='vanila', norm='bn', padding=1, use1x1=False, usepool=False):
+    def __init__(self, input_size, output_size, repetations=2, ctype='vanila', norm='bn', padding=1, strides=1, dilation=1, use1x1=False, usepool=False, usedilation=False):
         """Initialize Block
 
         Args:
@@ -115,11 +119,15 @@ class WyBlock(nn.Module):
         self.wyresudals = []
         for r in range(repetations):
             if r == 0:
-                self.wyresudals.append(WyResidual(
-                    input_size, output_size, padding=padding, strides=2, use1x1=use1x1, ctype=ctype, norm=norm))
+                if usedilation:
+                    self.wyresudals.append(WyResidual(
+                        input_size, output_size, padding=0, strides=strides, dilation=dilation, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=False))
+                else:
+                    self.wyresudals.append(WyResidual(
+                        input_size, output_size, padding=padding, strides=2, dilation=dilation, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=False))
             else:
                 self.wyresudals.append(WyResidual(
-                    output_size, output_size, padding=padding, use1x1=use1x1, ctype=ctype, norm=norm))
+                    output_size, output_size, padding=padding, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=False))
 
         self.conv = nn.Sequential(*self.wyresudals)
 
@@ -151,7 +159,7 @@ class WyCifar10Net(nn.Module):
         nn (nn.Module): Instance of pytorch Module
     """
 
-    def __init__(self, input_size=3, classes=10, base_channels=4, layers=3, drop_ratio=0.01, ctype='vanila', norm='bn', use1x1=False):
+    def __init__(self, image, input_size=3, classes=10, base_channels=4, layers=3, drop_ratio=0.01, ctype='vanila', norm='bn', use1x1=False, usedilation=False):
         """Initialize Network
 
         Args:
@@ -169,6 +177,8 @@ class WyCifar10Net(nn.Module):
         self.ctype = ctype
         self.norm = norm
         self.use1x1 = use1x1
+        self.height, self.width = image
+        self.dilation = 1
 
         super(WyCifar10Net, self).__init__()
 
@@ -176,14 +186,24 @@ class WyCifar10Net(nn.Module):
         self.b1 = WyResidual(
             input_size, self.base_channels*2, first_block=True)
 
-        # Residual Blocks
+        # Transition + Residual Blocks 1
+        if usedilation:
+            self.dilation = (max(int(self.height/4), 1),
+                             max(int(self.width/4), 1))
         self.base_channels = self.base_channels*2
         self.b2 = WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
-                          ctype=self.ctype, norm=self.norm, padding=1, use1x1=self.use1x1, usepool=False)
+                          ctype=self.ctype, norm=self.norm, padding=1, strides=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation)
         self.d2 = nn.Dropout(self.drop_ratio)
+        self.height, self.width = self.height/2, self.width/2
+
+        # Transition + Residual Block 2
+        if usedilation:
+            self.dilation = (max(int(self.height/4), 1),
+                             max(int(self.width/4), 1))
         self.base_channels = self.base_channels*2
         self.b3 = WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
-                          ctype=self.ctype, norm=self.norm, padding=1, use1x1=self.use1x1, usepool=False)
+                          ctype=self.ctype, norm=self.norm, padding=1, strides=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation)
+        self.height, self.width = self.height/2, self.width/2
 
         # Output Block
         self.gap = nn.AdaptiveAvgPool2d(1)
@@ -202,11 +222,11 @@ class WyCifar10Net(nn.Module):
 
         # Input Layer
         x = self.b1(x)
-
-        # Conv Layer
+        # Block 2
         x = self.b2(x)
         if dropout:
             x = self.d2(x)
+        # Block 2
         x = self.b3(x)
 
         # Output Layer
