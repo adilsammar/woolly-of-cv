@@ -6,7 +6,7 @@ import numpy as np
 
 torch.manual_seed(1)
 
-def train_ricap(use_l1=False, lambda_l1=5e-4):
+def train_ricap(use_l1=False, lambda_l1=5e-4, ricap_beta=0.3):
     """ Function to return train function instance
 
     Args:
@@ -43,8 +43,6 @@ def train_ricap(use_l1=False, lambda_l1=5e-4):
                     correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
                     res.append(correct_k.mul_(100.0 / batch_size))
                 return res
-
-        ricap_beta = 0.3
 
         def ricap(data, target):
             eploss = 0
