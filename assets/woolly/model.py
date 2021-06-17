@@ -104,7 +104,7 @@ class WyResidual(nn.Module):
 
 
 class WyBlock(nn.Module):
-    def __init__(self, input_size, output_size, repetations=2, ctype='vanila', norm='bn', padding=1, strides=1, dilation=1, use1x1=False, usepool=False, usedilation=False):
+    def __init__(self, input_size, output_size, repetations=2, ctype='vanila', norm='bn', padding=1, strides=2, dilation=1, use1x1=False, usepool=False, usedilation=False):
         """Initialize Block
 
         Args:
@@ -121,13 +121,13 @@ class WyBlock(nn.Module):
             if r == 0:
                 if usedilation:
                     self.wyresudals.append(WyResidual(
-                        input_size, output_size, padding=0, strides=strides, dilation=dilation, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=False))
+                        input_size, output_size, padding=0, strides=strides, dilation=dilation, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=usedilation))
                 else:
                     self.wyresudals.append(WyResidual(
-                        input_size, output_size, padding=padding, strides=2, dilation=dilation, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=False))
+                        input_size, output_size, padding=padding, strides=strides, dilation=dilation, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=usedilation))
             else:
                 self.wyresudals.append(WyResidual(
-                    output_size, output_size, padding=padding, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=False))
+                    output_size, output_size, padding=padding, use1x1=use1x1, ctype=ctype, norm=norm, usedilation=usedilation))
 
         self.conv = nn.Sequential(*self.wyresudals)
 
@@ -192,7 +192,7 @@ class WyCifar10Net(nn.Module):
                              max(int(self.width/4), 1))
         self.base_channels = self.base_channels*2
         self.b2 = WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
-                          ctype=self.ctype, norm=self.norm, padding=1, strides=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation)
+                          ctype=self.ctype, norm=self.norm, padding=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation)
         self.d2 = nn.Dropout(self.drop_ratio)
         self.height, self.width = self.height/2, self.width/2
 
@@ -202,7 +202,7 @@ class WyCifar10Net(nn.Module):
                              max(int(self.width/4), 1))
         self.base_channels = self.base_channels*2
         self.b3 = WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
-                          ctype=self.ctype, norm=self.norm, padding=1, strides=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation)
+                          ctype=self.ctype, norm=self.norm, padding=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation)
         self.height, self.width = self.height/2, self.width/2
 
         # Output Block
