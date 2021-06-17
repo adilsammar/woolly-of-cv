@@ -8,7 +8,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
 * [Convolution Techniques Explained](#Convolution-Techniques-Explained)
-* [Transformations/ Albumentations](#Transformations/-Albumentations)
+* [Transformations and Albumentations](#Transformations-and-Albumentations)
 * [Graphs](#Graphs)
 * [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
@@ -29,7 +29,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * Dilated Convolution
 * Depthwise Separable Convolution
 
-## Transformations/ Albumentations:
+## Transformations and Albumentations:
 
 * Horizontal Flip
 * ShiftScaleRotate 
