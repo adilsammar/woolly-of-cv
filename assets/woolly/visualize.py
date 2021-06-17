@@ -24,6 +24,55 @@ def print_samples(loader, class_map, count=16):
             plt.imshow(imgs[i].numpy().transpose(1, 2, 0))
         break
 
+def print_samples_ricap(loader, class_map, ricap_beta=0.4, count=16):
+    """Print samples input images
+
+    Args:
+        loader (DataLoader): dataloader for training data
+        count (int, optional): Number of samples to print. Defaults to 16.
+    """
+    # Print Random Samples
+    if not count % 8 == 0:
+        return
+
+    classes = list(class_map.keys())
+    for data, labels in loader:
+
+        batch_size = data.size(0)
+
+        # Height and Width of image
+        ih, iw = data.size()[2:]
+
+        # Find random height and width for images
+        w = int(np.round(ih * np.random.beta(ricap_beta, ricap_beta)))
+        h = int(np.round(iw * np.random.beta(ricap_beta, ricap_beta)))
+        riw = [w, ih - w, w, ih - w]
+        rih = [h, h, iw - h, iw - h]
+
+        cropped = {}
+        dataclasses = {}
+        for k in range(4):
+            idx = torch.randperm(batch_size)
+            x_k = np.random.randint(0, ih - riw[k] + 1)
+            y_k = np.random.randint(0, iw - rih[k] + 1)
+            cropped[k] = data[idx][:, :,x_k:x_k + riw[k], y_k:y_k + rih[k]]
+            dataclasses[k] = labels[idx]
+
+        patched = torch.cat(
+            (torch.cat((cropped[0], cropped[1]), 2),
+            torch.cat((cropped[2], cropped[3]), 2)),
+            3
+        )
+        
+        classes = list(class_map.keys())
+        fig = plt.figure(figsize=(18, 6))
+
+        for i in range(count):
+            ax = fig.add_subplot(int(count/8), 8, i + 1, xticks=[], yticks=[])
+            ax.set_title(f'{classes[dataclasses[0][i]]}\n{classes[dataclasses[1][i].item()]}\n{classes[dataclasses[2][i].item()]}\n{classes[dataclasses[3][i].item()]}')
+            plt.imshow(patched[i].numpy().transpose(1, 2, 0))
+        break
+
 
 def print_class_scale(loader, class_map):
     """Print Dataset Class scale
