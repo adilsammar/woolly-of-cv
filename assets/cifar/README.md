@@ -7,12 +7,10 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
-* [Consolidated Notebook](#Consolidated-Notebook)
-* [Model Architecture](#Model-Architecture)
-* [RICAP Augumentation](#RICAP-Augumentation)
-* different Augmentation techniques used in our codes
-* ...
-* ...
+* [Normalization Techniques Explained](#Normalization-Techniques-Explained)
+* [Findings from Normalization Techniques](#Findings-from-Normalization-Techniques)
+* [Graphs](#Graphs)
+* [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
 
 ## Contributors
@@ -23,11 +21,15 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
 
 ## Code Explanation
+* Model Architecture
+* Visualization
 
-## Consolidated Notebook
+## Normalization Techniques Explained
 
-## Model Architecture
+## Findings from Normalization
 
-## RICAP Augumentation
+## Graphs
+
+## Visualization for misclassified predictions
   
 ## References:
