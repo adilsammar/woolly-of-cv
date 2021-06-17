@@ -8,8 +8,9 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
 * [Consolidated Notebook](#Consolidated-Notebook)
-* ...
-* ...
+* [Model Architecture](#Model-Architecture)
+* [RICAP Augumentation](#RICAP-Augumentation)
+* different Augmentation techniques used in our codes
 * ...
 * ...
 * [References](#References)
@@ -24,5 +25,9 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 ## Code Explanation
 
 ## Consolidated Notebook
+
+## Model Architecture
+
+## RICAP Augumentation
   
 ## References:
