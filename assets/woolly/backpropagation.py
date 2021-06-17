@@ -49,6 +49,7 @@ def train_ricap(use_l1=False, lambda_l1=5e-4):
         def ricap(data, target):
             eploss = 0
             acc = 0
+            batch_size = data.size(0)
 
             # Height and Width of image
             I_x, I_y = data.size()[2:]
@@ -63,7 +64,7 @@ def train_ricap(use_l1=False, lambda_l1=5e-4):
             c_ = {}
             W_ = {}
             for k in range(4):
-                idx = torch.randperm(data.size(0))
+                idx = torch.randperm(batch_size)
                 x_k = np.random.randint(0, I_x - w_[k] + 1)
                 y_k = np.random.randint(0, I_y - h_[k] + 1)
                 cropped_images[k] = data[idx][:, :,x_k:x_k + w_[k], y_k:y_k + h_[k]]
@@ -75,37 +76,45 @@ def train_ricap(use_l1=False, lambda_l1=5e-4):
                  torch.cat((cropped_images[2], cropped_images[3]), 2)),
                 3
             )
-            patched_images = patched_images.to(device)
+            # patched_images = patched_images.to(device)
 
-            output = model(patched_images)
-            eploss = sum([W_[k] * criteria(output, c_[k]) for k in range(4)])
+            data = torch.cat((patched_images.to(device), data), dim=0)
 
-            acc = sum([W_[k] * accuracy(output, c_[k])[0] for k in range(4)])
+            output = model(data, dropout)
 
-            return eploss, acc.item()
+            eploss = sum([W_[k] * criteria(output[0:batch_size], c_[k]) for k in range(4)])
+            acc = sum([W_[k] * accuracy(output[0:batch_size], c_[k])[0] for k in range(4)])
+
+            eploss = eploss + criteria(output[batch_size:], target)
+
+            pred = output[batch_size:].argmax(dim=1, keepdim=True)
+            acc = acc.item() + (100 * pred.eq(target.view_as(pred)).sum().item() / batch_size)
+
+            return eploss, acc/2
 
         model.train()
         epoch_loss = 0
         correct = 0
         for data, target in train_loader:
             data, target = data.to(device), target.to(device)
+            
             optimizer.zero_grad()
+            loss, batch_correct = ricap(data, target)
 
-            loss, correct = ricap(data, target)
             if use_l1 == True:
                 l1 = 0
                 for p in model.parameters():
                     l1 = l1 + p.square().sum()
                 loss = loss + lambda_l1 * l1
-
             loss.backward()
             optimizer.step()
             if scheduler:
                 scheduler.step()
-                
-            epoch_loss += loss.item()
 
-        return epoch_loss / len(train_loader), correct
+            epoch_loss += loss.item()
+            correct += batch_correct
+
+        return epoch_loss / len(train_loader), correct / len(train_loader)
 
     return internal
 
