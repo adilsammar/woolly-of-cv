@@ -7,8 +7,8 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 
 * [Contributors](#Contributors)
 * [Code Explanation](#Code-Explanation)
-* [Normalization Techniques Explained](#Normalization-Techniques-Explained)
-* [Findings from Normalization Techniques](#Findings-from-Normalization-Techniques)
+* [Convolution Techniques Explained](#Convolution-Techniques-Explained)
+* [Transformations and Albumentations](#Transformations-and-Albumentations)
 * [Graphs](#Graphs)
 * [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
 * [References](#References)
@@ -24,9 +24,17 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * Model Architecture
 * Visualization
 
-## Normalization Techniques Explained
+## Convolution Techniques Explained:
 
-## Findings from Normalization
+* Dilated Convolution
+* Depthwise Separable Convolution
+
+## Transformations and Albumentations:
+
+* Horizontal Flip
+* ShiftScaleRotate 
+* CoarseDropout
+* grayscale
 
 ## Graphs
 
