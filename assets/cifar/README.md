@@ -32,9 +32,10 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 ## Transformations and Albumentations:
 
 * Horizontal Flip
-* ShiftScaleRotate 
-* CoarseDropout
-* grayscale
+* Shift Scale Rotate
+* Coarse Dropout
+* To Gray
+* Ricap
 
 ## Graphs
 
@@ -42,3 +43,4 @@ This file is submitted as part of Assignment 7 for EVA6 Course
   
 ## References:
 Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
+ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))
