@@ -30,6 +30,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
       - [Using Cutout](#using-cutout)
       - [Using Dilation](#using-dilation)
       - [Using Ricap](#using-ricap)
+    - [Visualization for input images](#Visualization-for-input-images)
     - [Visualization for misclassified predictions](#visualization-for-misclassified-predictions)
       - [Using Cutout](#using-cutout-1)
       - [Using Dilation](#using-dilation-1)
