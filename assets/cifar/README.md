@@ -27,7 +27,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
       - [Grayscale](#grayscale)
       - [RICAP (Random Image Cropping and Patching)](#ricap-random-image-cropping-and-patching)
     - [Graphs](#graphs)
-      - [Using Cutout](#cutout-graph-strided-convolution)
+      - [Using Cutout](#cutout-graph---strided-convolution)
       - [Using Dilation](#dilation-graph)
       - [Using Ricap](#ricap-graph-strided-convolution)
     - [Visualization for input images](#Visualization-for-input-images)
