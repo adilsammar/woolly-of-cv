@@ -12,11 +12,11 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 ### Table of Contents
 
 * [Contributors](#Contributors)
+* [Model Architecture](#Model-Architecture)
     * [Residual Block](#Residual-Block)
         * [Identical residual block](#A-Identical-residual-block)
         * [Convolutional residual block](#B-Convolutional-residual-block)
     * [Residual Networks](#Residual-Networks)
-* [Model Architecture](#Model-Architecture)
 * [Convolution Techniques Explained](#Convolution-Techniques-Explained)
 * [Transformations and Albumentations](#Transformations-and-Albumentations)
 * [Graphs](#Graphs)
@@ -85,13 +85,13 @@ In this type of residual block, the skip-connection consists of a convolutional 
 
 #### A. Dilated Convolution
 
-##### What is Dilated Convolution?  
+<ins>What is Dilated Convolution?</ins> 
 
- > In dilated convolution, we systematically aggregate multiscale contextual information without losing resolution. The dilated convolution operator has been referred to in the past as “convolution with a dilated filter”. We use the term “dilated convolution” instead of “convolution with a dilated filter” to clarify that no “dilated filter” is constructed or represented. The dilated convolution operator can apply the same filter at different ranges using different dilation factors.
+> In dilated convolution, we systematically aggregate multiscale contextual information without losing resolution. The dilated convolution operator has been referred to in the past as “convolution with a dilated filter”. We use the term “dilated convolution” instead of “convolution with a dilated filter” to clarify that no “dilated filter” is constructed or represented. The dilated convolution operator can apply the same filter at different ranges using different dilation factors.
 
-##### How is it different from standard convolution?  
+<ins>How is it different from standard convolution?</ins>
 
- > Dilated convolution is just a convolution applied to input with defined gaps. 
+> Dilated convolution is just a convolution applied to input with defined gaps. 
 
 <p float="left">
     <image src='assets/FormulaStandardConvolution.png' height='50'>
@@ -110,35 +110,35 @@ where
 
 <image src='assets/IllustratedDilatedConvolution.png' height='220'>
 
-##### Why do we need dilated convolution? 
+<ins>Why do we need dilated convolution?</ins>
 
-  > Dilated Convolution is specifically designed for dense prediction. Dilated convolutions supports exponential expansion of the receptive field without loss of resolution or coverage 
+> Dilated Convolution is specifically designed for dense prediction. Dilated convolutions supports exponential expansion of the receptive field without loss of resolution or coverage 
 
-##### Usecases/ scenarios where dilated convolution will be of major help?
+<ins>Usecase, Scenario where dilated convolution will be of major help?</ins>
 
->  1. Detection of fine-details by processing inputs in higher resolutions. <br>
->  2. Broader view of the input to capture more contextual information. <br>
+>  1. Detection of fine-details by processing inputs in higher resolutions.
+>  2. Broader view of the input to capture more contextual information.
 >  3. Faster run-time with less parameters 
 
-Is this similar to pooling or strided convolutions? 
+<ins>Is this similar to pooling or strided convolutions?</ins>
 
-  > In a way, but here the output has the same size as the input. As a special case, dilated convolution with dilation 1 yields the standard convolution. 
+> In a way, but here the output has the same size as the input. As a special case, dilated convolution with dilation 1 yields the standard convolution. 
 
-##### Where else the dilated convolution is used?
+<ins>Where else the dilated convolution is used?</ins>
 
-  > Wavenet: Dilated convolutions are to increase the receptive field by orders of magnitude, without greatly increasing computational cost.</P>
+> Wavenet: Dilated convolutions are to increase the receptive field by orders of magnitude, without greatly increasing computational cost
 
-Receptive Field Calculation:
+<ins>Receptive Field Calculation</ins>
 
-  > Dilated (atrous) convolution.** Dilations introduce “holes” in a convolutional kernel. While the number of weights in the kernel is unchanged, they are no longer applied to spatially adjacent samples. Dilating a kernel by a factor of αα introduces striding of αα between the samples used when computing the convolution. This means that the spatial span of the kernel (k>0k>0) is increased to α(k−1)+1α(k−1)+1. The above derivations can be reused by simply replacing the kernel size kk by α(k−1)+1α(k−1)+1 for all layers using dilations. </P>
+> Dilated (atrous) convolution.** Dilations introduce “holes” in a convolutional kernel. While the number of weights in the kernel is unchanged, they are no longer applied to spatially adjacent samples. Dilating a kernel by a factor of αα introduces striding of αα between the samples used when computing the convolution. This means that the spatial span of the kernel (k>0k>0) is increased to α(k−1)+1α(k−1)+1. The above derivations can be reused by simply replacing the kernel size kk by α(k−1)+1α(k−1)+1 for all layers using dilations.
 
 #### B. Depthwise Separable Convolution
 
-##### Problem with standard convolution:
+<ins>Problem with standard convolution</ins>
 
 > Traditional convolutions yield good performance, but require many computational resources. For example, one convolutional layer trained on 15x15x3 pixel images will already require more than 45000 multiplications to be made… per image!
 
-##### Spatially separable convolutions:
+<ins>Spatially separable convolutions</ins>
 
 >help solve this problem. They are convolutions that can be separated across their spatial axis, meaning that one large convolution (e.g. the original Conv layer) can be split into smaller ones that when convolved sequentially produce the same result. By consequence, the number of multiplications goes down, while getting the same result
 
