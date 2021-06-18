@@ -11,18 +11,30 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 
 ### Table of Contents
 
-* [Contributors](#Contributors)
-* [Model Architecture](#Model-Architecture)
-    * [Residual Block](#Residual-Block)
-        * [Identical residual block](#A-Identical-residual-block)
-        * [Convolutional residual block](#B-Convolutional-residual-block)
-    * [Residual Networks](#Residual-Networks)
-* [Convolution Techniques Explained](#Convolution-Techniques-Explained)
-* [Transformations and Albumentations](#Transformations-and-Albumentations)
-* [Graphs](#Graphs)
-* [Visualization for misclassified predictions](#Visualization-for-misclassified-predictions)
-* [Code Explanation](#Code-Explanation)
-* [References](#References)
+- [This article talks about training CIFAR 10 dataset](#this-article-talks-about-training-cifar-10-dataset)
+    - [Table of Contents](#table-of-contents)
+    - [Contributors](#contributors)
+    - [Model Architecture](#model-architecture)
+    - [Convolution Techniques Explained](#convolution-techniques-explained)
+      - [Dilated Convolution](#dilated-convolution)
+      - [Separable Convolution](#separable-convolution)
+    - [Transformations and Albumentations](#transformations-and-albumentations)
+      - [Introduction](#introduction)
+      - [Horizontal Flip](#horizontal-flip)
+      - [Shift Scale Rotate](#shift-scale-rotate)
+      - [Coarse Dropout](#coarse-dropout)
+      - [Grayscale](#grayscale)
+      - [RICAP (Random Image Cropping and Patching)](#ricap-random-image-cropping-and-patching)
+    - [Graphs](#graphs)
+      - [Using Cutout](#using-cutout)
+      - [Using Dilation](#using-dilation)
+      - [Using Ricap](#using-ricap)
+    - [Visualization for misclassified predictions](#visualization-for-misclassified-predictions)
+      - [Using Cutout](#using-cutout-1)
+      - [Using Dilation](#using-dilation-1)
+      - [Using Ricap](#using-ricap-1)
+    - [Code Explanation](#code-explanation)
+    - [References:](#references)
 
 ### Contributors
 
@@ -186,6 +198,9 @@ Where Argumens is
 
 The final targets would be an image or Mask or Bboxes with type of the image being uint8 or float32.
 
+Example: 
+
+  ![h_flip](assets/h_flip.jpg)
 #### Shift Scale Rotate
 This technique randomly apply affine transforms which are translate, scale and rotate the input.
 
@@ -215,7 +230,9 @@ Where Arguments are,
 
 The final targets would be an Image or Mask with Type of the Image being uint8 or float32.
 
+Example: 
 
+  ![shift](assets/shift.png)
 #### Coarse Dropout
 This technique helps train the rectangular regions in the image.
 
@@ -236,6 +253,10 @@ Where Arguments are,
 
 The final targets would be an Image or Mask with Type of the Image being uint8 or float32.
 
+
+Example: 
+
+  ![Dropout](assets/Dropout.jpg)
 #### Grayscale
 This technique helps to convert the input RGB image to grayscale. If the mean pixel value for the resulting image is greater than 127, invert the resulting grayscale image.
 
@@ -249,6 +270,9 @@ Where Arguments are,
 
 The final targets would be an Image with Type of the Image being uint8 or float32.
 
+Example: 
+
+  ![Dropout](assets/grayscale.png)
 #### RICAP (Random Image Cropping and Patching)
 
 RICAP is a new approach to data enhancement that can be applied to deep convolutional neural networks. In addition, RICAP also mentions about label smoothing.
