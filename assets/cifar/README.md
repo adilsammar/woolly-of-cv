@@ -328,39 +328,31 @@ RICAP has three main steps:
 
 ### Graphs
 
-#### Using Cutout
+#### Using Cutout - Strided COnvolution
 
-
-
-* Case 1 : 85.31 accuracy 
-* Case 2 : 87.31 accuracy 
+* Case 1 : 85.31 accuracy - 30 epochs
+* Case 2 : 87.31 accuracy - 50 epochs
 
 <p float="left">
-    <image src='assets/Case_1_graph_cutout.png' height='200'>
-    <image src='assets/Case_2_graph_cutout.png' height='200'>
+    <image src='assets/Case_1_graph_cutout.png' height='250'>
+    <image src='assets/Case_2_graph_cutout.png' height='250'>
+</p>
+
+#### Using Ricap - Strided Convolution
+* Case 1 : 86.26 accuracy - 30 Epochs
+* Case 2 : 87.62 accuracy - 50 Epochs
+<p float="left">
+    <image src='assets/Case_1_graph_ricap.png' height='250'>
+    <image src='assets/Case_2_graph_ricap.png' height='250'>
 </p>
 
 #### Using Dilation
-
-* Case 1 : 79.92 accuracy 
-
-
-   ![Case_2.1_graph](assets/Case_1_graph_dilation.png)
-
-* Case 2 : 80.35 accuracy with Ricap
-   ![Case_2.2_graph](assets/Case_2_graph_dilation.png)
-
-#### Using Ricap 
-
-* Case 1 : 86.26 accuracy 
-
-
-   ![Case_3.1_graph](assets/Case_1_graph_ricap.png)
-
-* Case 2 : 87.62 accuracy 
-
-
-   ![Case_3.2_graph](assets/Case_2_graph_ricap.png)
+* Case 1 : 79.92 accuracy with cutout - 30 epochs
+* Case 2 : 80.35 accuracy with Ricap - 30 epochs
+<p float="left">
+    <image src='assets/Case_1_graph_dilation.png' height='250'>
+    <image src='assets/Case_2_graph_dilation.png' height='250'>
+</p>
 
 ---
 
