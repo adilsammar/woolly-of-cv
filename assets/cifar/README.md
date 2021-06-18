@@ -41,16 +41,20 @@ To overcome this problem, **He et al (2015)** devised a **Deep Residual architec
 **Residual Block**
 A residual block is a stack of layers set in such a way that the output of a layer is taken and added to another layer deeper in the block. The non-linearity is then applied after adding it together with the output of the corresponding layer in the main path. This by-pass connection is known as the shortcut or the skip-connection.
 
-<image src='assets/residual_block.png' height='150px'>
-<image src='assets/formula.png' height='150px'>
+<p float="left">
+    <image src='assets/residual_block.png' height='150'>
+    <image src='assets/formula.png' height='150'>
+</p>
 
 For a residual block with a skip-connection from layer, l to l+2, the activation for layer l+2 is computed as shown above.
 
 **Residual Networks**
 A residual network is formed by stacking several residual blocks together. Figure 1, showed that with deeper neural networks, the training error tends to increase. However, deep ResNets are capable of forming an identity function that maps to an activation earlier in the network when a specific layer’s activation tends to zero deeper in the network.
 
-<image src='assets/residual_network.png' height='150px'>
-<image src='assets/rn_formula.png' height='150px'>
+<p float="left">
+    <image src='assets/residual_network.png' height='150'>
+    <image src='assets/rn_formula.png' height='150'>
+</p>
 
 In the above equation, let g be the ReLU activation function. If the activations for the layer _l+2_ tends to _0_, This identity mapping created by these residual blocks is the reason why the addition of extra layers does not affect a residual network’s performance. Performance improvement is achieved whenever the extra layers learn some meaningful information from the data. While, the presence of the residual blocks prevents the loss of performance whenever, the activations tend to vanish or explode.
 
