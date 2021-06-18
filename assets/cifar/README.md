@@ -32,9 +32,9 @@ This file is submitted as part of Assignment 7 for EVA6 Course
       - [Using Ricap](#ricap)
     - [Visualization for input images](#Visualization-for-input-images)
     - [Visualization for misclassified predictions](#visualization-for-misclassified-predictions)
-      - [Using Cutout](#cutout-1)
-      - [Using Dilation](#dilation-1)
-      - [Using Ricap](#ricap-1)
+      - [Using Cutout](#cutout-predictions)
+      - [Using Dilation](#dilation-predictions)
+      - [Using Ricap](#ricap-predictions)
     - [Code Explanation](#code-explanation)
     - [Receptive Field](#Receptive-Field)
     - [References:](#references)
@@ -366,7 +366,7 @@ RICAP has three main steps:
 ---
 
 ### Visualization for input images
-* Using CutOut
+* Using CutOut 
 
     <image src='assets/input_cutout.png' height='250'>
 
@@ -377,7 +377,7 @@ RICAP has three main steps:
 ---
 ### Visualization for misclassified predictions
 
-#### Cutout
+#### Cutout Predictions
 
 * Case 1 : 85.31 accuracy
 
@@ -387,7 +387,7 @@ RICAP has three main steps:
 
     <image src='assets/Case_2_missclassified_cutout.png' height='250'>
    
-#### Dilation
+#### Dilation Predictions
 
 * Case 1 : 79.92 accuracy 
 
@@ -403,7 +403,7 @@ RICAP has three main steps:
         <image src='assets/Case_2_matrix_dilation.png' height='500'>
     </p>
 
-#### Ricap 
+#### Ricap Predictions
 
 * Case 1 : 86.26 accuracy 
 
