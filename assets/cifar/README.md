@@ -76,6 +76,18 @@ Receptive Field Calculation:
 
 * Depthwise Separable Convolution
 
+#### Problem with standard convolution:
+
+> Traditional convolutions yield good performance, but require many computational resources. For example, one convolutional layer trained on 15x15x3 pixel images will already require more than 45000 multiplications to be made… per image!
+
+#### Spatially separable convolutions:
+
+>help solve this problem. They are convolutions that can be separated across their spatial axis, meaning that one large convolution (e.g. the original Conv layer) can be split into smaller ones that when convolved sequentially produce the same result. By consequence, the number of multiplications goes down, while getting the same result
+
+The downside of these convolutions is that they cannot be used everywhere since only a minority of kernels is spatially separable. To the rescue here are **depthwise separable convolutions**. This technique simply splits convolutions differently, over a depthwise convolution and a pointwise convolution. The depthwise convolution applies the kernel to each individual channel layer only. The pointwise convolution then convolves over all channels at once, but only with a 1×1 kernel. 
+
+Insert Depthwise Png
+
 ### Transformations and Albumentations
 
 Lets now talk about different albumentation libraries used
