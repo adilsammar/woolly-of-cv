@@ -53,7 +53,7 @@ The codebase has been modularized and we have kept the below in separate .py fil
 	* Defined get_p_train_transform to Get Pytorch Transform function for train data and return composed transformation.
 	* Similarly defined get_p_test_transform to Get Pytorch Transform function for test data and return composed transformation.
 
-* [Backpropagation](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/backpropagation.py)
+* [Backpropagation:](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/backpropagation.py)
 
 	* Imported all necessary libraries for loading our data.
 	* Defined a train_ricap function to return train function instance with arguments like Enable L1 which Defaults to False, L1 Value which Defaults to 5e-4 and recap beta to 0.3. then defined internal function for running backpropagation by passing the arguments like Model instance to train, Dataset used in training, Optimizer used, where to enable/Disable dropouts, Device type Values Allowed cuda/cpu, scheduler instance used for updating lr while training which Defaults to None. And then Returns Loss, Number of correct Predictions. Then we define accuracy which computes the accuracy over the k top predictions for the specified values of k.Then defined ricap.
@@ -62,7 +62,7 @@ The codebase has been modularized and we have kept the below in separate .py fil
 	* At last defined SGD optimizer, nnl criteria and cross entropy criteria.
 	
 
-* [LR Scheduler](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/scheduler.py)
+* [LR Scheduler:](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/scheduler.py)
 	* Imported all necessary libraries for loading our data. Defined a CustomOneCycleLR custom class for one cycle lr.
 	* Then Initialized Scheduler and passed the arguments like Optimizer to be used for training, Schedule to be used for training, Number of steps before changing lr value.
 	* Defined step( which calls every step to set next lr value. 
@@ -71,7 +71,7 @@ The codebase has been modularized and we have kept the below in separate .py fil
 	* Defined one_cycle_lr_custom which create instance of one cycle lr scheduler from python and passed arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done.
 	* Set raise Exception for epoch value < 12 and returns CustomOneCycleLR: instance of one cycle lr scheduler.
 
-* [Visualization](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/visualize.py)
+* [Visualization:](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/visualize.py)
 
 	* Imported all necessary libraries for loading our data. Defined print_samples to Print samples input images, and passed arguments like loader:dataloader for training data and count:Number of samples to print.
 	* Defined print_samples_ricap to Print samples input images and passed arguments like dataloader for training data and Number of samples to print which we defaults to 16.
@@ -83,7 +83,7 @@ The codebase has been modularized and we have kept the below in separate .py fil
 
 	
 	
-* [Utils](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/utils.py)
+* [Utils:](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/utils.py)
 
 	* Imported all necessary libraries for loading our data.
 	* Defined get_device to Get Device type and return Device type and use Cuda.
