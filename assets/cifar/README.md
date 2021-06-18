@@ -103,7 +103,9 @@ All these experiments were performed keeping parameters count same.
 
 * With CutOut
     * [With Strided Kernel](/notebook/CIFAR_ALBUMENTATION_CUTOUT_87.13.ipynb)
+        In this experiment we have used a strise of 2 in first convolution of each block to reduce channels size by half
     * [Using Dilated Kernal](/notebook/CIFAR_ALBUMENTATION_DILATION_79.92.ipynb)
+        In this experiment we have used a dilation in first convolution of each block to reduce channels size by half, dialtion is calculated based on a formula (x = y/4) explained later in dilation section
 * With Ricap
     * [With Strided Kernel](/notebook/CIFAR_ALBUMENTATION_RICAP_87.62.ipynb)
     * [Using Dilated Kernal](/notebook/CIFAR_ALBUMENTATION_DILATION_RICAP_80.35.ipynb)
@@ -155,6 +157,23 @@ In a way, but here the output has the same size as the input. As a special case,
 <ins>Where else the dilated convolution is used?</ins>
 
 Wavenet: Dilated convolutions are to increase the receptive field by orders of magnitude, without greatly increasing computational cost
+
+<ins>Dilation Calculation for Reducing channel size by half</ins>
+
+    y/2 = y-(k+(x-1)*2-1)
+    
+    Which computers to 
+    x = y/4 
+
+    Where: 
+        y is input image size
+        x is dilation
+        k is kernel size
+    
+    With:
+        stride = 1 
+        padding = 0
+        k = 3
 
 <ins>Receptive Field Calculation</ins>
 
@@ -216,9 +235,9 @@ Where Argumens is
 
 The final targets would be an image or Mask or Bboxes with type of the image being uint8 or float32.
 
-Example: 
+Example:
+<image src='assets/h_flip.jpg' height='150'>
 
-  ![h_flip](assets/h_flip.jpg)
 #### Shift Scale Rotate
 This technique randomly apply affine transforms which are translate, scale and rotate the input.
 
@@ -249,8 +268,7 @@ Where Arguments are,
 The final targets would be an Image or Mask with Type of the Image being uint8 or float32.
 
 Example: 
-
-  ![shift](assets/shift.png)
+<image src='assets/shift.png' height='400'>
 #### Coarse Dropout
 This technique helps train the rectangular regions in the image.
 
@@ -273,8 +291,8 @@ The final targets would be an Image or Mask with Type of the Image being uint8 o
 
 
 Example: 
+<image src='assets/Dropout.png' height='300'>
 
-  ![Dropout](assets/Dropout.png)
 #### Grayscale
 This technique helps to convert the input RGB image to grayscale. If the mean pixel value for the resulting image is greater than 127, invert the resulting grayscale image.
 
@@ -289,8 +307,8 @@ Where Arguments are,
 The final targets would be an Image with Type of the Image being uint8 or float32.
 
 Example: 
+<image src='assets/grayscale.png' height='150'>
 
-  ![Dropout](assets/grayscale.png)
 #### RICAP (Random Image Cropping and Patching)
 
 RICAP is a new approach to data enhancement that can be applied to deep convolutional neural networks. In addition, RICAP also mentions about label smoothing.
@@ -300,24 +318,27 @@ RICAP has three main steps:
 * Crop each image separately
 * Splicing the cropped image into a new image
 
-![RICAP1](assets/RICAP1.jpeg)
-![RICAP2](assets/RICAP2.jpeg)
 
+
+<p float="left">
+    <image src='assets/RICAP1.jpeg' height='350'>
+    <image src='assets/RICAP2.jpeg' height='350'>
+</p>
 ---
 
 ### Graphs
 
 #### Using Cutout
 
+
+
 * Case 1 : 85.31 accuracy 
-
-
-   ![Case_1_graph](assets/Case_1_graph_cutout.png)
-
 * Case 2 : 87.31 accuracy 
 
-
-   ![Case_2_graph](assets/Case_2_graph_cutout.png)
+<p float="left">
+    <image src='assets/Case_1_graph_cutout.png' height='200'>
+    <image src='assets/Case_2_graph_cutout.png' height='200'>
+</p>
 
 #### Using Dilation
 
