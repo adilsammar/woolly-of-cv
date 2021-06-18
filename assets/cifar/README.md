@@ -35,7 +35,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
       - [Using Dilation](#using-dilation-1)
       - [Using Ricap](#using-ricap-1)
     - [Code Explanation](#code-explanation)
-    - [Receptive Field] (#Receptive-Field)
+    - [Receptive Field](#Receptive-Field)
     - [References:](#references)
 
 ### Contributors
