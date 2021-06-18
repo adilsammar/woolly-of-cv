@@ -83,15 +83,15 @@ In this type of residual block, the skip-connection consists of a convolutional 
 
 ### Convolution Techniques Explained
 
-* Dilated Convolution
+#### Dilated Convolution
 
 <ins>What is Dilated Convolution?</ins> 
 
-> In dilated convolution, we systematically aggregate multiscale contextual information without losing resolution. The dilated convolution operator has been referred to in the past as “convolution with a dilated filter”. We use the term “dilated convolution” instead of “convolution with a dilated filter” to clarify that no “dilated filter” is constructed or represented. The dilated convolution operator can apply the same filter at different ranges using different dilation factors.
+In dilated convolution, we systematically aggregate multiscale contextual information without losing resolution. The dilated convolution operator has been referred to in the past as “convolution with a dilated filter”. We use the term “dilated convolution” instead of “convolution with a dilated filter” to clarify that no “dilated filter” is constructed or represented. The dilated convolution operator can apply the same filter at different ranges using different dilation factors.
 
 <ins>How is it different from standard convolution?</ins>
 
-> Dilated convolution is just a convolution applied to input with defined gaps. 
+Dilated convolution is just a convolution applied to input with defined gaps. 
 
 <p float="left">
     <image src='assets/FormulaStandardConvolution.png' height='50'>
@@ -100,67 +100,66 @@ In this type of residual block, the skip-connection consists of a convolutional 
 
 where 
 
-> F, a discrete function,<br>
-> k, filter size of (2r+1)/^2 <br>
-> \*, discrete convolution operator <br>
-> l, a dilation factor
+    F, a discrete function,<br>
+    k, filter size of (2r+1)/^2 <br>
+    \*, discrete convolution operator <br>
+    l, a dilation factor
 
-> When \*l\*=1, it is standard convolution. <br>
-> When \*l\*>1, it is dilated convolution. <br>
+    When \*l\*=1, it is standard convolution. <br>
+    When \*l\*>1, it is dilated convolution. <br>
 
 <image src='assets/IllustratedDilatedConvolution.png' height='220'>
 
 <ins>Why do we need dilated convolution?</ins>
 
-> Dilated Convolution is specifically designed for dense prediction. Dilated convolutions supports exponential expansion of the receptive field without loss of resolution or coverage 
+Dilated Convolution is specifically designed for dense prediction. Dilated convolutions supports exponential expansion of the receptive field without loss of resolution or coverage 
 
 <ins>Usecase, Scenario where dilated convolution will be of major help?</ins>
 
->  1. Detection of fine-details by processing inputs in higher resolutions.
->  2. Broader view of the input to capture more contextual information.
->  3. Faster run-time with less parameters 
+1. Detection of fine-details by processing inputs in higher resolutions.
+2. Broader view of the input to capture more contextual information.
+3. Faster run-time with less parameters 
 
 <ins>Is this similar to pooling or strided convolutions?</ins>
 
-> In a way, but here the output has the same size as the input. As a special case, dilated convolution with dilation 1 yields the standard convolution. 
+In a way, but here the output has the same size as the input. As a special case, dilated convolution with dilation 1 yields the standard convolution. 
 
 <ins>Where else the dilated convolution is used?</ins>
 
-> Wavenet: Dilated convolutions are to increase the receptive field by orders of magnitude, without greatly increasing computational cost
+Wavenet: Dilated convolutions are to increase the receptive field by orders of magnitude, without greatly increasing computational cost
 
 <ins>Receptive Field Calculation</ins>
 
-> Dilated (atrous) convolution.** Dilations introduce “holes” in a convolutional kernel. While the number of weights in the kernel is unchanged, they are no longer applied to spatially adjacent samples. Dilating a kernel by a factor of αα introduces striding of αα between the samples used when computing the convolution. This means that the spatial span of the kernel (k>0k>0) is increased to α(k−1)+1α(k−1)+1. The above derivations can be reused by simply replacing the kernel size kk by α(k−1)+1α(k−1)+1 for all layers using dilations.
+Dilated (atrous) convolution.** Dilations introduce “holes” in a convolutional kernel. While the number of weights in the kernel is unchanged, they are no longer applied to spatially adjacent samples. Dilating a kernel by a factor of αα introduces striding of αα between the samples used when computing the convolution. This means that the spatial span of the kernel (k>0k>0) is increased to α(k−1)+1α(k−1)+1. The above derivations can be reused by simply replacing the kernel size kk by α(k−1)+1α(k−1)+1 for all layers using dilations.
 
-* Depthwise Separable Convolution
+#### Separable Convolution
 
 <ins>Problem with standard convolution</ins>
 
-> Traditional convolutions yield good performance, but require many computational resources. For example, one convolutional layer trained on 15x15x3 pixel images will already require more than 45000 multiplications to be made… per image!
+Traditional convolutions yield good performance, but require many computational resources. For example, one convolutional layer trained on 15x15x3 pixel images will already require more than 45000 multiplications to be made per image!
 
-<ins>Spatially separable convolutions</ins>
+**Spatially separable convolutions**
 
->help solve this problem. They are convolutions that can be separated across their spatial axis, meaning that one large convolution (e.g. the original Conv layer) can be split into smaller ones that when convolved sequentially produce the same result. By consequence, the number of multiplications goes down, while getting the same result
+Help solve this problem. They are convolutions that can be separated across their spatial axis, meaning that one large convolution (e.g. the original Conv layer) can be split into smaller ones that when convolved sequentially produce the same result. By consequence, the number of multiplications goes down, while getting the same result
 	
-#### Depthwise separable convolutions
+**Depthwise separable convolutions**
 
-> The downside of these convolutions is that they cannot be used everywhere since only a minority of kernels is spatially separable. To the rescue here are **depthwise separable convolutions**. This technique simply splits convolutions differently, over a depthwise convolution and a pointwise convolution. The depthwise convolution applies the kernel to each individual channel layer only. The pointwise convolution then convolves over all channels at once, but only with a 1×1 kernel. 
+The downside of these convolutions is that they cannot be used everywhere since only a minority of kernels is spatially separable. To the rescue here are **depthwise separable convolutions**. This technique simply splits convolutions differently, over a depthwise convolution and a pointwise convolution. The depthwise convolution applies the kernel to each individual channel layer only. The pointwise convolution then convolves over all channels at once, but only with a 1×1 kernel. 
 
-<image src='assets/DepthwiseSep1.png' height='300'>
+<image src='assets/DepthwiseSep1.png' height='500'>
 	
-#### Effect of Depthwise Separabale Convolution:
+<ins>Effect of Depthwise Separabale Convolution</ins>
 
->  If the original convolution function is 12x12x3 — (5x5x3x256) →12x12x256, we can illustrate this new convolution as 12x12x3 — (5x5x1x1) — > (1x1x3x256) — >12x12x256. There are 256 5x5x3 kernels that move 8x8 times. That’s 256x3x5x5x8x8=1,228,800 multiplications.
+* If the original convolution function is 12x12x3 — (5x5x3x256) →12x12x256, we can illustrate this new convolution as 12x12x3 — (5x5x1x1) — > (1x1x3x256) — >12x12x256. There are 256 5x5x3 kernels that move 8x8 times. That’s 256x3x5x5x8x8=1,228,800 multiplications.
 
->  In the depthwise convolution, we have 3 5x5x1 kernels that move 8x8 times. That’s 3x5x5x8x8 = 4,800 multiplications. In the pointwise convolution, we have 256 1x1x3 kernels that move 8x8 times. That’s 256x1x1x3x8x8=49,152 multiplications. Adding them up together, that’s 53,952 multiplications.
+* In the depthwise convolution, we have 3 5x5x1 kernels that move 8x8 times. That’s 3x5x5x8x8 = 4,800 multiplications. In the pointwise convolution, we have 256 1x1x3 kernels that move 8x8 times. That’s 256x1x1x3x8x8=49,152 multiplications. Adding them up together, that’s 53,952 multiplications.
 	
-<image src='assets/DepthwiseSep2.png' height='120'>
+<image src='assets/DepthwiseSep2.png' height='200'>
 	
-#### Advantages:
+<ins>Advantages</ins>
 
->  * With less computations, the network is able to process more in a shorter amount of time
-
->  * In the normal convolution, we are **transforming the image 256 times**. And every transformation uses up 5x5x3x8x8=4800 multiplications. In the separable convolution, we only really **transform the image once** — in the depthwise convolution. Then, we take the transformed image and **simply elongate it to 256 channels**. Without having to transform the image over and over again, we can save up on computational power.
+* With less computations, the network is able to process more in a shorter amount of time
+* In the normal convolution, we are **transforming the image 256 times**. And every transformation uses up 5x5x3x8x8=4800 multiplications. In the separable convolution, we only really **transform the image once** — in the depthwise convolution. Then, we take the transformed image and **simply elongate it to 256 channels**. Without having to transform the image over and over again, we can save up on computational power.
 
 
 ### Transformations and Albumentations
