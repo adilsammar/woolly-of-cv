@@ -27,9 +27,9 @@ This file is submitted as part of Assignment 7 for EVA6 Course
       - [Grayscale](#grayscale)
       - [RICAP (Random Image Cropping and Patching)](#ricap-random-image-cropping-and-patching)
     - [Graphs](#graphs)
-      - [Using Cutout](#cutout)
-      - [Using Dilation](#dilation)
-      - [Using Ricap](#ricap)
+      - [Using Cutout](#cutout-graph)
+      - [Using Dilation](#dilation-graph)
+      - [Using Ricap](#ricap-graph)
     - [Visualization for input images](#Visualization-for-input-images)
     - [Visualization for misclassified predictions](#visualization-for-misclassified-predictions)
       - [Using Cutout](#cutout-predictions)
@@ -335,7 +335,7 @@ RICAP has three main steps:
 
 ### Graphs
 
-#### Cutout - Strided Convolution
+#### Cutout Graph - Strided Convolution
 
 * Case 1 : 85.31 accuracy - 30 epochs
 * Case 2 : 87.31 accuracy - 50 epochs
@@ -345,7 +345,7 @@ RICAP has three main steps:
         <image src='assets/Case_2_graph_cutout.png' height='250'>
     </p>
 
-#### Ricap - Strided Convolution
+#### Ricap Graph - Strided Convolution
 * Case 1 : 86.26 accuracy - 30 Epochs
 * Case 2 : 87.62 accuracy - 50 Epochs
 
@@ -354,7 +354,7 @@ RICAP has three main steps:
         <image src='assets/Case_2_graph_ricap.png' height='250'>
     </p>
 
-#### Dilation
+#### Dilation Graph
 * Case 1 : 79.92 accuracy with cutout - 30 epochs
 * Case 2 : 80.35 accuracy with Ricap - 30 epochs
 
