@@ -27,14 +27,14 @@ This file is submitted as part of Assignment 7 for EVA6 Course
       - [Grayscale](#grayscale)
       - [RICAP (Random Image Cropping and Patching)](#ricap-random-image-cropping-and-patching)
     - [Graphs](#graphs)
-      - [Using Cutout](#using-cutout)
-      - [Using Dilation](#using-dilation)
-      - [Using Ricap](#using-ricap)
+      - [Using Cutout](#cutout)
+      - [Using Dilation](#dilation)
+      - [Using Ricap](#ricap)
     - [Visualization for input images](#Visualization-for-input-images)
     - [Visualization for misclassified predictions](#visualization-for-misclassified-predictions)
-      - [Using Cutout](#using-cutout-1)
-      - [Using Dilation](#using-dilation-1)
-      - [Using Ricap](#using-ricap-1)
+      - [Using Cutout](#cutout-1)
+      - [Using Dilation](#dilation-1)
+      - [Using Ricap](#ricap-1)
     - [Code Explanation](#code-explanation)
     - [Receptive Field](#Receptive-Field)
     - [References:](#references)
@@ -335,7 +335,7 @@ RICAP has three main steps:
 
 ### Graphs
 
-#### Using Cutout - Strided Convolution
+#### Cutout - Strided Convolution
 
 * Case 1 : 85.31 accuracy - 30 epochs
 * Case 2 : 87.31 accuracy - 50 epochs
@@ -345,7 +345,7 @@ RICAP has three main steps:
         <image src='assets/Case_2_graph_cutout.png' height='250'>
     </p>
 
-#### Using Ricap - Strided Convolution
+#### Ricap - Strided Convolution
 * Case 1 : 86.26 accuracy - 30 Epochs
 * Case 2 : 87.62 accuracy - 50 Epochs
 
@@ -354,7 +354,7 @@ RICAP has three main steps:
         <image src='assets/Case_2_graph_ricap.png' height='250'>
     </p>
 
-#### Using Dilation
+#### Dilation
 * Case 1 : 79.92 accuracy with cutout - 30 epochs
 * Case 2 : 80.35 accuracy with Ricap - 30 epochs
 
@@ -377,7 +377,7 @@ RICAP has three main steps:
 ---
 ### Visualization for misclassified predictions
 
-#### Using Cutout
+#### Cutout
 
 * Case 1 : 85.31 accuracy
 
@@ -387,7 +387,7 @@ RICAP has three main steps:
 
     <image src='assets/Case_2_missclassified_cutout.png' height='250'>
    
-#### Using Dilation
+#### Dilation
 
 * Case 1 : 79.92 accuracy 
 
@@ -403,7 +403,7 @@ RICAP has three main steps:
         <image src='assets/Case_2_matrix_dilation.png' height='500'>
     </p>
 
-#### Using Ricap 
+#### Ricap 
 
 * Case 1 : 86.26 accuracy 
 
