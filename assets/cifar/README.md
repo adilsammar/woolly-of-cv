@@ -12,6 +12,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 ### Table of Contents
 
 * [Contributors](#Contributors)
+* [Code Explanation](#Code-Explanation)
 * [Model Architecture](#Model-Architecture)
 * [Convolution Techniques Explained](#Convolution-Techniques-Explained)
 * [Transformations and Albumentations](#Transformations-and-Albumentations)
@@ -25,6 +26,75 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * [Krithiga](https://github.com/BottleSpink)
 * [Shashwat Dhanraaj](https://github.com/sdhanraaj12)
 * [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
+
+### Code Explanation
+
+The codebase has been modularized and we have kept the below in separate .py files
+
+* [Dataset loader:](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/dataset.py)
+
+	* Imported all necessary libraries for loading our data. 
+	* Defined	a custom data set class WyDataset. Initialized it, and passed the arguments like dataset and transforms. Then  dataset length which returns Length of the dataset. 
+	* Defined Getitem which gets items form dataset, passed the id argument of item in dataset which returns tensor of transformer image and label. 
+	* Defined a custom get_mnist_loader which can get the instance of test and train loaders for MNIST data, by passing the arguments like instance of transform function for training, Instance of transform function for validation, batch size to be used in training which defaults to 64 and where to Enable/Disable Cuda Gpu. And then return the instance of train and test data loaders.
+	* Defined a custom get_cifar_loader which can get the instance of test and train loaders for CIFAR10 data, by passing the arguments like Instance of transform function for training, Instance of transform function for validation, batch size to be used in training which defaults to 64 and where to enable/Disable Cuda Gpu. Then return instance of train and test data loaders
+
+* [Model Architecture:](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/model.py)	
+	* Imported all necessary libraries for loading our data.
+	* Defined a custom get_norm_layer function which provides normalization layer based on parameters and passed the arguments like Number of output channel and Parameter to decide which normalization to use, then return Instance of normalization class
+	* Defined a custom class WyConv2d which Creates an instance of 2d convolution based on differnet params provided and passed the base module class as the argument. Initialized it, and passed the arguments like Number of input channels, Number of output channels, Kernel size to be used in convolution, Type of convolution to be used like 'vanila', 'depthwise', 'depthwise_seperable' and where to enable and disable bias
+	* Defined a custom class WyResidual, Initialized it, and passed the arguments like Number of input size, Number of output size, padding , stride dilation etc.
+	* Defined a custom class Wyblock and initialized it with arguments like input Channel Size, Output Channel Size, Padding to be used for convolution layer, Type of normalization to be used and where to Enable/Disable Maxpolling.
+	* Defined a custom Network class WyCifar10Net and passed the argument of instance of Pytorch Module. Initialized the network with arguments like Number of base channels to start with, Number of Layers in each block, Dropout value, Normalization type. Then defined forward ie convolution function with arguments like input image tensor and where to enable/disable dropouts and then return tensor of logits.
+
+* [Data Transformations:](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/transform.py)
+	* Imported all necessary libraries for loading our data plus albumentations library.
+	* Defined BASE PROFILE with different parameters like shift scale rotate, random_resized_crop, crop_and_pad, random_brightness_contrast, gauss_noise, equalize, horizontal_flip, to_gray, normalize and coarse_dropout. And defined get Transform for training data and return composed transformations.
+	* Defined get_p_train_transform to Get Pytorch Transform function for train data and return composed transformation.
+	* Similarly defined get_p_test_transform to Get Pytorch Transform function for test data and return composed transformation.
+
+* [Backpropagation](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/backpropagation.py)
+
+	* Imported all necessary libraries for loading our data.
+	* Defined a train_ricap function to return train function instance with arguments like Enable L1 which Defaults to False, L1 Value which Defaults to 5e-4 and recap beta to 0.3. then defined internal function for running backpropagation by passing the arguments like Model instance to train, Dataset used in training, Optimizer used, where to enable/Disable dropouts, Device type Values Allowed cuda/cpu, scheduler instance used for updating lr while training which Defaults to None. And then Returns Loss, Number of correct Predictions. Then we define accuracy which computes the accuracy over the k top predictions for the specified values of k.Then defined ricap.
+	* Created a train function to return train function instance by passing arguments related to l1. then defined a function for running backpropagation and passed the arguments like model instance to be train, Data set to use for training, use optimizer, where to enable and disable dropouts, use cuda device and use scheduler instance which is used for updating lr while training. Then return Loss and number of correct predictions. 
+	* Defined test function to perform model validation by passing arguments like model instance to run validation, dataset used in validation, device type cuda and then return loss and number of correct predictions.
+	* At last defined SGD optimizer, nnl criteria and cross entropy criteria.
+	
+
+* [LR Scheduler](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/scheduler.py)
+	* Imported all necessary libraries for loading our data. Defined a CustomOneCycleLR custom class for one cycle lr.
+	* Then Initialized Scheduler and passed the arguments like Optimizer to be used for training, Schedule to be used for training, Number of steps before changing lr value.
+	* Defined step( which calls every step to set next lr value. 
+	* Defined lr_schedules to get Next value for lr, then return LR value to use for next step.
+	* Defined one_cycle_lr_pt to create instance of one cycle lr scheduler from python and passed the arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done. Then return instance of one cycle lr scheduler.
+	* Defined one_cycle_lr_custom which create instance of one cycle lr scheduler from python and passed arguments like Optimizer to be used for Training, base lr value used, max lr value used in one cycle ly, Number of steps in each epochs, number of epochs for which training is done.
+	* Set raise Exception for epoch value < 12 and returns CustomOneCycleLR: instance of one cycle lr scheduler.
+
+* [Visualization](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/visualize.py)
+
+	* Imported all necessary libraries for loading our data. Defined print_samples to Print samples input images, and passed arguments like loader:dataloader for training data and count:Number of samples to print.
+	* Defined print_samples_ricap to Print samples input images and passed arguments like dataloader for training data and Number of samples to print which we defaults to 16.
+	* Defined a print_class_scale to Print Dataset Class scale with Arguments like loader for Loader instance for dataset and class_map for mapping for class names. Then we plot the Bar Graph
+	* Defined plot_confusion_matrix and passed arguments like Class labels, where to Enable/Disable Normalization, Title for plot, Colour Map, true label, predicted label etc to plot Confusion Matrix
+	* Defined plot_incorrect_predictions and passed arguments like List of all incorrect predictions, Label mapping, Number of samples to print to plot Incorrect Predictions.
+	* Defined plot_network_performance by passing desired arguments we want to check performance on
+	* Defined plot_model_comparison for Plotting comparison charts for models with arguments like List or all trainers for different experiments and Number or training loops
+
+	
+	
+* [Utils](https://github.com/adilsammar/woolly-of-cv/blob/main/assets/woolly/utils.py)
+
+	* Imported all necessary libraries for loading our data.
+	* Defined get_device to Get Device type and return Device type and use Cuda.
+	* Defined print_summary to Print Model summary and passed the arguments like Model Instance and Input size
+	* Defined print_modal_summary to Print Model summary and passed the arguments like Model Instance
+	* Defined initialize_weights Function to initialize random weights with arguments m as Layer instance
+	* Defined load_weights_from_path to load weights from file by passing arguments like Model instance and Path to weights file and then return loaded modal.
+	* Defined get_all_predictions to Get All predictions for model with arguments like trained Model, Instance of dataloader, Which device to use cuda/cpu and Returns tuple of all predicted values and their targets
+	* Defined get_incorrrect_predictions to Get all incorrect predictions by passing arguments like Trained model, instance of data loader, Which device to use cuda/cpu and then Return list of all incorrect predictions and their corresponding details
+	* Defined prepare_confusion_matrix to Prepare Confusion matrix with arguments of List of all predictions, List of all actual labels and Class names and then return tensor of confusion matrix for size number of classes * number of classes
+
 
 ### Model Architecture
 
