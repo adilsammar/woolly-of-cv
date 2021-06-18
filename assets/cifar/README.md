@@ -104,13 +104,16 @@ As a part of training CIFAR dataset we have performed multiple experiments. We h
 All these experiments were performed keeping parameters count same.
 
 * With CutOut
-    * [With Strided Kernel](/notebook/CIFAR_ALBUMENTATION_CUTOUT_87.13.ipynb)
-        In this experiment we have used a strise of 2 in first convolution of each block to reduce channels size by half
-    * [Using Dilated Kernal](/notebook/CIFAR_ALBUMENTATION_DILATION_79.92.ipynb)
-        In this experiment we have used a dilation in first convolution of each block to reduce channels size by half, dialtion is calculated based on a formula (x = y/4) explained later in dilation section
+    * [With Strided Kernel](/notebook/CIFAR_ALBUMENTATION_CUTOUT_87.13.ipynb): In this experiment we have used a strise of 2 in first convolution of each block to reduce channels size by half
+    * [Using Dilated Kernal](/notebook/CIFAR_ALBUMENTATION_DILATION_79.92.ipynb): In this experiment we have used a dilation in first convolution of each block to reduce channels size by half, dialtion is calculated based on a formula (x = y/4) explained later in dilation section
 * With Ricap
-    * [With Strided Kernel](/notebook/CIFAR_ALBUMENTATION_RICAP_87.62.ipynb)
-    * [Using Dilated Kernal](/notebook/CIFAR_ALBUMENTATION_DILATION_RICAP_80.35.ipynb)
+    * [With Strided Kernel](/notebook/CIFAR_ALBUMENTATION_RICAP_87.62.ipynb): In this experiment we have used a strise of 2 in first convolution of each block to reduce channels size by half
+    * [Using Dilated Kernal](/notebook/CIFAR_ALBUMENTATION_DILATION_RICAP_80.35.ipynb): In this experiment we have used a dilation in first convolution of each block to reduce channels size by half, dialtion is calculated based on a formula (x = y/4) explained later in dilation section
+
+<ins>Observations:</ins>
+
+* Ricap works better than cutout as the model validation accuracy seems to be stable for large number of epochs
+* Cutout with a varying size window performs better than fixed window
 
 ---
 ### Convolution Techniques Explained
