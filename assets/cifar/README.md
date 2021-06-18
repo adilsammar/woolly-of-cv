@@ -255,9 +255,9 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 RICAP is a new approach to data enhancement that can be applied to deep convolutional neural networks. In addition, RICAP also mentions about label smoothing.
 RICAP has three main steps:
 
-Randomly select four images from the training set
-Crop each image separately
-Splicing the cropped image into a new image
+* Randomly select four images from the training set
+* Crop each image separately
+* Splicing the cropped image into a new image
 
 ![RICAP1](assets/RICAP1.jpeg)
 ![RICAP2](assets/RICAP2.jpeg)
