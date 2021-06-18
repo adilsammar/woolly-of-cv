@@ -30,7 +30,6 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * Depthwise Separable Convolution
 
 ## Transformations and Albumentations:
-Lets now talk about different albumentation libraries used,
 
 ### Introduction 
   - ### Why Albumentation ? 
@@ -74,8 +73,6 @@ Lets now talk about different albumentation libraries used,
           4. INTER_AREA
           5. INTER_LANCZOS4
        
-
-
     * Border Mode is a flag that is used to specify the pixel extrapolation method and that can be one of these all below and default being "BORDER_REFLECT_101",
   
          1. BORDER_REFLECT_101
