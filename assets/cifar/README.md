@@ -30,45 +30,58 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 
 #### What is Dilated Convolution?  
 
-<P>In dilated convolution, we systematically aggregate multiscale contextual information without losing resolution. The dilated convolution operator has been referred to in the past as “convolution with a dilated filter”. We use the term “dilated convolution” instead of “convolution with a dilated filter” to clarify that no “dilated filter” is constructed or represented. The dilated convolution operator can apply the same filter at different ranges using different dilation factors. </P>
+ > In dilated convolution, we systematically aggregate multiscale contextual information without losing resolution. The dilated convolution operator has been referred to in the past as “convolution with a dilated filter”. We use the term “dilated convolution” instead of “convolution with a dilated filter” to clarify that no “dilated filter” is constructed or represented. The dilated convolution operator can apply the same filter at different ranges using different dilation factors.
 
 #### How is it different from standard convolution?  
 
-<P> Dilated convolution is just a convolution applied to input with defined gaps. </P>
+ > Dilated convolution is just a convolution applied to input with defined gaps. 
 
-Insert Formula Png
+![Standard Convolution](FormulaStandardConvolution.png)
+![Dilated Convolution](FormulaDilatedConvolution.png)
 
-**When \*l\*=1, it is standard convolution.**
+where 
 
-**When \*l\*>1, it is dilated convolution.**
+> F, a discrete function,<br>
+> k, filter size of (2r+1)/^2 <br>
+> \*, discrete convolution operator <br>
+> l, a dilation factor
+
+> When \*l\*=1, it is standard convolution. <br>
+> When \*l\*>1, it is dilated convolution. <br>
+
+![Illustrated Dilated Convolution](IllustratedDilatedConvolution.png)
 
 
 #### Why do we need dilated convolution? 
 
-<P> Dilated Convolution is specifically designed for dense prediction. Dilated convolutions supports exponential expansion of the receptive field without loss of resolution or coverage </P>
+  > Dilated Convolution is specifically designed for dense prediction. Dilated convolutions supports exponential expansion of the receptive field without loss of resolution or coverage 
 
-### Usecases/ scenarios where dilated convolution will be of major help?
+#### Usecases/ scenarios where dilated convolution will be of major help?
 
-<P> 1. Detection of fine-details by processing inputs in higher resolutions.
-    2. Broader view of the input to capture more contextual information.
-    3. Faster run-time with less parameters </P>
+>  1. Detection of fine-details by processing inputs in higher resolutions. <br>
+>  2. Broader view of the input to capture more contextual information. <br>
+>  3. Faster run-time with less parameters 
 
-Is this similar to pooling or strided convolutions? In a way, but here the output has the same size as the input. As a special case, dilated convolution with dilation 1 yields the standard convolution. 
+Is this similar to pooling or strided convolutions? 
+
+  > In a way, but here the output has the same size as the input. As a special case, dilated convolution with dilation 1 yields the standard convolution. 
 
 #### Where else the dilated convolution is used?
 
-<P> Wavenet: Dilated convolutions are to increase the receptive field by orders of magnitude, without greatly increasing computational cost.</P>
+  > Wavenet: Dilated convolutions are to increase the receptive field by orders of magnitude, without greatly increasing computational cost.</P>
 
 Receptive Field Calculation:
 
-<P>Dilated (atrous) convolution.** Dilations introduce “holes” in a convolutional kernel. While the number of weights in the kernel is unchanged, they are no longer applied to spatially adjacent samples. Dilating a kernel by a factor of αα introduces striding of αα between the samples used when computing the convolution. This means that the spatial span of the kernel (k>0k>0) is increased to α(k−1)+1α(k−1)+1. The above derivations can be reused by simply replacing the kernel size kk by α(k−1)+1α(k−1)+1 for all layers using dilations. </P>
+  > Dilated (atrous) convolution.** Dilations introduce “holes” in a convolutional kernel. While the number of weights in the kernel is unchanged, they are no longer applied to spatially adjacent samples. Dilating a kernel by a factor of αα introduces striding of αα between the samples used when computing the convolution. This means that the spatial span of the kernel (k>0k>0) is increased to α(k−1)+1α(k−1)+1. The above derivations can be reused by simply replacing the kernel size kk by α(k−1)+1α(k−1)+1 for all layers using dilations. </P>
 
 * Depthwise Separable Convolution
 
 ### Transformations and Albumentations
-Lets now talk about different albumentation libraries used,
+
+Lets now talk about different albumentation libraries used
 
 #### Introduction
+
 **Why Albumentation?** Albumentations is a Python library for image augmentations that helps boosts the performance of deep convolutional neural networks with less data. As they efficiently implements variety of image transform operations that optimized the performance of our model.
 
 **Now lets let's see what all augumentation techniques we have used in our model in detailed,**
