@@ -13,8 +13,8 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 
 * [Contributors](#Contributors)
     * [Residual Block](#Residual-Block)
-        * [Identical residual block](#Identical-residual-block)
-        * [Convolutional residual block](#Convolutional-residual-block)
+        * [Identical residual block](#A-Identical-residual-block)
+        * [Convolutional residual block](#B-Convolutional-residual-block)
     * [Residual Networks](#Residual-Networks)
 * [Model Architecture](#Model-Architecture)
 * [Convolution Techniques Explained](#Convolution-Techniques-Explained)
@@ -388,5 +388,5 @@ The codebase has been modularized and we have kept the below in separate .py fil
 
 
 ### References:
-Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
-ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))
+* Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
+* ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))
