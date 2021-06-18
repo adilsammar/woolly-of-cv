@@ -200,17 +200,17 @@ Where Arguments are,
 * Scale limit is a (float, float) or can also be a single float value which is the scaling factor range. If scale_limit is a single float value, the range will be (-scale_limit, scale_limit) and default being "0.1".
 * Rotate limit is a (int, int) or can also be a single int value which is the rotation range. If rotate_limit is a single int value, the range will be (-rotate_limit, rotate_limit)and default being "45".
 * Interpolation is a flag that is used to specify the interpolation algorithm and that can be one of these all below and default being "INTER_LINEAR",
-    1. INTER_NEAREST,
-    2. INTER_LINEAR
-    3. INTER_CUBIC
-    4. INTER_AREA
-    5. INTER_LANCZOS4
+    * INTER_NEAREST,
+    * INTER_LINEAR
+    * INTER_CUBIC
+    * INTER_AREA
+    * INTER_LANCZOS4
 * Border Mode is a flag that is used to specify the pixel extrapolation method and that can be one of these all below and default being "BORDER_REFLECT_101",
-    1. BORDER_REFLECT_101
-    2. BORDER_REPLICATE
-    3. BORDER_REFLECT
-    4. BORDER_WRAP
-    5. BORDER_REFLECT_101
+    * BORDER_REFLECT_101
+    * BORDER_REPLICATE
+    * BORDER_REFLECT
+    * BORDER_WRAP
+    * BORDER_REFLECT_101
 * Just like for Horizontal Flip Parameter(p) is probability of applying the transform which is by default "0" .
 
 The final targets would be an Image or Mask with Type of the Image being uint8 or float32.
