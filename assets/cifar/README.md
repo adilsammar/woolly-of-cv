@@ -335,30 +335,30 @@ RICAP has three main steps:
 * Case 1 : 85.31 accuracy - 30 epochs
 * Case 2 : 87.31 accuracy - 50 epochs
 
-<p float="left">
-    <image src='assets/Case_1_graph_cutout.png' height='250'>
-    <image src='assets/Case_2_graph_cutout.png' height='250'>
-</p>
+    <p float="left">
+        <image src='assets/Case_1_graph_cutout.png' height='250'>
+        <image src='assets/Case_2_graph_cutout.png' height='250'>
+    </p>
 
 #### Using Ricap - Strided Convolution
 
 * Case 1 : 86.26 accuracy - 30 Epochs
 * Case 2 : 87.62 accuracy - 50 Epochs
 
-<p float="left">
-    <image src='assets/Case_1_graph_ricap.png' height='250'>
-    <image src='assets/Case_2_graph_ricap.png' height='250'>
-</p>
+    <p float="left">
+        <image src='assets/Case_1_graph_ricap.png' height='250'>
+        <image src='assets/Case_2_graph_ricap.png' height='250'>
+    </p>
 
 #### Using Dilation
 
 * Case 1 : 79.92 accuracy with cutout - 30 epochs
 * Case 2 : 80.35 accuracy with Ricap - 30 epochs
 
-<p float="left">
-    <image src='assets/Case_1_graph_dilation.png' height='250'>
-    <image src='assets/Case_2_graph_dilation.png' height='250'>
-</p>
+    <p float="left">
+        <image src='assets/Case_1_graph_dilation.png' height='250'>
+        <image src='assets/Case_2_graph_dilation.png' height='250'>
+    </p>
 
 ---
 
@@ -366,11 +366,11 @@ RICAP has three main steps:
 
 * Using CutOut
 
-<image src='assets/input_cutout.png' height='250'>
+    <image src='assets/input_cutout.png' height='250'>
 
 * Using Ricap
 
-<image src='assets/input_ricap.png' height='300'>
+    <image src='assets/input_ricap.png' height='300'>
 
 ---
 ### Visualization for misclassified predictions
@@ -378,40 +378,43 @@ RICAP has three main steps:
 #### Using Cutout
 
 * Case 1 : 85.31 accuracy
-<image src='assets/Case_1_missclassified_cutout.png' height='300'>
+
+    <image src='assets/Case_1_missclassified_cutout.png' height='400'>
+
 * Case 2 : 87.13 accuracy
-<image src='assets/Case_2_missclassified_cutout.png' height='300'>
+
+    <image src='assets/Case_2_missclassified_cutout.png' height='400'>
    
 #### Using Dilation
 
 * Case 1 : 79.92 accuracy 
 
-<p float="left">
-    <image src='assets/Case_1_missclassified_dilation.png' height='300'>
-    <image src='assets/Case_1_matrix_dilation.png' height='300'>
-</p>
+    <p float="left">
+        <image src='assets/Case_1_missclassified_dilation.png' height='400'>
+        <image src='assets/Case_1_matrix_dilation.png' height='400'>
+    </p>
 
 * Case 2 : 80.35 accuracy using Ricap
 
-<p float="left">
-    <image src='assets/Case_2_missclassified_dilation.png' height='300'>
-    <image src='assets/Case_2_matrix_dilation.png' height='300'>
-</p>
+    <p float="left">
+        <image src='assets/Case_2_missclassified_dilation.png' height='400'>
+        <image src='assets/Case_2_matrix_dilation.png' height='400'>
+    </p>
 
 #### Using Ricap 
 
 * Case 1 : 86.26 accuracy 
 
-<p float="left">
-    <image src='assets/Case_1_missclassified_ricap.png' height='300'>
-    <image src='assets/Case_1_matrix_ricap.png' height='300'>
-</p>
+    <p float="left">
+        <image src='assets/Case_1_missclassified_ricap.png' height='400'>
+        <image src='assets/Case_1_matrix_ricap.png' height='400'>
+    </p>
 
 * Case 2 : 87.62 accuracy 
-<p float="left">
-    <image src='assets/Case_2_missclassified_ricap.png' height='300'>
-    <image src='assets/Case_2_matrix_ricap.png' height='300'>
-</p>
+    <p float="left">
+        <image src='assets/Case_2_missclassified_ricap.png' height='400'>
+        <image src='assets/Case_2_matrix_ricap.png' height='400'>
+    </p>
 
 
 ---
