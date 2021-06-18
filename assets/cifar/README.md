@@ -12,6 +12,10 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 ### Table of Contents
 
 * [Contributors](#Contributors)
+    * [Residual Block](#Residual-Block)
+        * [Identical residual block](#Identical-residual-block)
+        * [Convolutional residual block](#Convolutional-residual-block)
+    * [Residual Networks](#Residual-Networks)
 * [Model Architecture](#Model-Architecture)
 * [Convolution Techniques Explained](#Convolution-Techniques-Explained)
 * [Transformations and Albumentations](#Transformations-and-Albumentations)
@@ -30,7 +34,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 
 ### Model Architecture
 
-**Overview:**
+**Overview**
 
 * Model architecture used here is highly isnpired with residual blocks
 * Using Strides and Dilations to reduce channel sizes instead of max polling
@@ -41,7 +45,7 @@ The true power of Deep Learning lies in the ability to capture abstract features
 
 To overcome this problem, **He et al (2015)** devised a **Deep Residual architecture**. With a depth of up to 152 layers, the model was able to achieve an error of **3.57%** on the ImageNet test. The architecture is known as the **_ResNet_** and is a stack of *‘Residual Blocks’*.
 
-**Residual Block**
+##### Residual Block
 
 A residual block is a stack of layers set in such a way that the output of a layer is taken and added to another layer deeper in the block. The non-linearity is then applied after adding it together with the output of the corresponding layer in the main path. This by-pass connection is known as the shortcut or the skip-connection.
 
@@ -52,7 +56,7 @@ A residual block is a stack of layers set in such a way that the output of a lay
 
 For a residual block with a skip-connection from layer, l to l+2, the activation for layer l+2 is computed as shown above.
 
-**Residual Networks**
+##### Residual Networks
 
 A residual network is formed by stacking several residual blocks together. Figure 1, showed that with deeper neural networks, the training error tends to increase. However, deep ResNets are capable of forming an identity function that maps to an activation earlier in the network when a specific layer’s activation tends to zero deeper in the network.
 
@@ -65,13 +69,13 @@ In the above equation, let g be the ReLU activation function. If the activations
 
 It is worth mentioning, that for this technique to work the dimension of _z[l+2]_ and _a[l]_ should be similar as they need to be summed up. Depending on dimension of _z[l+2]_ and _a[l]_, there are two kinds of residual blocks
 
-**A. Identical residual block**
+##### A. Identical residual block
 
 In an identical residual block, the output of the shortcut path and the main path is of the same dimensions. This is achieved by padding the input to each convolutional layer in the main path in such a way that the output and input dimensions remain the same.
 
 <image src='assets/identical_residual_block.png' height='150'>
 
-**B. Convolutional residual block**
+##### B. Convolutional residual block
 
 In this type of residual block, the skip-connection consists of a convolutional layer to resize the output of the shortcut path to be of the same dimension as that of the main path. The layer can also make use of different filter sizes, including 1×1, padding, and strides to control the dimension of the output volume. The convolutional layer does not apply any non-linear function and the main role is to apply a learned linear function that reduces the dimension of the input.
 
@@ -79,7 +83,7 @@ In this type of residual block, the skip-connection consists of a convolutional 
 
 ### Convolution Techniques Explained
 
-#### A Dilated Convolution
+#### A. Dilated Convolution
 
 ##### What is Dilated Convolution?  
 
@@ -128,7 +132,7 @@ Receptive Field Calculation:
 
   > Dilated (atrous) convolution.** Dilations introduce “holes” in a convolutional kernel. While the number of weights in the kernel is unchanged, they are no longer applied to spatially adjacent samples. Dilating a kernel by a factor of αα introduces striding of αα between the samples used when computing the convolution. This means that the spatial span of the kernel (k>0k>0) is increased to α(k−1)+1α(k−1)+1. The above derivations can be reused by simply replacing the kernel size kk by α(k−1)+1α(k−1)+1 for all layers using dilations. </P>
 
-#### B Depthwise Separable Convolution
+#### B. Depthwise Separable Convolution
 
 ##### Problem with standard convolution:
 
