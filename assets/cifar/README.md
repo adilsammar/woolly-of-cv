@@ -223,7 +223,7 @@ Lets now talk about different albumentation libraries used
 
 **Now lets let's see what all augumentation techniques we have used in our model in detailed,**
 
-#### Horizontal Flip
+## Horizontal Flip
 This technique flips the input horizontally around the y-axis.
   
 **Syntax**
@@ -238,9 +238,10 @@ Where Argumens is
 The final targets would be an image or Mask or Bboxes with type of the image being uint8 or float32.
 
 Example:
+	
 <image src='assets/h_flip.jpg' height='150'>
 
-#### Shift Scale Rotate
+## Shift Scale Rotate
 This technique randomly apply affine transforms which are translate, scale and rotate the input.
 
 **Syntax**
@@ -270,8 +271,10 @@ Where Arguments are,
 The final targets would be an Image or Mask with Type of the Image being uint8 or float32.
 
 Example: 
+	
 <image src='assets/shift.png' height='400'>
-#### Coarse Dropout
+	
+## Coarse Dropout
 This technique helps train the rectangular regions in the image.
 
 **Syntax** 
@@ -293,9 +296,10 @@ The final targets would be an Image or Mask with Type of the Image being uint8 o
 
 
 Example: 
+	
 <image src='assets/Dropout.png' height='300'>
 
-#### Grayscale
+## Grayscale
 This technique helps to convert the input RGB image to grayscale. If the mean pixel value for the resulting image is greater than 127, invert the resulting grayscale image.
 
 **Syntax**
@@ -309,9 +313,10 @@ Where Arguments are,
 The final targets would be an Image with Type of the Image being uint8 or float32.
 
 Example: 
+	
 <image src='assets/grayscale.png' height='150'>
 
-#### RICAP (Random Image Cropping and Patching)
+## RICAP (Random Image Cropping and Patching)
 
 RICAP is a new approach to data enhancement that can be applied to deep convolutional neural networks. In addition, RICAP also mentions about label smoothing.
 RICAP has three main steps:
