@@ -1,12 +1,18 @@
 # This article talks about training CIFAR 10 dataset
 
-
 This file is submitted as part of Assignment 7 for EVA6 Course
+
+**Highlights**
+* We will train a CNN from scratch to achieve an accuray of **87.6%**, with just **55.8k** Params
+* Use different techniques like **CutOut**, **RICAP** and show a comparison on how they improve on accuracy
+* We will design a model arcitecture from scratch using **ResnetBlocks**
+* Compare techniques like **Strided Convolution**, **Dilated Convolution**
+* All of this is supported by code atttached
 
 ### Table of Contents
 
 * [Contributors](#Contributors)
-* [Code Explanation](#Code-Explanation)
+* [Model Architecture](#Model-Architecture)
 * [Convolution Techniques Explained](#Convolution-Techniques-Explained)
 * [Transformations and Albumentations](#Transformations-and-Albumentations)
 * [Graphs](#Graphs)
@@ -20,9 +26,47 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * [Shashwat Dhanraaj](https://github.com/sdhanraaj12)
 * [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
 
-### Code Explanation
-* Model Architecture
-* Visualization
+### Model Architecture
+
+**Overview:**
+* Model architecture used here is highly isnpired with residual blocks
+* Using Strides and Dilations to reduce channel sizes instead of max polling
+
+Deep Learning harnesses the power of Big Data by building deep neural architectures that try to approximate a function _f(x)_ that can map an input, _x_ to its corresponding label, _y_. **The Universal Approximation Theorem** states that it is possible for a feedforward network with a single layer to closely approximate any function over a domain, provided the layer has enough neurons/hidden units. However, in practice, _deeper_ L-layer neural networks with a smaller number of hidden units per layer are capable of closely approximating a function that shallower layers require exponentially more hidden units to compute.
+
+The true power of Deep Learning lies in the ability to capture abstract features as the signal moves deeper into the layers. However, deeper neural networks often become victim to the notorious vanishing/exploding gradients and performance degradation problem
+
+To overcome this problem, **He et al (2015)** devised a **Deep Residual architecture**. With a depth of up to 152 layers, the model was able to achieve an error of **3.57%** on the ImageNet test. The architecture is known as the **_ResNet_** and is a stack of *‘Residual Blocks’*.
+
+**Residual Block**
+A residual block is a stack of layers set in such a way that the output of a layer is taken and added to another layer deeper in the block. The non-linearity is then applied after adding it together with the output of the corresponding layer in the main path. This by-pass connection is known as the shortcut or the skip-connection.
+
+<image src='assets/residual_block.png' height='150px'>
+<image src='assets/formula.png' height='150px'>
+
+For a residual block with a skip-connection from layer, l to l+2, the activation for layer l+2 is computed as shown above.
+
+**Residual Networks**
+A residual network is formed by stacking several residual blocks together. Figure 1, showed that with deeper neural networks, the training error tends to increase. However, deep ResNets are capable of forming an identity function that maps to an activation earlier in the network when a specific layer’s activation tends to zero deeper in the network.
+
+<image src='assets/residual_network.png' height='150px'>
+<image src='assets/rn_formula.png' height='150px'>
+
+In the above equation, let g be the ReLU activation function. If the activations for the layer _l+2_ tends to _0_, This identity mapping created by these residual blocks is the reason why the addition of extra layers does not affect a residual network’s performance. Performance improvement is achieved whenever the extra layers learn some meaningful information from the data. While, the presence of the residual blocks prevents the loss of performance whenever, the activations tend to vanish or explode.
+
+It is worth mentioning, that for this technique to work the dimension of _z[l+2]_ and _a[l]_ should be similar as they need to be summed up. Depending on dimension of _z[l+2]_ and _a[l]_, there are two kinds of residual blocks:
+
+**Identical residual block**
+In an identical residual block, the output of the shortcut path and the main path is of the same dimensions. This is achieved by padding the input to each convolutional layer in the main path in such a way that the output and input dimensions remain the same.
+
+##### TODO: Insert image here
+
+**Convolutional residual block**
+In this type of residual block, the skip-connection consists of a convolutional layer to resize the output of the shortcut path to be of the same dimension as that of the main path. The layer can also make use of different filter sizes, including 1×1, padding, and strides to control the dimension of the output volume. The convolutional layer does not apply any non-linear function and the main role is to apply a learned linear function that reduces the dimension of the input.
+
+
+
+**Visualization**
 
 ### Convolution Techniques Explained
 
