@@ -233,10 +233,18 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 
    ![Case_2.1_missclassified](../cifar/assets/Case_1_missclassified_dilation.png)
 
+   * Confusion Matrix 
+  
+      ![Case_2.1_matrix](../cifar/assets/Case_1_matrix_dilation.png)
+
 * Case 2 : 80.35 accuracy using Ricap 
 
 
    ![Case_2.2_missclassified](../cifar/assets/Case_2_missclassified_dilation.png)
+
+   * Confusion Matrix 
+  
+      ![Case_2.2_matrix](../cifar/assets/Case_2_matrix_dilation.png)
 
 ### Using Ricap 
 
@@ -245,12 +253,18 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 
    ![Case_3.1_missclassified](../cifar/assets/Case_1_missclassified_ricap.png)
 
+   * Confusion Matrix 
+  
+      ![Case_3.1_matrix](../cifar/assets/Case_1_matrix_ricap.png)
+
 * Case 2 : 87.62 accuracy 
 
 
    ![Case_3.2_missclassified](../cifar/assets/Case_2_missclassified_ricap.png)
    
-   
+   * Confusion Matrix 
+  
+      ![Case_3.2_matrix](../cifar/assets/Case_2_matrix_ricap.png)
 ### References:
 Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
 ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))
