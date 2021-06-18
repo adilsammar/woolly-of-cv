@@ -89,8 +89,8 @@ In this type of residual block, the skip-connection consists of a convolutional 
 
  > Dilated convolution is just a convolution applied to input with defined gaps. 
 
-![Standard Convolution](../assets/FormulaStandardConvolution.png)
-![Dilated Convolution](../assets/FormulaDilatedConvolution.png)
+![Standard Convolution](assets/FormulaStandardConvolution.png)
+![Dilated Convolution](assets/FormulaDilatedConvolution.png)
 
 where 
 
@@ -102,7 +102,7 @@ where
 > When \*l\*=1, it is standard convolution. <br>
 > When \*l\*>1, it is dilated convolution. <br>
 
-![Illustrated Dilated Convolution](../assets/IllustratedDilatedConvolution.png)
+![Illustrated Dilated Convolution](assets/IllustratedDilatedConvolution.png)
 
 
 #### Why do we need dilated convolution? 
@@ -235,34 +235,34 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 * Case 1 : 85.31 accuracy 
 
 
-   ![Case_1_graph](../cifar/assets/Case_1_graph_cutout.png)
+   ![Case_1_graph](assets/Case_1_graph_cutout.png)
 
 * Case 2 : 87.31 accuracy 
 
 
-   ![Case_2_graph](../cifar/assets/Case_2_graph_cutout.png)
+   ![Case_2_graph](assets/Case_2_graph_cutout.png)
 
 #### Using Dilation
 
 * Case 1 : 79.92 accuracy 
 
 
-   ![Case_2.1_graph](../cifar/assets/Case_1_graph_dilation.png)
+   ![Case_2.1_graph](assets/Case_1_graph_dilation.png)
 
 * Case 2 : 80.35 accuracy with Ricap
-   ![Case_2.2_graph](../cifar/assets/Case_2_graph_dilation.png)
+   ![Case_2.2_graph](assets/Case_2_graph_dilation.png)
 
 #### Using Ricap 
 
 * Case 1 : 86.26 accuracy 
 
 
-   ![Case_3.1_graph](../cifar/assets/Case_1_graph_ricap.png)
+   ![Case_3.1_graph](assets/Case_1_graph_ricap.png)
 
 * Case 2 : 87.62 accuracy 
 
 
-   ![Case_3.2_graph](../cifar/assets/Case_2_graph_ricap.png)
+   ![Case_3.2_graph](assets/Case_2_graph_ricap.png)
 
 
 ### Visualization for misclassified predictions
@@ -272,52 +272,52 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 * Case 1 : 85.31 accuracy 
 
 
-   ![Case_1_missclassified](../cifar/assets/Case_1_missclassified_cutout.png)
+   ![Case_1_missclassified](assets/Case_1_missclassified_cutout.png)
 
 * Case 1 : 85.31 accuracy 
 
 
-   ![Case_1_missclassified](../cifar/assets/Case_2_missclassified_cutout.png)
+   ![Case_1_missclassified](assets/Case_2_missclassified_cutout.png)
    
 #### Using Dilation
 
 * Case 1 : 79.92 accuracy 
 
 
-   ![Case_2.1_missclassified](../cifar/assets/Case_1_missclassified_dilation.png)
+   ![Case_2.1_missclassified](assets/Case_1_missclassified_dilation.png)
 
    * Confusion Matrix 
   
-      ![Case_2.1_matrix](../cifar/assets/Case_1_matrix_dilation.png)
+      ![Case_2.1_matrix](assets/Case_1_matrix_dilation.png)
 
 * Case 2 : 80.35 accuracy using Ricap 
 
 
-   ![Case_2.2_missclassified](../cifar/assets/Case_2_missclassified_dilation.png)
+   ![Case_2.2_missclassified](assets/Case_2_missclassified_dilation.png)
 
    * Confusion Matrix 
   
-      ![Case_2.2_matrix](../cifar/assets/Case_2_matrix_dilation.png)
+      ![Case_2.2_matrix](assets/Case_2_matrix_dilation.png)
 
 #### Using Ricap 
 
 * Case 1 : 86.26 accuracy 
 
 
-   ![Case_3.1_missclassified](../cifar/assets/Case_1_missclassified_ricap.png)
+   ![Case_3.1_missclassified](assets/Case_1_missclassified_ricap.png)
 
    * Confusion Matrix with 1374 total incorrect predictions 
   
-      ![Case_3.1_matrix](../cifar/assets/Case_1_matrix_ricap.png)
+      ![Case_3.1_matrix](assets/Case_1_matrix_ricap.png)
 
 * Case 2 : 87.62 accuracy 
 
 
-   ![Case_3.2_missclassified](../cifar/assets/Case_2_missclassified_ricap.png)
+   ![Case_3.2_missclassified](assets/Case_2_missclassified_ricap.png)
    
    * Confusion Matrix with 1238 total incorrect predictions 
   
-      ![Case_3.2_matrix](../cifar/assets/Case_2_matrix_ricap.png)
+      ![Case_3.2_matrix](assets/Case_2_matrix_ricap.png)
 
 
 ### Code Explanation
