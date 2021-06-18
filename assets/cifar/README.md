@@ -422,3 +422,4 @@ ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-re
 Dilated Covolution: (https://erogol.com/dilated-convolution/) <br>
 MULTI-SCALE CONTEXT AGGREGATION BY DILATED CONVOLUTIONS: (https://arxiv.org/pdf/1511.07122.pdf) <br>
 Deep Learning With Depthwise Separable Convolutions: (https://arxiv.org/abs/1610.02357v3) <br>
+RICAP paper : https://arxiv.org/pdf/1811.09030.pdf
