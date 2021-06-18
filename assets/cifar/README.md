@@ -90,8 +90,8 @@ In this type of residual block, the skip-connection consists of a convolutional 
  > Dilated convolution is just a convolution applied to input with defined gaps. 
 
 <p float="left">
-    <image src='assets/FormulaStandardConvolution.png' height='150'>
-    <image src='assets/FormulaDilatedConvolution.png' height='150'>
+    <image src='assets/FormulaStandardConvolution.png' height='50'>
+    <image src='assets/FormulaDilatedConvolution.png' height='50'>
 </p>
 
 where 
@@ -104,7 +104,7 @@ where
 > When \*l\*=1, it is standard convolution. <br>
 > When \*l\*>1, it is dilated convolution. <br>
 
-<image src='assets/IllustratedDilatedConvolution.png' height='150'>
+<image src='assets/IllustratedDilatedConvolution.png' height='220'>
 
 #### Why do we need dilated convolution? 
 
