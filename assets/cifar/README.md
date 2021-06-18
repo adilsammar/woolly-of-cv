@@ -375,26 +375,26 @@ RICAP has three main steps:
 
 * Case 1 : 85.31 accuracy
 
-    <image src='assets/Case_1_missclassified_cutout.png' height='400'>
+    <image src='assets/Case_1_missclassified_cutout.png' height='250'>
 
 * Case 2 : 87.13 accuracy
 
-    <image src='assets/Case_2_missclassified_cutout.png' height='400'>
+    <image src='assets/Case_2_missclassified_cutout.png' height='250'>
    
 #### Using Dilation
 
 * Case 1 : 79.92 accuracy 
 
     <p float="left">
-        <image src='assets/Case_1_missclassified_dilation.png' height='400'>
-        <image src='assets/Case_1_matrix_dilation.png' height='400'>
+        <image src='assets/Case_1_missclassified_dilation.png' height='250'>
+        <image src='assets/Case_1_matrix_dilation.png' height='500'>
     </p>
 
 * Case 2 : 80.35 accuracy using Ricap
 
     <p float="left">
-        <image src='assets/Case_2_missclassified_dilation.png' height='400'>
-        <image src='assets/Case_2_matrix_dilation.png' height='400'>
+        <image src='assets/Case_2_missclassified_dilation.png' height='250'>
+        <image src='assets/Case_2_matrix_dilation.png' height='500'>
     </p>
 
 #### Using Ricap 
@@ -402,14 +402,14 @@ RICAP has three main steps:
 * Case 1 : 86.26 accuracy 
 
     <p float="left">
-        <image src='assets/Case_1_missclassified_ricap.png' height='400'>
-        <image src='assets/Case_1_matrix_ricap.png' height='400'>
+        <image src='assets/Case_1_missclassified_ricap.png' height='250'>
+        <image src='assets/Case_1_matrix_ricap.png' height='500'>
     </p>
 
 * Case 2 : 87.62 accuracy 
     <p float="left">
-        <image src='assets/Case_2_missclassified_ricap.png' height='400'>
-        <image src='assets/Case_2_matrix_ricap.png' height='400'>
+        <image src='assets/Case_2_missclassified_ricap.png' height='250'>
+        <image src='assets/Case_2_matrix_ricap.png' height='500'>
     </p>
 
 
