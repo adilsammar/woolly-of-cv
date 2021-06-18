@@ -253,7 +253,7 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 
    ![Case_3.1_missclassified](../cifar/assets/Case_1_missclassified_ricap.png)
 
-   * Confusion Matrix 
+   * Confusion Matrix with 1374 total incorrect predictions 
   
       ![Case_3.1_matrix](../cifar/assets/Case_1_matrix_ricap.png)
 
@@ -262,7 +262,7 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 
    ![Case_3.2_missclassified](../cifar/assets/Case_2_missclassified_ricap.png)
    
-   * Confusion Matrix 
+   * Confusion Matrix with 1238 total incorrect predictions 
   
       ![Case_3.2_matrix](../cifar/assets/Case_2_matrix_ricap.png)
 ### References:
