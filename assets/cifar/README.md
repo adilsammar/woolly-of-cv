@@ -15,6 +15,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
     - [Table of Contents](#table-of-contents)
     - [Contributors](#contributors)
     - [Model Architecture](#model-architecture)
+    - [Experiments](#experiments)
     - [Convolution Techniques Explained](#convolution-techniques-explained)
       - [Dilated Convolution](#dilated-convolution)
       - [Separable Convolution](#separable-convolution)
@@ -43,7 +44,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 * [Shashwat Dhanraaj](https://github.com/sdhanraaj12)
 * [Srikanth Kandarp](https://github.com/Srikanth-Kandarp)
 
-
+---
 ### Model Architecture
 
 **Overview:**
@@ -93,6 +94,21 @@ In this type of residual block, the skip-connection consists of a convolutional 
 
 <image src='assets/conv_residual_block.png' height='150'>
 
+---
+
+### Experiments
+
+As a part of training CIFAR dataset we have performed multiple experiments. We have used depth wise seperable convoultions for most of our conv operations
+All these experiments were performed keeping parameters count same.
+
+* With CutOut
+    * [With Strided Kernel](/notebook/CIFAR_ALBUMENTATION_CUTOUT_87.13.ipynb)
+    * [Using Dilated Kernal](/notebook/CIFAR_ALBUMENTATION_DILATION_79.92.ipynb)
+* With Ricap
+    * [With Strided Kernel](/notebook/CIFAR_ALBUMENTATION_RICAP_87.62.ipynb)
+    * [Using Dilated Kernal](/notebook/CIFAR_ALBUMENTATION_DILATION_RICAP_80.35.ipynb)
+
+---
 ### Convolution Techniques Explained
 
 #### Dilated Convolution
@@ -173,6 +189,8 @@ The downside of these convolutions is that they cannot be used everywhere since 
 * With less computations, the network is able to process more in a shorter amount of time
 * In the normal convolution, we are **transforming the image 256 times**. And every transformation uses up 5x5x3x8x8=4800 multiplications. In the separable convolution, we only really **transform the image once** — in the depthwise convolution. Then, we take the transformed image and **simply elongate it to 256 channels**. Without having to transform the image over and over again, we can save up on computational power.
 
+
+---
 
 ### Transformations and Albumentations
 
@@ -285,6 +303,8 @@ RICAP has three main steps:
 ![RICAP1](assets/RICAP1.jpeg)
 ![RICAP2](assets/RICAP2.jpeg)
 
+---
+
 ### Graphs
 
 #### Using Cutout
@@ -321,6 +341,7 @@ RICAP has three main steps:
 
    ![Case_3.2_graph](assets/Case_2_graph_ricap.png)
 
+---
 
 ### Visualization for misclassified predictions
 
@@ -376,6 +397,7 @@ RICAP has three main steps:
   
       ![Case_3.2_matrix](assets/Case_2_matrix_ricap.png)
 
+---
 
 ### Code Explanation
 
@@ -440,9 +462,9 @@ The codebase has been modularized and we have kept the below in separate .py fil
 
 
 ### References:
-Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))<br>
-ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))<br>
-Dilated Covolution: (https://erogol.com/dilated-convolution/) <br>
-MULTI-SCALE CONTEXT AGGREGATION BY DILATED CONVOLUTIONS: (https://arxiv.org/pdf/1511.07122.pdf) <br>
-Deep Learning With Depthwise Separable Convolutions: (https://arxiv.org/abs/1610.02357v3) <br>
+* Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
+* ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))
+* Dilated Covolution: (https://erogol.com/dilated-convolution/)
+* Multi Scale Context Aggregation By Dilated Convolutions: (https://arxiv.org/pdf/1511.07122.pdf)
+* Deep Learning With Depthwise Separable Convolutions: (https://arxiv.org/abs/1610.02357v3)
 RICAP paper : https://arxiv.org/pdf/1811.09030.pdf
