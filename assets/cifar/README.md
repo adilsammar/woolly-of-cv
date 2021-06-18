@@ -41,3 +41,4 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 ## Visualization for misclassified predictions
   
 ## References:
+Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
