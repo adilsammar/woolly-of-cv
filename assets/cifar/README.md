@@ -34,7 +34,7 @@ This file is submitted as part of Assignment 7 for EVA6 Course
 
 ### Model Architecture
 
-**Overview**
+**Overview:**
 
 * Model architecture used here is highly isnpired with residual blocks
 * Using Strides and Dilations to reduce channel sizes instead of max polling
@@ -45,7 +45,7 @@ The true power of Deep Learning lies in the ability to capture abstract features
 
 To overcome this problem, **He et al (2015)** devised a **Deep Residual architecture**. With a depth of up to 152 layers, the model was able to achieve an error of **3.57%** on the ImageNet test. The architecture is known as the **_ResNet_** and is a stack of *‘Residual Blocks’*.
 
-##### Residual Block
+**Residual Block**
 
 A residual block is a stack of layers set in such a way that the output of a layer is taken and added to another layer deeper in the block. The non-linearity is then applied after adding it together with the output of the corresponding layer in the main path. This by-pass connection is known as the shortcut or the skip-connection.
 
@@ -56,7 +56,7 @@ A residual block is a stack of layers set in such a way that the output of a lay
 
 For a residual block with a skip-connection from layer, l to l+2, the activation for layer l+2 is computed as shown above.
 
-##### Residual Networks
+**Residual Networks**
 
 A residual network is formed by stacking several residual blocks together. Figure 1, showed that with deeper neural networks, the training error tends to increase. However, deep ResNets are capable of forming an identity function that maps to an activation earlier in the network when a specific layer’s activation tends to zero deeper in the network.
 
@@ -69,13 +69,13 @@ In the above equation, let g be the ReLU activation function. If the activations
 
 It is worth mentioning, that for this technique to work the dimension of _z[l+2]_ and _a[l]_ should be similar as they need to be summed up. Depending on dimension of _z[l+2]_ and _a[l]_, there are two kinds of residual blocks
 
-##### A. Identical residual block
+**A. Identical residual block**
 
 In an identical residual block, the output of the shortcut path and the main path is of the same dimensions. This is achieved by padding the input to each convolutional layer in the main path in such a way that the output and input dimensions remain the same.
 
 <image src='assets/identical_residual_block.png' height='150'>
 
-##### B. Convolutional residual block
+**B. Convolutional residual block**
 
 In this type of residual block, the skip-connection consists of a convolutional layer to resize the output of the shortcut path to be of the same dimension as that of the main path. The layer can also make use of different filter sizes, including 1×1, padding, and strides to control the dimension of the output volume. The convolutional layer does not apply any non-linear function and the main role is to apply a learned linear function that reduces the dimension of the input.
 
@@ -83,7 +83,7 @@ In this type of residual block, the skip-connection consists of a convolutional 
 
 ### Convolution Techniques Explained
 
-#### A. Dilated Convolution
+* Dilated Convolution
 
 <ins>What is Dilated Convolution?</ins> 
 
@@ -132,7 +132,7 @@ where
 
 > Dilated (atrous) convolution.** Dilations introduce “holes” in a convolutional kernel. While the number of weights in the kernel is unchanged, they are no longer applied to spatially adjacent samples. Dilating a kernel by a factor of αα introduces striding of αα between the samples used when computing the convolution. This means that the spatial span of the kernel (k>0k>0) is increased to α(k−1)+1α(k−1)+1. The above derivations can be reused by simply replacing the kernel size kk by α(k−1)+1α(k−1)+1 for all layers using dilations.
 
-#### B. Depthwise Separable Convolution
+* Depthwise Separable Convolution
 
 <ins>Problem with standard convolution</ins>
 
@@ -141,10 +141,27 @@ where
 <ins>Spatially separable convolutions</ins>
 
 >help solve this problem. They are convolutions that can be separated across their spatial axis, meaning that one large convolution (e.g. the original Conv layer) can be split into smaller ones that when convolved sequentially produce the same result. By consequence, the number of multiplications goes down, while getting the same result
+	
+#### Depthwise separable convolutions
 
-The downside of these convolutions is that they cannot be used everywhere since only a minority of kernels is spatially separable. To the rescue here are **depthwise separable convolutions**. This technique simply splits convolutions differently, over a depthwise convolution and a pointwise convolution. The depthwise convolution applies the kernel to each individual channel layer only. The pointwise convolution then convolves over all channels at once, but only with a 1×1 kernel. 
+> The downside of these convolutions is that they cannot be used everywhere since only a minority of kernels is spatially separable. To the rescue here are **depthwise separable convolutions**. This technique simply splits convolutions differently, over a depthwise convolution and a pointwise convolution. The depthwise convolution applies the kernel to each individual channel layer only. The pointwise convolution then convolves over all channels at once, but only with a 1×1 kernel. 
 
-Insert Depthwise Png
+<image src='assets/DepthwiseSep1.png' height='300'>
+	
+#### Effect of Depthwise Separabale Convolution:
+
+>  If the original convolution function is 12x12x3 — (5x5x3x256) →12x12x256, we can illustrate this new convolution as 12x12x3 — (5x5x1x1) — > (1x1x3x256) — >12x12x256. There are 256 5x5x3 kernels that move 8x8 times. That’s 256x3x5x5x8x8=1,228,800 multiplications.
+
+>  In the depthwise convolution, we have 3 5x5x1 kernels that move 8x8 times. That’s 3x5x5x8x8 = 4,800 multiplications. In the pointwise convolution, we have 256 1x1x3 kernels that move 8x8 times. That’s 256x1x1x3x8x8=49,152 multiplications. Adding them up together, that’s 53,952 multiplications.
+	
+<image src='assets/DepthwiseSep2.png' height='120'>
+	
+#### Advantages:
+
+>  * With less computations, the network is able to process more in a shorter amount of time
+
+>  * In the normal convolution, we are **transforming the image 256 times**. And every transformation uses up 5x5x3x8x8=4800 multiplications. In the separable convolution, we only really **transform the image once** — in the depthwise convolution. Then, we take the transformed image and **simply elongate it to 256 channels**. Without having to transform the image over and over again, we can save up on computational power.
+
 
 ### Transformations and Albumentations
 
@@ -388,5 +405,8 @@ The codebase has been modularized and we have kept the below in separate .py fil
 
 
 ### References:
-* Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
-* ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))
+Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))<br>
+ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))<br>
+Dilated Covolution: (https://erogol.com/dilated-convolution/) <br>
+MULTI-SCALE CONTEXT AGGREGATION BY DILATED CONVOLUTIONS: (https://arxiv.org/pdf/1511.07122.pdf) <br>
+Deep Learning With Depthwise Separable Convolutions: (https://arxiv.org/abs/1610.02357v3) <br>
