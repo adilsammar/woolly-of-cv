@@ -274,7 +274,7 @@ The final targets would be an Image or Mask with Type of the Image being uint8 o
 
 Example: 
 
-  ![Dropout](assets/Dropout.jpg)
+  ![Dropout](assets/Dropout.png)
 #### Grayscale
 This technique helps to convert the input RGB image to grayscale. If the mean pixel value for the resulting image is greater than 127, invert the resulting grayscale image.
 
