@@ -176,17 +176,24 @@ Where Arguments are,
 The final targets would be an Image with Type of the Image being uint8 or float32.
 
 ### Graphs
+
 ### Using Cutout
 
 * Case 1 : 85.31 accuracy 
+
+
    ![Case_1_graph](../cifar/assets/Case_1_graph_cutout.png)
 
 * Case 2 : 87.31 accuracy 
+
+
    ![Case_2_graph](../cifar/assets/Case_2_graph_cutout.png)
 
 ### Using Dilation
 
 * Case 1 : 79.92 accuracy 
+
+
    ![Case_2.1_graph](../cifar/assets/Case_1_graph_dilation.png)
 
 * Case 2 : 80.35 accuracy with Ricap
@@ -195,33 +202,55 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 ### Using Ricap 
 
 * Case 1 : 86.26 accuracy 
+
+
    ![Case_3.1_graph](../cifar/assets/Case_1_graph_ricap.png)
 
 * Case 2 : 87.62 accuracy 
+
+
    ![Case_3.2_graph](../cifar/assets/Case_2_graph_ricap.png)
 
 
 ### Visualization for misclassified predictions
+
 ### Using Cutout
+
 * Case 1 : 85.31 accuracy 
+
+
    ![Case_1_missclassified](../cifar/assets/Case_1_missclassified_cutout.png)
 
 * Case 1 : 85.31 accuracy 
+
+
    ![Case_1_missclassified](../cifar/assets/Case_2_missclassified_cutout.png)
    
 ### Using Dilation
+
 * Case 1 : 79.92 accuracy 
+
+
    ![Case_2.1_missclassified](../cifar/assets/Case_1_missclassified_dilation.png)
 
 * Case 2 : 80.35 accuracy using Ricap 
+
+
    ![Case_2.2_missclassified](../cifar/assets/Case_2_missclassified_dilation.png)
 
 ### Using Ricap 
+
 * Case 1 : 86.26 accuracy 
+
+
    ![Case_3.1_missclassified](../cifar/assets/Case_1_missclassified_ricap.png)
 
 * Case 2 : 87.62 accuracy 
+
+
    ![Case_3.2_missclassified](../cifar/assets/Case_2_missclassified_ricap.png)
+   
+   
 ### References:
 Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
 ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))
