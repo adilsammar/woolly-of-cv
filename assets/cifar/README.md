@@ -114,10 +114,10 @@ Where Arguments are,
 
 The final targets would be an Image with Type of the Image being uint8 or float32.
 
-## Graphs
+### Graphs
 
-## Visualization for misclassified predictions
+### Visualization for misclassified predictions
   
-## References:
+### References:
 Ricap: ([https://github.com/4uiiurz1/pytorch-ricap](https://github.com/4uiiurz1/pytorch-ricap))
 ResidualBlocks: ([https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2](https://towardsdatascience.com/resnets-residual-blocks-deep-residual-learning-a231a0ee73d2))
