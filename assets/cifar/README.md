@@ -467,4 +467,4 @@ The codebase has been modularized and we have kept the below in separate .py fil
 * Dilated Covolution: (https://erogol.com/dilated-convolution/)
 * Multi Scale Context Aggregation By Dilated Convolutions: (https://arxiv.org/pdf/1511.07122.pdf)
 * Deep Learning With Depthwise Separable Convolutions: (https://arxiv.org/abs/1610.02357v3)
-RICAP paper : https://arxiv.org/pdf/1811.09030.pdf
+* RICAP paper: (https://arxiv.org/pdf/1811.09030.pdf)
