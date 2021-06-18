@@ -145,10 +145,6 @@ In this type of residual block, the skip-connection consists of a convolutional 
 
 <image src='assets/conv_residual_block.png' height='150'>
 
-
-
-**Visualization**
-
 ### Convolution Techniques Explained
 
 * Dilated Convolution
@@ -302,7 +298,7 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 
 ### Graphs
 
-### Using Cutout
+#### Using Cutout
 
 * Case 1 : 85.31 accuracy 
 
@@ -314,7 +310,7 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 
    ![Case_2_graph](../cifar/assets/Case_2_graph_cutout.png)
 
-### Using Dilation
+#### Using Dilation
 
 * Case 1 : 79.92 accuracy 
 
@@ -324,7 +320,7 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 * Case 2 : 80.35 accuracy with Ricap
    ![Case_2.2_graph](../cifar/assets/Case_2_graph_dilation.png)
 
-### Using Ricap 
+#### Using Ricap 
 
 * Case 1 : 86.26 accuracy 
 
@@ -339,7 +335,7 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 
 ### Visualization for misclassified predictions
 
-### Using Cutout
+#### Using Cutout
 
 * Case 1 : 85.31 accuracy 
 
@@ -351,7 +347,7 @@ The final targets would be an Image with Type of the Image being uint8 or float3
 
    ![Case_1_missclassified](../cifar/assets/Case_2_missclassified_cutout.png)
    
-### Using Dilation
+#### Using Dilation
 
 * Case 1 : 79.92 accuracy 
 
@@ -371,7 +367,7 @@ The final targets would be an Image with Type of the Image being uint8 or float3
   
       ![Case_2.2_matrix](../cifar/assets/Case_2_matrix_dilation.png)
 
-### Using Ricap 
+#### Using Ricap 
 
 * Case 1 : 86.26 accuracy 
 
