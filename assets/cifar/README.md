@@ -328,7 +328,7 @@ RICAP has three main steps:
 
 ### Graphs
 
-#### Using Cutout - Strided COnvolution
+#### Using Cutout - Strided Convolution
 
 * Case 1 : 85.31 accuracy - 30 epochs
 * Case 2 : 87.31 accuracy - 50 epochs
@@ -356,58 +356,44 @@ RICAP has three main steps:
 
 ---
 
+### Visualization for input images
+* Using CutOut
+<image src='assets/input_cutout.png' height='250'>
+* Using Ricap
+<image src='assets/input_ricap.png' height='250'>
+---
 ### Visualization for misclassified predictions
 
 #### Using Cutout
 
-* Case 1 : 85.31 accuracy 
-
-
-   ![Case_1_missclassified](assets/Case_1_missclassified_cutout.png)
-
-* Case 1 : 85.31 accuracy 
-
-
-   ![Case_1_missclassified](assets/Case_2_missclassified_cutout.png)
+* Case 1 : 85.31 accuracy
+<image src='assets/Case_1_missclassified_cutout.png' height='250'>
+* Case 2 : 87.13 accuracy
+<image src='assets/Case_2_missclassified_cutout.png' height='250'>
    
 #### Using Dilation
 
 * Case 1 : 79.92 accuracy 
-
-
-   ![Case_2.1_missclassified](assets/Case_1_missclassified_dilation.png)
-
-   * Confusion Matrix 
-  
-      ![Case_2.1_matrix](assets/Case_1_matrix_dilation.png)
+<p float="left">
+    <image src='assets/Case_1_missclassified_dilation.png' height='250'>
+    <image src='assets/Case_1_matrix_dilation.png' height='250'>
+</p>
 
 * Case 2 : 80.35 accuracy using Ricap 
-
-
    ![Case_2.2_missclassified](assets/Case_2_missclassified_dilation.png)
-
    * Confusion Matrix 
-  
       ![Case_2.2_matrix](assets/Case_2_matrix_dilation.png)
 
 #### Using Ricap 
 
 * Case 1 : 86.26 accuracy 
-
-
    ![Case_3.1_missclassified](assets/Case_1_missclassified_ricap.png)
-
    * Confusion Matrix with 1374 total incorrect predictions 
-  
       ![Case_3.1_matrix](assets/Case_1_matrix_ricap.png)
 
 * Case 2 : 87.62 accuracy 
-
-
    ![Case_3.2_missclassified](assets/Case_2_missclassified_ricap.png)
-   
    * Confusion Matrix with 1238 total incorrect predictions 
-  
       ![Case_3.2_matrix](assets/Case_2_matrix_ricap.png)
 
 ---
