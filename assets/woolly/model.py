@@ -205,10 +205,14 @@ class WyCifar10Net(nn.Module):
         self.b3 = WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
                           ctype=self.ctype, norm=self.norm, padding=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation, use_skip=self.use_skip)
         self.height, self.width = self.height/2, self.width/2
+        
+        self.feature = nn.Sequential(self.b1, self.b2, self.b3)
 
         # Output Block
         self.gap = nn.AdaptiveAvgPool2d(1)
         self.flat = nn.Conv2d(self.base_channels*2, self.classes, 1)
+        
+        self.classifier = nn.Sequential(self.gap, self.flat)
 
     def forward(self, x, use_softmax=False, dropout=True):
         """Convolution function
@@ -221,18 +225,13 @@ class WyCifar10Net(nn.Module):
             tensor: tensor of logits
         """
 
-        # Input Layer
-        x = self.b1(x)
-        # Block 2
-        x = self.b2(x)
-        if dropout:
-            x = self.d2(x)
-        # Block 2
-        x = self.b3(x)
+        # Feature Layer
+        x = self.feature(x)
 
-        # Output Layer
-        x = self.gap(x)
-        x = self.flat(x)
+        # Classifier Layer
+        x = self.classifier(x)
+    
+        # Reshape
         x = x.view(-1, self.classes)
 
         # Output Layer

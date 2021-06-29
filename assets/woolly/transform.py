@@ -10,6 +10,10 @@ torch.manual_seed(1)
 
 
 BASE_PROFILE = {
+    'normalize': {
+        'mean': (0.4914, 0.4822, 0.4465),
+        'std': (0.2470, 0.2435, 0.2616)
+    },
     'shift_scale_rotate': {
         'shift_limit': 0.15,
         'scale_limit': 0.15,
@@ -52,10 +56,6 @@ BASE_PROFILE = {
         'fill_value': (0.4914, 0.4822, 0.4465),
         'p': 0.3
     },
-    'normalize': {
-        'mean': (0.4914, 0.4822, 0.4465),
-        'std': (0.2470, 0.2435, 0.2616)
-    },
     'to_tensor': True
 }
 
@@ -68,6 +68,16 @@ def get_transform(profile):
     """
 
     trs = []
+
+    if 'normalize' in profile:
+        norm = profile['normalize']
+        trs.append(
+            A.Normalize(
+                mean=norm['mean'],
+                std=norm['std'],
+            )
+        )
+        
     if 'shift_scale_rotate' in profile:
         ssr = profile['shift_scale_rotate']
         trs.append(
@@ -137,15 +147,6 @@ def get_transform(profile):
         trs.append(
             A.ToGray(
                 p=tg['p']
-            )
-        )
-
-    if 'normalize' in profile:
-        norm = profile['normalize']
-        trs.append(
-            A.Normalize(
-                mean=norm['mean'],
-                std=norm['std'],
             )
         )
 
