@@ -1,4 +1,3 @@
-from albumentations.augmentations.transforms import Cutout, HorizontalFlip
 import torch
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
@@ -10,6 +9,11 @@ torch.manual_seed(1)
 
 
 BASE_PROFILE = {
+    'resize': {
+        'height': 32,
+        'width': 32,
+        'p': 1
+    },
     'normalize': {
         'mean': (0.4914, 0.4822, 0.4465),
         'std': (0.2470, 0.2435, 0.2616)
@@ -61,13 +65,23 @@ BASE_PROFILE = {
 
 
 def get_transform(profile):
-    """Get transformer for training data
+    """Get transformer for data
 
     Returns:
         Compose: Composed transformations
     """
 
     trs = []
+
+    if 'resize' in profile:
+        rs = profile['resize']
+        trs.append(
+            A.Resize(
+                height=rs['height'],
+                width=rs['width'],
+                p=rs['p']
+            )
+        )
 
     if 'normalize' in profile:
         norm = profile['normalize']
@@ -77,7 +91,7 @@ def get_transform(profile):
                 std=norm['std'],
             )
         )
-        
+
     if 'shift_scale_rotate' in profile:
         ssr = profile['shift_scale_rotate']
         trs.append(

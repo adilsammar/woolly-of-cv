@@ -2,11 +2,47 @@ import numpy as np
 import torch
 from torchvision import datasets
 from torch.utils.data import Dataset, DataLoader
+import glob
+from PIL import Image
 
 from woolly.transform import convert_to_tensor
 
 torch.manual_seed(1)
 
+
+class WyCustomDataset(Dataset):
+    def __init__(self, class_map, path='./data', transforms=None):
+        self.img_dim = (32, 32)
+        self.transforms = transforms
+        self.idata = []
+        self.ilabel = []
+        
+        self.class_map = class_map
+        
+        # Read Dataset
+        self.images = glob.glob(path + '/**/*.jpg')
+        
+        for image in self.images:
+            self.ilabel.append(self.class_map[image.split('/')[2].upper()])
+            self.idata.append(image)
+
+    def __len__(self):
+        return len(self.idata)
+
+    def __getitem__(self, idx):
+        # Read Image and Label
+        im_path = self.idata[idx]
+        label = self.ilabel[idx]
+        
+        # open method used to open different extension image file
+        with Image.open(im_path) as f:
+            image: np.ndarray = np.asarray(f) #.convert('RGB'))
+        
+        # Apply Transforms
+        if self.transforms is not None:
+            image = self.transforms(image=image)["image"]
+            
+        return image, label, im_path
 
 class WyDatasetAdvance(Dataset):
     """
