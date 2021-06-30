@@ -14,6 +14,13 @@ BASE_PROFILE = {
         'width': 32,
         'p': 1
     },
+    'pad_and_crop': {
+        'height': 32,
+        'width': 32,
+        'pad': 4,
+        'fill': (0.4914, 0.4822, 0.4465),
+        'p': 1
+    },
     'normalize': {
         'mean': (0.4914, 0.4822, 0.4465),
         'std': (0.2470, 0.2435, 0.2616)
@@ -81,6 +88,23 @@ def get_transform(profile):
                 width=rs['width'],
                 p=rs['p']
             )
+        )
+
+    if 'pad_and_crop' in profile:
+        pac = profile['pad_and_crop']
+        trs.append(
+            A.Sequential([
+                A.PadIfNeeded(
+                    min_height=pac['height']+pac['pad'],
+                    min_width=pac['width']+pac['pad'],
+                    border_mode=cv.BORDER_CONSTANT,
+                    value=pac['fill']
+                ),
+                A.RandomCrop(
+                    height=pac['height'],
+                    width=pac['width']
+                )
+            ], p=pac['p'])
         )
 
     if 'normalize' in profile:

@@ -76,10 +76,10 @@ class WyResidual(nn.Module):
 
         if usedilation:
             self.conv1 = WyConv2d(input_size, output_size, kernel_size=3,
-                                padding=padding, strides=1, dilation=dilation, ctype=ctype)
+                                  padding=padding, strides=1, dilation=dilation, ctype=ctype)
         else:
             self.conv1 = WyConv2d(input_size, output_size, kernel_size=3,
-                                padding=padding, strides=strides, dilation=dilation, ctype=ctype)
+                                  padding=padding, strides=strides, dilation=dilation, ctype=ctype)
         self.bn1 = get_norm_layer(output_size, norm=norm)
         self.conv2 = WyConv2d(
             output_size, output_size, kernel_size=3, padding=1, strides=1, ctype=ctype)
@@ -182,19 +182,22 @@ class WyCifar10Net(nn.Module):
         self.height, self.width = image
         self.dilation = 1
 
+        self.blocks = []
+
         super(WyCifar10Net, self).__init__()
 
         # Base Block
-        self.b1 = WyResidual(input_size, self.base_channels*2, first_block=True)
+        self.blocks.append(WyResidual(
+            input_size, self.base_channels*2, first_block=True))
 
         # Transition + Residual Blocks 1
         if usedilation:
             self.dilation = (max(int(self.height/4), 1),
                              max(int(self.width/4), 1))
         self.base_channels = self.base_channels*2
-        self.b2 = WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
-                          ctype=self.ctype, norm=self.norm, padding=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation, use_skip=self.use_skip)
-        self.d2 = nn.Dropout(self.drop_ratio)
+        self.blocks.append(WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
+                                   ctype=self.ctype, norm=self.norm, padding=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation, use_skip=self.use_skip))
+        # self.d2 = nn.Dropout(self.drop_ratio)
         self.height, self.width = self.height/2, self.width/2
 
         # Transition + Residual Block 2
@@ -202,17 +205,20 @@ class WyCifar10Net(nn.Module):
             self.dilation = (max(int(self.height/4), 1),
                              max(int(self.width/4), 1))
         self.base_channels = self.base_channels*2
-        self.b3 = WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
-                          ctype=self.ctype, norm=self.norm, padding=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation, use_skip=self.use_skip)
+        self.blocks.append(WyBlock(self.base_channels, self.base_channels*2, repetations=self.layers,
+                                   ctype=self.ctype, norm=self.norm, padding=1, dilation=self.dilation, use1x1=self.use1x1, usepool=False, usedilation=usedilation, use_skip=self.use_skip))
         self.height, self.width = self.height/2, self.width/2
-        
-        self.feature = nn.Sequential(self.b1, self.b2, self.b3)
+
+        # Combine Feature Layer
+        self.feature = nn.Sequential(*self.blocks)
 
         # Output Block
-        self.gap = nn.AdaptiveAvgPool2d(1)
-        self.flat = nn.Conv2d(self.base_channels*2, self.classes, 1)
-        
-        self.classifier = nn.Sequential(self.gap, self.flat)
+        # self.gap = nn.AdaptiveAvgPool2d(1)
+        # self.flat = nn.Conv2d(self.base_channels*2, self.classes, 1)
+        self.classifier = nn.Sequential(
+            nn.AdaptiveAvgPool2d(1),
+            nn.Conv2d(self.base_channels*2, self.classes, 1)
+        )
 
     def forward(self, x, use_softmax=False, dropout=True):
         """Convolution function
@@ -230,7 +236,7 @@ class WyCifar10Net(nn.Module):
 
         # Classifier Layer
         x = self.classifier(x)
-    
+
         # Reshape
         x = x.view(-1, self.classes)
 
